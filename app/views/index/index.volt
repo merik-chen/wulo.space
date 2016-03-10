@@ -13,7 +13,7 @@ Index
 
 {% block body %}
 <div>
-    <proto-element name="Merik"></proto-element>
+    中文 English
 </div>
 {% endblock %}
 
