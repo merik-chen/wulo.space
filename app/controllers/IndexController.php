@@ -13,7 +13,7 @@ class IndexController extends ControllerBase
         $board = $this->dispatcher->getParam('board', 'string', false);
         $post = $this->dispatcher->getParam('post', 'string', false);
 
-        if( $board && $post ) $this->response->redirect('/');
+        if( $board == false || $post == false ) $this->response->redirect('/');
 
         $this->view->board  = $board;
         $this->view->post   = $post;
