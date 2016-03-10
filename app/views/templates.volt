@@ -27,7 +27,7 @@
                     var regex = /ptt.+\/bbs\/(\w+)\/([\w\.]+)\.html?/,
                         result;
 
-                    if (result = regex.exec(url) !== null) {
+                    if ((result = regex.exec(url)) !== null) {
                         return {
                             'board': result[1],
                             'article': result[2]
