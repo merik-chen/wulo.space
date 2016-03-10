@@ -88,14 +88,14 @@ $di->setShared('session', function () {
 $di->setShared('router', function () {
     $router = new \Phalcon\Mvc\Router();
 
-    $router->addGet("/(\\w+)/([\\w\\.]+).html?", [
+    $router->addGet("/bbs/(\\w+)/([\\w\\.]+).html?", [
         'controller'    => 'index',
         'action'        => 'detail',
         'board'         => 1,
         'post'          => 2
     ]);
 
-    $router->addGet("/(\\w+).html?", [
+    $router->addGet("/bbs/(\\w+)/index.html?", [
         'controller'    => 'index',
         'action'        => 'list',
         'board'         => 1
