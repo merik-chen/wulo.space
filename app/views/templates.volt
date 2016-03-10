@@ -7,7 +7,7 @@
         <title>{% block title %}Title{% endblock %}</title>
         <script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
         <style>
-            @import url(http://fonts.googleapis.com/earlyaccess/cwtexhei.css);
+            @import url('//fonts.googleapis.com/earlyaccess/cwtexhei.css');
             body {
                 font-family: 'cwTeXFangSong', serif !important;
             }
