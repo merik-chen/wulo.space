@@ -13,7 +13,7 @@ Index
 
 {% block body %}
 <div>
-    <proto-element></proto-element>
+    <proto-element name="Merik"></proto-element>
 </div>
 {% endblock %}
 
