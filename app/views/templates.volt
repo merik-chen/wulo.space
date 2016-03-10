@@ -17,6 +17,23 @@
     </head>
     <body>
         {% block body %}{% endblock %}
+        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script>
+            $(function () {
+                var link = 'https://www.ptt.cc/bbs/LGBT_SEX/M.1456717141.A.C4D.html',
+                    url_extracter = /ptt.+\/bbs\/(\w+)\/([\w\.]+)\.html?/,
+                    m;
+
+                if ((m = url_extracter.exec(link)) !== null) {
+                    if (m.index === url_extracter.lastIndex) {
+                        url_extracter.lastIndex++;
+                    }
+                    // View your result using the m-variable.
+                    // eg m[0] etc.
+                }
+            })
+        </script>
         {% block extJs %}{% endblock %}
     </body>
 </html>
