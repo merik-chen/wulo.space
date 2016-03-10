@@ -1,35 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- 1. Load webcomponents-lite.min.js for polyfill support. -->
-    <script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+{% extends "templates.volt" %}
 
-    <!-- 2. Use an HTML Import to bring in some elements. -->
-    <link rel="import" href="/bower_components/paper-button/paper-button.html">
-    <link rel="import" href="/bower_components/paper-input/paper-input.html">
+{% block title %}
+Index
+{% endblock %}
 
-    <link rel="import" href="/models/proto-element.html">
-</head>
-<body>
+{% block extCss %}
+{% endblock %}
 
-<proto-element></proto-element>
+{% block extModels %}
+<link rel="import" href="/models/proto-element.html">
+{% endblock %}
 
-<!-- 3. Declare the element. Configure using its attributes. -->
-<paper-input label="Your name here"></paper-input>
-<paper-button>Say Hello</paper-button>
-<div id="greeting"></div>
+{% block body %}
+<div>
+    <proto-element></proto-element>
+</div>
+{% endblock %}
 
-<script>
-    // To ensure that elements are ready on polyfilled browsers,
-    // wait for WebComponentsReady.
-    document.addEventListener('WebComponentsReady', function() {
-        var input = document.querySelector('paper-input');
-        var button = document.querySelector('paper-button');
-        var greeting = document.getElementById("greeting");
-        button.addEventListener('click', function() {
-            greeting.textContent = 'Hello, ' + input.value;
-        });
-    });
-</script>
-</body>
-</html>
+{% block extJs %}
+{% endblock %}
