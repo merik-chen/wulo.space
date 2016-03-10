@@ -84,3 +84,20 @@ $di->setShared('session', function () {
 
     return $session;
 });
+
+$di->setShared('router', function () {
+    $router = new \Phalcon\Mvc\Router();
+
+    $router->addGet("/(\\w+)/([\\w\\.]+)/?", [
+        'controller'    => 'index',
+        'action'        => 'detail',
+        'board'         => 1,
+        'post'          => 2
+    ]);
+
+    $router->addGet("/(\\w+)/?", [
+        'controller'    => 'index',
+        'action'        => 'list',
+        'board'         => 1
+    ]);
+});

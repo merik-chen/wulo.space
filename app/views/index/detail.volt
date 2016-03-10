@@ -11,7 +11,13 @@
 
 {% block body %}
 <div>
-    中文 English
+    <p>Board: {{board}}</p>
+    <p>Post: {{post}}</p>
+    <p>
+        <a href="https://www.ptt.cc/bbs/{{ board }}/{{ post }}.html">
+            https://www.ptt.cc/bbs/{{ board }}/{{ post }}.html
+        </a>
+    </p>
 </div>
 {% endblock %}
 

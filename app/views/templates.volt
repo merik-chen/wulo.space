@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}Title{% endblock %}</title>
+        <title>{% block title %}五樓，你怎麼說？ - 每個文章的心中，都有一個五樓。{% endblock %}</title>
         <script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
         <style>
             @import url('//fonts.googleapis.com/earlyaccess/cwtexhei.css');
@@ -19,24 +19,8 @@
         {% block body %}{% endblock %}
         <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="/js/wulo.js"></script>
         <script>
-            "use strict";
-            window.wulo = window.wulo || {};
-            wulo.utility = {
-                ptt_link_extract: function (url) {
-                    var regex = /ptt.+\/bbs\/(\w+)\/([\w\.]+)\.html?/,
-                        result;
-
-                    if ((result = regex.exec(url)) !== null) {
-                        return {
-                            'board': result[1],
-                            'article': result[2]
-                        }
-                    } else {
-                        return false;
-                    }
-                }
-            };
             $(function () {
                 var link = 'https://www.ptt.cc/bbs/LGBT_SEX/M.1456717141.A.C4D.html';
 
