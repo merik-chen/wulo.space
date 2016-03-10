@@ -24,9 +24,17 @@
             window.wulo = window.wulo || {};
             wulo.utility = {
                 ptt_link_extract: function (url) {
-                    var regex = /ptt.+\/bbs\/(\w+)\/([\w\.]+)\.html?/;
+                    var regex = /ptt.+\/bbs\/(\w+)\/([\w\.]+)\.html?/,
+                        result;
 
-                    return regex.exec(url);
+                    if (result = regex.exec(url) !== null) {
+                        return {
+                            'board': result[1],
+                            'article': result[2]
+                        }
+                    } else {
+                        return false;
+                    }
                 }
             };
             $(function () {
