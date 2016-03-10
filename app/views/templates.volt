@@ -21,13 +21,13 @@
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script>
             $(function () {
-                var link = 'https://www.ptt.cc/sbbs/LGBT_SEX/M.1456717141.A.C4D.html',
+                var link = 'https://www.ptt.cc/bbs/LGBT_SEX/M.1456717141.A.C4D.html',
                     url_extracter = /ptt.+\/bbs\/(\w+)\/([\w\.]+)\.html?/;
 
                 if ((window.m = url_extracter.exec(link)) !== null) {
-                    if (window.m.index === url_extracter.lastIndex) {
-                        url_extracter.lastIndex++;
-                    }
+//                    if (window.m.index === url_extracter.lastIndex) {
+//                        url_extracter.lastIndex++;
+//                    }
                     // View your result using the m-variable.
                     // eg m[0] etc.
                 }
