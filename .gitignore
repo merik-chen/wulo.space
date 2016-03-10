@@ -334,3 +334,4 @@ target/
 # Created by .ignore support plugin (hsz.mobi)
 
 app/cache/
+bower_components/

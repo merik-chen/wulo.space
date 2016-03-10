@@ -1,0 +1,33 @@
+{
+  "name": "Wulo",
+  "authors": [
+    "Merik <merik.chen@gmail.com>"
+  ],
+  "description": "Tell you the 5th reply in ptt.cc",
+  "main": "index.html",
+  "moduleType": [
+    "es6",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "Big",
+    "Data",
+    "Node",
+    "Ajax",
+    "Promise"
+  ],
+  "license": "MIT",
+  "homepage": "https://wulo.space",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "^1.3.1"
+  }
+}
