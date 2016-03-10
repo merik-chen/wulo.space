@@ -100,4 +100,6 @@ $di->setShared('router', function () {
         'action'        => 'list',
         'board'         => 1
     ]);
+
+    return $router;
 });
