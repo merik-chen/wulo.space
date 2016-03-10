@@ -22,11 +22,10 @@
         <script>
             $(function () {
                 var link = 'https://www.ptt.cc/bbs/LGBT_SEX/M.1456717141.A.C4D.html',
-                    url_extracter = /ptt.+\/bbs\/(\w+)\/([\w\.]+)\.html?/,
-                    m;
+                    url_extracter = /ptt.+\/bbs\/(\w+)\/([\w\.]+)\.html?/;
 
-                if ((m = url_extracter.exec(link)) !== null) {
-                    if (m.index === url_extracter.lastIndex) {
+                if ((window.m = url_extracter.exec(link)) !== null) {
+                    if (window.m.index === url_extracter.lastIndex) {
                         url_extracter.lastIndex++;
                     }
                     // View your result using the m-variable.
