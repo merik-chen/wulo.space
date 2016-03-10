@@ -1,7 +1,5 @@
 {% extends "templates.volt" %}
 
-{% block title %}
-{% endblock %}
 
 {% block extCss %}
 {% endblock %}
