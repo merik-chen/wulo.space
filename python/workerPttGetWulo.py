@@ -3,7 +3,9 @@
 
 from Ptt.Article import Article
 import Database
+import random
 import json
+import time
 
 article = None
 
@@ -29,6 +31,8 @@ def ptt_get_article(gearman_worker, gearman_job):
         {'$set': result},
         upsert=True
     )
+
+    time.sleep(random.randrange(3, 6))
 
     return 'ok'
 
