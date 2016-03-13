@@ -335,3 +335,4 @@ target/
 
 app/cache/
 bower_components/
+*.pyc
