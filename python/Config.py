@@ -5,9 +5,9 @@ import os
 import re
 
 
-app_env = 'app_env' in os.environ and str(os.environ['app_env']).lower() or ''
+app_env = 'APP_ENV' in os.environ and str(os.environ['APP_ENV']).lower() or ''
 
-if app_env == 'SPIDER':
+if app_env == 'spider':
     app_cfg = {
         'mongo': {'address': '192.168.122.1', 'port': 27017},
         'redis': {'address': '192.168.122.1', 'port': 6384},
