@@ -29,7 +29,7 @@ wulo.utility = {
         });
         return Promise.resolve(jQueryPromise);
     },
-    trackingArticle: function (url, payload, type) {
+    trackingArticle: function (url, payload, type, success_callback) {
         var tracking_timer = setInterval(function () {
             var jQueryPromise = $.ajax({
                 url: url,
@@ -41,7 +41,7 @@ wulo.utility = {
                 if (rsp.status) {
                     clearInterval(tracking_timer);
                     trackingArticle = true;
-                    return true;
+                    success_callback(rsp);
                 }
             });
         }, 1000);

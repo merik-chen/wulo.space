@@ -40,13 +40,13 @@
         get_article.done(function (rsp) {
             switch (rsp.status) {
                 case true:
-                    window.location.href = '/bbs/' + board + '/' + article + '.html';
+//                    window.location.href = '/bbs/' + board + '/' + article + '.html';
                     break;
                 case false:
                     console.error('Get article failed!', rsp);
                     break;
                 case null:
-                    var srsp = wulo.utility.trackingArticle(
+                    wulo.utility.trackingArticle(
                         '/api/get5F',
                         {
                             'payload': {
@@ -54,9 +54,11 @@
                                 'article': article
                             }
                         },
-                        'json'
+                        'json',
+                        function (rsp) {
+                            console.log(rsp);
+                        }
                     );
-                    console.log(srsp);
                     break;
                 default:
                     console.error('Un-know state.', rsp);
