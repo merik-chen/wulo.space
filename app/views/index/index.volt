@@ -20,7 +20,8 @@
     $(function () {
 
         $("#go").click(function () {
-            var params = wulo.utility.ptt_link_extract(link);
+            var link = $.trim($("#target").val()),
+                params = wulo.utility.ptt_link_extract(link);
 
             wulo.utility.promisePost(
                 '/api/get5F',
