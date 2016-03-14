@@ -22,8 +22,13 @@ class Base extends \Phalcon\Mvc\Model
         $this->gearman = new \GearmanClient();
         $this->gearman->addServer('192.168.122.1');
 
+
         $this->database = $this->mongo->selectDB('wulo');
         $this->collection = $this->database->selectCollection('data');
+    }
+
+    function sendBackgroundTask($task_name, $task_payload, $task_unique = null) {
+        return $this->gearman->doBackground($task_name, $task_payload, $task_unique);
     }
 
     protected function make_hash($text) {

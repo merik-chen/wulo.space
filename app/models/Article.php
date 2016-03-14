@@ -25,15 +25,28 @@ class Article extends Base
             ['hash' => $hash]
         );
 
-        if (!empty($find)) {
+        if (empty($find)) {
+            $ticket = $this->sendBackgroundTask(
+                'wulo-get-ptt-article',
+                json_encode([
+                    'board' => $payload['board'],
+                    'article' => $payload['article']
+                ]),
+                $hash
+            );
+            return [
+                'status' => null,
+                'ticket' => $ticket
+            ];
+        } else {
             return [
                 'status' => true,
                 'payload' => $find
             ];
         }
 
-        return [
-            'status' => false
-        ];
+//        return [
+//            'status' => false
+//        ];
     }
 }
