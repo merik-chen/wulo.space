@@ -26,19 +26,20 @@
         var board = '{{board}}',
             article = '{{post}}';
 
-        $.post(
+        var get_article = wulo.utility.promisePost(
             '/api/get5F',
             {
                 'payload': {
                     'board': board,
                     'article': article
                 }
-            }
-            ,
-            function (rsp) {
-                console.log(rsp)
-            }, 'json'
+            },
+            'json'
         );
+
+        get_article.done(function (rsp) {
+            console.log(rsp);
+        });
     })
 </script>
 {% endblock %}

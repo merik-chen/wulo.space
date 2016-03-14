@@ -17,6 +17,8 @@
     </head>
     <body>
         {% block body %}{% endblock %}
+        <script src="https://www.promisejs.org/polyfills/promise-7.0.4.min.js"></script>
+        <script src="https://www.promisejs.org/polyfills/promise-done-7.0.4.min.js"></script>
         <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script src="/js/wulo.js"></script>

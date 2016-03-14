@@ -18,5 +18,14 @@ wulo.utility = {
             };
         }
         return false;
+    },
+    promisePost: function (url, payload, type) {
+        var jQueryPromise = $.ajax({
+            url: url,
+            method: "POST",
+            data: payload,
+            dataType: type
+        });
+        return Promise.resolve(jQueryPromise);
     }
 };
