@@ -12,8 +12,8 @@
     <p>Board: {{board}}</p>
     <p>Post: {{post}}</p>
     <p>
-        <a href="https://www.ptt.cc/bbs/{{ board }}/{{ post }}.html">
-            https://www.ptt.cc/bbs/{{ board }}/{{ post }}.html
+        <a href="https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html">
+            https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html
         </a>
     </p>
     <pre>
@@ -32,7 +32,7 @@
     "use strict";
     $(function () {
         var board = '{{board}}',
-            article = '{{post}}';
+            article = '{{article}}';
     })
 </script>
 {% endblock %}
