@@ -29,9 +29,12 @@
         $.post(
             '/api/get5F',
             {
-                'board': board,
-                'article': article
-            },
+                'payload': {
+                    'board': board,
+                    'article': article
+                }
+            }
+            ,
             function (rsp) {
                 console.log(rsp)
             }, 'json'
