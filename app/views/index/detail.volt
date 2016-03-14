@@ -9,6 +9,11 @@
 
 {% block body %}
 <div>
+    <p>
+        <a href="/">
+            繼續找五樓
+        </a>
+    </p>
     <p>Board: {{board}}</p>
     <p>Article: {{article}}</p>
     <p>
