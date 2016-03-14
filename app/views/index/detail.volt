@@ -16,9 +16,7 @@
             https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html
         </a>
     </p>
-    <pre>
-        {{ post['body'] }}
-    </pre>
+    <pre>{{ post['body'] }}</pre>
     <p>
         <span>
             {{ post['wulo']['user'] }}[{{ post['wulo']['symbol'] }}]{{ post['wulo']['content'] }}
