@@ -19,7 +19,7 @@ class IndexController extends ControllerBase
         $this->view->post   = $post;
     }
 
-    public function postGet5F()
+    public function postGet5FAction()
     {
         if ($payload = $this->request->getPost('payload', 'array', false)) {
             if ($this->request->isAjax()) {
