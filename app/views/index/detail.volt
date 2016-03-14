@@ -10,7 +10,7 @@
 {% block body %}
 <div>
     <p>Board: {{board}}</p>
-    <p>Post: {{post}}</p>
+    <p>Article: {{article}}</p>
     <p>
         <a href="https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html">
             https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html
