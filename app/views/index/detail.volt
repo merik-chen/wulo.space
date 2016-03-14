@@ -1,6 +1,6 @@
 {% extends "templates.volt" %}
 
-{% block title %}{{ post['title'] }}{% endblock %}
+{% block title %}{{ post['title'] }}，{% endblock %}
 
 {% block extCss %}
 {% endblock %}
