@@ -38,7 +38,30 @@
         );
 
         get_article.done(function (rsp) {
-            console.log(rsp);
+            switch (rsp.status) {
+                case true:
+                    window.location.href = '/bbs/' + board + '/' + article + '.html';
+                    break;
+                case false:
+                    console.error('Get article failed!', rsp);
+                    break;
+                case null:
+                    var srsp = wulo.utility.trackingArticle(
+                        '/api/get5F',
+                        {
+                            'payload': {
+                                'board': board,
+                                'article': article
+                            }
+                        },
+                        'json'
+                    );
+                    console.log(srsp);
+                    break;
+                default:
+                    console.error('Un-know state.', rsp);
+                    break;
+            }
         });
     })
 </script>

@@ -5,6 +5,7 @@
  */
 
 var wulo = window.wulo || {};
+var trackingArticle = false;
 
 wulo.utility = {
     ptt_link_extract: function (url) {
@@ -27,5 +28,22 @@ wulo.utility = {
             dataType: type
         });
         return Promise.resolve(jQueryPromise);
+    },
+    trackingArticle: function (url, payload, type) {
+        var tracking_timer = setInterval(function () {
+            var jQueryPromise = $.ajax({
+                url: url,
+                method: "POST",
+                data: payload,
+                dataType: type
+            });
+            jQueryPromise.done(function (rsp) {
+                if (rsp.status) {
+                    clearInterval(tracking_timer);
+                    trackingArticle = true;
+                    return true;
+                }
+            });
+        }, 1000);
     }
 };
