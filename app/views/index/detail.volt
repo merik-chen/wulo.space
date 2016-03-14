@@ -20,4 +20,22 @@
 {% endblock %}
 
 {% block extJs %}
+<script>
+    "use strict";
+    $(function () {
+        var board = '{{board}}',
+            article = '{{post}}';
+
+        $.post(
+            '/api/get5F',
+            {
+                'board': board,
+                'article': article
+            },
+            function (rsp) {
+                console.log(rsp)
+            }, 'json'
+        );
+    })
+</script>
 {% endblock %}

@@ -101,5 +101,19 @@ $di->setShared('router', function () {
         'board'         => 1
     ]);
 
+    $api = new \Phalcon\Mvc\Router\Group();
+    $api->setPrefix('/api');
+
+    $api->add('/get5F', [
+        'controller'    => 'index',
+        'action'        => 'postGet5F'
+    ]);
+
+    $router->mount($api);
+
     return $router;
+});
+
+$di->setShared('article', function () {
+    return new Wulo\Article();
 });

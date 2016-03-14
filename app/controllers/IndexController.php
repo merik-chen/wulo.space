@@ -19,5 +19,22 @@ class IndexController extends ControllerBase
         $this->view->post   = $post;
     }
 
+    public function postGet5F()
+    {
+        if ($payload = $this->request->getPost('payload', 'array', false)) {
+            if ($this->request->isAjax()) {
+                $this->response->setJsonContent(
+                    $this->article->getArticle($payload)
+                );
+            } else {
+                $this->response->setStatusCode(401);
+            }
+        } else {
+            $this->response->setStatusCode(403);
+        }
+
+        $this->response->send();
+    }
+
 }
 
