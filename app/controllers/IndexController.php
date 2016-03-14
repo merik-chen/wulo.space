@@ -21,7 +21,7 @@ class IndexController extends ControllerBase
 
     public function postGet5FAction()
     {
-        if ($payload = $this->request->getPost('payload', 'array', false)) {
+        if ($payload = $this->request->getPost('payload', null, false)) {
             if ($this->request->isAjax()) {
                 $this->response->setJsonContent(
                     $this->article->getArticle($payload)
