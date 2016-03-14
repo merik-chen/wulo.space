@@ -15,8 +15,19 @@ class IndexController extends ControllerBase
 
         if( $board == false || $post == false ) $this->response->redirect('/');
 
+        $find = $this->article->getArticle([
+            'board' => $board,
+            'article' => $post
+        ]);
+
+        if ($find['status'] !== true) $this->response->redirect('/');
+
         $this->view->board  = $board;
-        $this->view->post   = $post;
+        $this->view->article= $post;
+
+        unset($find['payload']['_id']);
+        $this->view->post = $find['payload'];
+
     }
 
     public function postGet5FAction()

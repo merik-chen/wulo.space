@@ -16,6 +16,14 @@
             https://www.ptt.cc/bbs/{{ board }}/{{ post }}.html
         </a>
     </p>
+    <pre>
+        {{ post['body'] }}
+    </pre>
+    <p>
+        <span>
+            {{ post['wulo']['user'] }}[{{ post['wulo']['symbol'] }}]{{ post['wulo']['content'] }}
+        </span>
+    </p>
 </div>
 {% endblock %}
 
