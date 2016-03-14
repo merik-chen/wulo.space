@@ -18,8 +18,9 @@ class Base extends \Phalcon\Mvc\Model
 
     function onConstruct() {
 
-        $this->mongo = new \MongoClient();
+        $this->mongo = new \MongoClient("mongodb://192.168.10.254:27017");
         $this->gearman = new \GearmanClient();
+        $this->gearman->addServer('192.168.10.254');
 
         $this->database = $this->mongo->selectDB('wulo');
         $this->collection = $this->database->selectCollection('data');
