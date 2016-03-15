@@ -3,6 +3,7 @@
 
 from Ptt.Article import Article
 import Database
+import Commons
 import random
 import json
 import time
@@ -13,28 +14,37 @@ article = None
 def ptt_get_article(gearman_worker, gearman_job):
     global article
     data = json.loads(gearman_job.data)
-    result, raw = article.get_article(data['board'], data['article'], with_raw=True)
+    target = 'https://www.ptt.cc/bbs/%s/%s.html' % (data['board'], data['article'])
+    hash = Commons.make_sha1(target)
 
-    Database.RawDatabase.update_one(
-        {'hash': result['hash']},
-        {
-            '$set': {
-                'url': result['url'],
-                'html': raw,
-                'hash': result['hash']
-            }
-        }, upsert=True
-    )
+    find = Database.Database.find_one({'hash': hash})
 
-    Database.Database.update_one(
-        {'hash': result['hash']},
-        {'$set': result},
-        upsert=True
-    )
+    if find:
+        print "Fetched, skip."
+        return 'ok'
+    else:
+        result, raw = article.get_article(data['board'], data['article'], with_raw=True)
 
-    time.sleep(random.randrange(3, 6))
+        Database.RawDatabase.update_one(
+            {'hash': result['hash']},
+            {
+                '$set': {
+                    'url': result['url'],
+                    'html': raw,
+                    'hash': result['hash']
+                }
+            }, upsert=True
+        )
 
-    return 'ok'
+        Database.Database.update_one(
+            {'hash': result['hash']},
+            {'$set': result},
+            upsert=True
+        )
+
+        time.sleep(random.randrange(3, 6))
+
+        return 'ok'
 
 
 def start_work():
