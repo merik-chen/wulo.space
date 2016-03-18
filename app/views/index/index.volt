@@ -22,14 +22,16 @@
                 <button id="go" class="btn btn-info-outline index-target-btn"> 5樓？ </button>
             </div>
         </div>
-        <div id="marquee" class="row">
-            <ul>
-            {% for article in latest %}
-                <li>
-                    {{ article['title'] }}
-                </li>
-            {% endfor %}
-            </ul>
+        <div class="row text-xs-center">
+            <div id="marquee">
+                <ul>
+                    {% for article in latest %}
+                    <li>
+                        {{ article['title'] }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -40,14 +42,14 @@
 <script>
     $(function () {
 
+        $("#marquee").show().delay(100).vTicker({
+            height: 35,
+            margin: 10
+        });
+
         $("#go").click(function () {
             var link = $.trim($("#target").val()),
                 params = wulo.utility.ptt_link_extract(link);
-
-            $("#marquee").show().delay(100).vTicker({
-                height: 25,
-                margin: 10
-            });
 
             wulo.utility.promisePost(
                 '/api/get5F',
