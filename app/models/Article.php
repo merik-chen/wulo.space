@@ -25,12 +25,14 @@ class Article extends Base
 
         $find = iterator_to_array($find);
 
-        foreach($find as $id => $data) {
+        foreach($find as $id => &$data) {
             if(preg_match($re, $data['link'], $matches)) {
                 $data['board'] = $matches['board'];
                 $data['article'] = $matches['article'];
             }
         }
+
+        return $find;
     }
 
     public function getArticle(array $payload = []) {
