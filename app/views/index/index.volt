@@ -22,24 +22,32 @@
                 <button id="go" class="btn btn-info-outline index-target-btn"> 5樓？ </button>
             </div>
         </div>
-        <div class="row">
+        <div id="marquee" class="row">
+            <ul>
             {% for article in latest %}
-            <pre>
-                {{ article['title'] }}
-            </pre>
+                <li>
+                    {{ article['title'] }}
+                </li>
             {% endfor %}
+            </ul>
         </div>
     </div>
 </div>
 {% endblock %}
 
 {% block extJs %}
+<script src="//assets.interview.tw/js/jquery.vticker.min.js"></script>
 <script>
     $(function () {
 
         $("#go").click(function () {
             var link = $.trim($("#target").val()),
                 params = wulo.utility.ptt_link_extract(link);
+
+            $("#marquee").show().delay(100).vTicker({
+                height: 25,
+                margin: 10
+            });
 
             wulo.utility.promisePost(
                 '/api/get5F',
