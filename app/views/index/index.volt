@@ -28,7 +28,7 @@
                 <ul>
                     {% for article in latest %}
                     <li>
-                        <a href="/bbs/{{ article['board'] }}/{{ article['article'] }}.html">{{ article['title'] }}</a>
+                        <a href="/bbs/{{ article['board'] }}/{{ article['article'] }}.html">{{ article['title'] }} - {{ article['board'] }}</a>
                     </li>
                     {% endfor %}
                 </ul>
