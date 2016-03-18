@@ -35,6 +35,6 @@
             })
         </script>
         {% block extJs %}{% endblock %}
-        {% include "layouts/ga" %}
+        {% include "layouts/ga.volt" %}
     </body>
 </html>
