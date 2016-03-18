@@ -34,16 +34,18 @@
                 </ul>
             </div>
         </div>
-        <div class="row index-ad-1">
-            <!-- Wulo -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3001056417467618"
-                 data-ad-slot="3125354204"
-                 data-ad-format="auto"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+        <div class="row">
+            <div class="col-xs-12 col-lg-8 col-lg-push-2 index-ad-1">
+                <!-- Wulo -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-3001056417467618"
+                     data-ad-slot="3125354204"
+                     data-ad-format="auto"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
         </div>
     </div>
 </div>
