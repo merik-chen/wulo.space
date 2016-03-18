@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block title %}{% endblock %}五樓，你怎麼說？ - 每個文章的心中，都有一個五樓。</title>
+        <link rel="stylesheet" href="/bower_components/tether/dist/css/tether.css">
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
         <style>
             @import url('//fonts.googleapis.com/earlyaccess/cwtexhei.css');
@@ -23,6 +24,7 @@
         <script src="https://www.promisejs.org/polyfills/promise-done-7.0.4.min.js"></script>
         <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="/bower_components/tether/dist/js/tether.js"></script>
         <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script src="/js/wulo.js"></script>
         <script>
