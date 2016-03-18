@@ -1,12 +1,22 @@
 @import "bootstrap/scss/bootstrap";
 @include media-breakpoint-down(sm) {
+  .slogan-margin-top {
+    margin-top: 5rem;
+  }
   .index-h1 {
     font-size: 2rem;
   }
-
   .index-h2 {
     font-size: 1.1rem;
+  }
+}
 
+@include media-breakpoint-up(sm) {
+  .slogan-margin-top {
+    margin-top: 5rem;
+  }
+  .index-h2 {
+    font-size: 1.5rem;
   }
 }
 

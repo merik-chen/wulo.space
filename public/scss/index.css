@@ -4656,11 +4656,20 @@ a.bg-danger:focus, a.bg-danger:hover {
     display: none !important; } }
 
 @media (max-width: 767px) {
+  .slogan-margin-top {
+    margin-top: 5rem; }
+
   .index-h1 {
     font-size: 2rem; }
 
   .index-h2 {
     font-size: 1.1rem; } }
+@media (min-width: 544px) {
+  .slogan-margin-top {
+    margin-top: 5rem; }
+
+  .index-h2 {
+    font-size: 1.5rem; } }
 .index-target {
   border-bottom-color: black;
   border-bottom-style: solid;

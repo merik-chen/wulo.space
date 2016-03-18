@@ -10,7 +10,7 @@
 {% block body %}
 <div class="row">
     <div class="col-xs-12 text-xs-center">
-        <div class="row">
+        <div class="row slogan-margin-top">
             <h1 class="index-h1">五樓，你怎麼說？</h1>
             <h2 class="index-h2">每個文章的心中，都有一個五樓。</h2>
         </div>
