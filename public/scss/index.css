@@ -4666,7 +4666,7 @@ a.bg-danger:focus, a.bg-danger:hover {
     font-size: 1.1rem; } }
 @media (min-width: 544px) {
   .slogan-margin-top {
-    margin-top: 5rem; }
+    margin-top: 30vh; }
 
   .index-h2 {
     font-size: 1.5rem; } }
