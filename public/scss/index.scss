@@ -2,15 +2,13 @@
 
 @include media-breakpoint-down(xs) {
   .slogan-margin-top {
-    margin-top: 20vh;
+    margin-top: 10vh;
 
   }
 }
 
 @include media-breakpoint-up(xs) {
-  .slogan-margin-top {
-    margin-top: 30vh;
-  }
+
 }
 
 @include media-breakpoint-up(sm) {
@@ -23,6 +21,10 @@
   .index-ad-1 {
     width: 98%;
   }
+}
+
+.slogan-margin-top {
+  margin-top: 30vh;
 }
 
 .index-h1 {
