@@ -1,12 +1,3 @@
-@media (min-width: 544px) {
-  .slogan-margin-top {
-    margin-top: 30vh; }
-
-  .index-h2 {
-    font-size: 1.5rem; }
-
-  .index-ad-1 {
-    width: 98%; } }
 .slogan-margin-top {
   margin-top: 10vh; }
 
@@ -46,5 +37,15 @@
   position: fixed;
   bottom: 1vh;
   text-align: center; }
+
+@media (min-width: 544px) {
+  .slogan-margin-top {
+    margin-top: 30vh; }
+
+  .index-h2 {
+    font-size: 1.5rem; }
+
+  .index-ad-1 {
+    width: 98%; } }
 
 /*# sourceMappingURL=index.css.map */
