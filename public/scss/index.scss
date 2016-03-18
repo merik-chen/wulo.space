@@ -1,21 +1,9 @@
 @import "bootstrap/scss/variables", "bootstrap/scss/mixins";
 
-@include media-breakpoint-down(xs) {
-  .slogan-margin-top {
-    margin-top: 10vh;
-  }
-}
-
 @include media-breakpoint-up(sm) {
   .slogan-margin-top {
-    margin-top: 10vh;
+    margin-top: 30vh;
   }
-}
-
-@include media-breakpoint-up(sm) {
-  //.slogan-margin-top {
-  //  margin-top: 30vh;
-  //}
   .index-h2 {
     font-size: 1.5rem;
   }
@@ -25,7 +13,7 @@
 }
 
 .slogan-margin-top {
-  margin-top: 30vh;
+  margin-top: 10vh;
 }
 
 .index-h1 {
