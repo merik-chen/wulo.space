@@ -2,6 +2,7 @@
 
 
 {% block extCss %}
+<link rel="stylesheet" href="/scss/index.css">
 {% endblock %}
 
 {% block extModels %}
@@ -27,7 +28,7 @@
                 <ul>
                     {% for article in latest %}
                     <li>
-                        {{ article['title'] }}
+                        <a href="/bbs/{{ article['board'] }}/{{ article['article'] }}.html">{{ article['title'] }}</a>
                     </li>
                     {% endfor %}
                 </ul>

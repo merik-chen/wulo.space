@@ -1,4 +1,6 @@
-@import "bootstrap/scss/bootstrap";
+@import "bootstrap/scss/variables", "bootstrap/scss/mixins";
+
+
 @include media-breakpoint-down(sm) {
   .slogan-margin-top {
     margin-top: 30vh;
@@ -23,6 +25,14 @@
 
 #marquee {
   display: none;
+}
+
+#marquee a {
+  &,
+  & :hover,
+  & :focus {
+    text-decoration: none;
+  }
 }
 
 #marquee ul {

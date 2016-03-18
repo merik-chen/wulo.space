@@ -16,13 +16,21 @@ class Article extends Base
     }
 
     public function getLatestArticle($count = 5) {
+        $re = "/bbs\\/(?P<board>.+)\\/(?P<article>M\\..+).html?/";
         $find = $this->collection->find([], [
             'url' => 1,
             'date' => 1,
             'title' => 1,
-        ])->limit($count);
+        ])->limit($count)->sort(['$natural' => -1]);
 
-        return iterator_to_array($find);
+        $find = iterator_to_array($find);
+
+        foreach($find as $id => $data) {
+            if(preg_match($re, $data['link'], $matches)) {
+                $data['board'] = $matches['board'];
+                $data['article'] = $matches['article'];
+            }
+        }
     }
 
     public function getArticle(array $payload = []) {
