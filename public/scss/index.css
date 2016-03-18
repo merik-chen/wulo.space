@@ -6,13 +6,19 @@
     font-size: 2rem; }
 
   .index-h2 {
-    font-size: 1.1rem; } }
+    font-size: 1.1rem; }
+
+  .index-ad-1 {
+    width: 98%; } }
 @media (min-width: 544px) {
   .slogan-margin-top {
     margin-top: 30vh; }
 
   .index-h2 {
-    font-size: 1.5rem; } }
+    font-size: 1.5rem; }
+
+  .index-ad-1 {
+    width: 98%; } }
 #marquee {
   display: none;
   margin-top: 1rem; }
@@ -38,6 +44,7 @@
 
 .index-ad-1 {
   position: fixed;
-  bottom: 1vh; }
+  bottom: 1vh;
+  text-align: center; }
 
 /*# sourceMappingURL=index.css.map */
