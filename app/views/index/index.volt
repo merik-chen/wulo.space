@@ -10,10 +10,19 @@
 {% block body %}
 <div class="row">
     <div class="col-xs-12 text-xs-center">
-        <h1>五樓，你怎麼說？ - 每個文章的心中，都有一個五樓。</h1>
+        <div class="row">
+            <h1>五樓，你怎麼說？</h1>
+            <h2>每個文章的心中，都有一個五樓。</h2>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-lg-8 col-lg-push-2">
+                <input class="form-control" id="target" type="url">
+            </div>
+            <div class="col-xs-12">
+                <button id="go" class="form-control btn btn-info-outline"> 5樓？ </button>
+            </div>
+        </div>
     </div>
-    <input id="target" type="url">
-    <button id="go"> 5樓？ </button>
 </div>
 {% endblock %}
 
