@@ -1,27 +1,24 @@
 @media (max-width: 543px) {
   .slogan-margin-top {
     margin-top: 20vh; } }
-@media (max-width: 767px) {
-  .slogan-margin-top {
-    margin-top: 30vh; }
+.slogan-margin-top {
+  margin-top: 30vh; }
 
-  .index-h1 {
-    font-size: 2rem; }
-
-  .index-h2 {
-    font-size: 1.1rem; }
-
-  .index-ad-1 {
-    width: 98%; } }
 @media (min-width: 544px) {
-  .slogan-margin-top {
-    margin-top: 30vh; }
-
   .index-h2 {
     font-size: 1.5rem; }
 
   .index-ad-1 {
     width: 98%; } }
+.index-h1 {
+  font-size: 2rem; }
+
+.index-h2 {
+  font-size: 1.1rem; }
+
+.index-ad-1 {
+  width: 98%; }
+
 #marquee {
   display: none;
   margin-top: 1rem; }

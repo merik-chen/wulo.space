@@ -7,32 +7,32 @@
   }
 }
 
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-up(xs) {
   .slogan-margin-top {
     margin-top: 30vh;
-
-  }
-  .index-h1 {
-    font-size: 2rem;
-  }
-  .index-h2 {
-    font-size: 1.1rem;
-  }
-  .index-ad-1 {
-    width: 98%;
   }
 }
 
 @include media-breakpoint-up(sm) {
-  .slogan-margin-top {
-    margin-top: 30vh;
-  }
+  //.slogan-margin-top {
+  //  margin-top: 30vh;
+  //}
   .index-h2 {
     font-size: 1.5rem;
   }
   .index-ad-1 {
     width: 98%;
   }
+}
+
+.index-h1 {
+  font-size: 2rem;
+}
+.index-h2 {
+  font-size: 1.1rem;
+}
+.index-ad-1 {
+  width: 98%;
 }
 
 #marquee {
