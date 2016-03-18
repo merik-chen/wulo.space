@@ -8,8 +8,10 @@
 {% endblock %}
 
 {% block body %}
-<div>
-    <h1>五樓，你怎麼說？ - 每個文章的心中，都有一個五樓。</h1>
+<div class="row">
+    <div class="col-xs-12 text-xs-center">
+        <h1>五樓，你怎麼說？ - 每個文章的心中，都有一個五樓。</h1>
+    </div>
     <input id="target" type="url">
     <button id="go"> 5樓？ </button>
 </div>
