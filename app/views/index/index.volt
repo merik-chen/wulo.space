@@ -44,7 +44,7 @@
 
         $("#marquee").show().delay(100).vTicker({
             height: 30,
-            margin: 0
+            margin: 5
         });
 
         $("#go").click(function () {
