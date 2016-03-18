@@ -11,15 +11,15 @@
 <div class="row">
     <div class="col-xs-12 text-xs-center">
         <div class="row">
-            <h1>五樓，你怎麼說？</h1>
-            <h2>每個文章的心中，都有一個五樓。</h2>
+            <h1 class="index-h1">五樓，你怎麼說？</h1>
+            <h2 class="index-h2">每個文章的心中，都有一個五樓。</h2>
         </div>
         <div class="row">
             <div class="col-xs-12 col-lg-8 col-lg-push-2">
-                <input class="form-control" id="target" type="url">
+                <input class="form-control index-target" id="target" type="url">
             </div>
             <div class="col-xs-12 text-xs-center">
-                <button id="go" class="form-control btn btn-info-outline col-xs-2"> 5樓？ </button>
+                <button id="go" class="btn btn-info-outline index-target-btn"> 5樓？ </button>
             </div>
         </div>
     </div>

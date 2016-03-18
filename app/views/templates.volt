@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block title %}{% endblock %}五樓，你怎麼說？ - 每個文章的心中，都有一個五樓。</title>
         <link rel="stylesheet" href="/bower_components/tether/dist/css/tether.css">
-        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="/scss/index.css">
         <style>
             @import url('//fonts.googleapis.com/earlyaccess/cwtexhei.css');
             body {

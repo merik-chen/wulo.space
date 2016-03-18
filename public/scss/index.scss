@@ -1,0 +1,26 @@
+@import "bootstrap/scss/bootstrap";
+@include media-breakpoint-down(sm) {
+  .index-h1 {
+    font-size: 2rem;
+  }
+
+  .index-h2 {
+    font-size: 1.1rem;
+
+  }
+}
+
+.index-target {
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-radius: 0;
+  text-align: center;
+}
+
+.index-target-btn {
+  margin-top: 1rem;
+}
+
