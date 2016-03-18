@@ -26,7 +26,7 @@ class Article extends Base
         $find = iterator_to_array($find);
 
         foreach($find as $id => &$data) {
-            if(preg_match($re, $data['link'], $matches)) {
+            if(preg_match($re, $data['url'], $matches)) {
                 $data['board'] = $matches['board'];
                 $data['article'] = $matches['article'];
             }
