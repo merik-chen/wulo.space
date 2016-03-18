@@ -4673,6 +4673,12 @@ a.bg-danger:focus, a.bg-danger:hover {
 #marquee {
   display: none; }
 
+#marquee ul {
+  text-align: center; }
+
+#marquee ul li {
+  width: 100%; }
+
 .index-target {
   border-bottom-color: black;
   border-bottom-style: solid;
