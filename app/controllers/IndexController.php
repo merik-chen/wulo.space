@@ -5,7 +5,7 @@ class IndexController extends ControllerBase
 
     public function indexAction()
     {
-        $this->view->latest = $this->article->getLatestArticle();
+        $this->view->latest = $this->article->getLatestArticle(50);
     }
 
     public function detailAction()
