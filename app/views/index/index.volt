@@ -43,8 +43,8 @@
     $(function () {
 
         $("#marquee").show().delay(100).vTicker({
-            height: 35,
-            margin: 10
+            height: 30,
+            margin: 0
         });
 
         $("#go").click(function () {
