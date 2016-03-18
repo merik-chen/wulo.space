@@ -34,7 +34,7 @@
                 </ul>
             </div>
         </div>
-        <div class="row">
+        <div class="row index-ad-1">
             <!-- Wulo -->
             <ins class="adsbygoogle"
                  style="display:block"
