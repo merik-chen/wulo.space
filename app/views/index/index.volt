@@ -18,8 +18,8 @@
             <div class="col-xs-12 col-lg-8 col-lg-push-2">
                 <input class="form-control" id="target" type="url">
             </div>
-            <div class="col-xs-12">
-                <button id="go" class="form-control btn btn-info-outline"> 5樓？ </button>
+            <div class="col-xs-12 text-xs-center">
+                <button id="go" class="form-control btn btn-info-outline col-xs-2"> 5樓？ </button>
             </div>
         </div>
     </div>
