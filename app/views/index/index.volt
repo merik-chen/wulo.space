@@ -34,6 +34,17 @@
                 </ul>
             </div>
         </div>
+        <div class="row">
+            <!-- Wulo -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-3001056417467618"
+                 data-ad-slot="3125354204"
+                 data-ad-format="auto"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
     </div>
 </div>
 {% endblock %}

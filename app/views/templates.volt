@@ -15,6 +15,7 @@
         </style>
         {% block extCss %}{% endblock %}
         {% block extModels %}{% endblock %}
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     </head>
     <body>
         <div class="container-fluid">
