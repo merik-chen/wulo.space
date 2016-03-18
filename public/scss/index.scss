@@ -52,7 +52,7 @@
   text-align: center;
 }
 
-@include media-breakpoint-up(sm) {
+@include media-breakpoint-up(lg) {
   .slogan-margin-top {
     margin-top: 30vh;
   }

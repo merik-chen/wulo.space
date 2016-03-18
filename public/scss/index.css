@@ -38,7 +38,7 @@
   bottom: 1vh;
   text-align: center; }
 
-@media (min-width: 544px) {
+@media (min-width: 992px) {
   .slogan-margin-top {
     margin-top: 30vh; }
 
