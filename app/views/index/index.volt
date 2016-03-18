@@ -22,6 +22,13 @@
                 <button id="go" class="btn btn-info-outline index-target-btn"> 5樓？ </button>
             </div>
         </div>
+        <div class="row">
+            {% for article in latest %}
+            <pre>
+                {{ article['title'] }}
+            </pre>
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}

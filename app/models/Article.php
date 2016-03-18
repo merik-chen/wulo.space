@@ -15,6 +15,16 @@ class Article extends Base
         parent::onConstruct();
     }
 
+    public function getLatestArticle($count = 5) {
+        $find = $this->collection->find([], [
+            'url' => 1,
+            'date' => 1,
+            'title' => 1,
+        ])->limit($count);
+
+        return iterator_to_array($find);
+    }
+
     public function getArticle(array $payload = []) {
         if (empty($payload)) return ['status' => false];
 
