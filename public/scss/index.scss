@@ -3,12 +3,13 @@
 @include media-breakpoint-down(xs) {
   .slogan-margin-top {
     margin-top: 10vh;
-
   }
 }
 
 @include media-breakpoint-up(xs) {
-
+  .slogan-margin-top {
+    margin-top: 10vh;
+  }
 }
 
 @include media-breakpoint-up(sm) {
