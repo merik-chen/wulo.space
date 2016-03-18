@@ -17,7 +17,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-lg-8 col-lg-push-2">
-                <input class="form-control index-target" id="target" type="url">
+                <input class="form-control index-target" id="target" type="url" placeholder="貼上PTT網址，趕快知道5樓是誰！">
             </div>
             <div class="col-xs-12 text-xs-center">
                 <button id="go" class="btn btn-info-outline index-target-btn"> 5樓？ </button>

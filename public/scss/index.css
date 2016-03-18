@@ -14,7 +14,8 @@
   .index-h2 {
     font-size: 1.5rem; } }
 #marquee {
-  display: none; }
+  display: none;
+  margin-top: 1rem; }
 
 #marquee a, #marquee a :hover, #marquee a :focus {
   text-decoration: none; }

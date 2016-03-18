@@ -35,5 +35,6 @@
             })
         </script>
         {% block extJs %}{% endblock %}
+        {% include "layouts/ga" %}
     </body>
 </html>
