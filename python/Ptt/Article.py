@@ -24,7 +24,9 @@ class Article:
 
             article = {
                 'url': target,
-                'hash': make_sha1(target)
+                'hash': make_sha1(target),
+                'board': board,
+                'article': article
             }
 
             selector = Selector(text=resp)
@@ -57,11 +59,11 @@ class Article:
                         if 1 == _index:
                             article['nick'] = value
 
-                if u'看板' == title:
-                    board = info.css('span.article-meta-value::text').extract()
-                    board = len(board) > 0 and board[0] or None
-                    if board:
-                        article['board'] = board
+                # if u'看板' == title:
+                #     board = info.css('span.article-meta-value::text').extract()
+                #     board = len(board) > 0 and board[0] or None
+                #     if board:
+                #         article['board'] = board
 
                 if u'標題' == title:
                     _title = info.css('span.article-meta-value::text').extract()

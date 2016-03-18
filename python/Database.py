@@ -4,6 +4,7 @@
 from Config import *
 import gearman
 import pymongo
+import redis
 
 JobClient = gearman.GearmanClient([app_cfg['gearman']['address'] + ':' + str(app_cfg['gearman']['port'])])
 JobWorker = gearman.GearmanWorker([app_cfg['gearman']['address'] + ':' + str(app_cfg['gearman']['port'])])
@@ -16,3 +17,5 @@ Mongo = pymongo.MongoClient(
 Collection = Mongo['wulo']
 Database = Collection['data']
 RawDatabase = Collection['raw']
+
+Redis = redis.Redis(host=app_cfg['redis']['address'])
