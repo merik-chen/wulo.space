@@ -104,8 +104,8 @@
         });
         $('.read-more').readmore({
             collapsedHeight: 20,
-            moreLink: '<btn class="detail-read-more-btn text-xs-center">Read more</btn>',
-            lessLink: '<btn class="detail-read-more-btn text-xs-center">Close</btn>'
+            moreLink: '<btn class="btn detail-read-more-btn text-xs-center">Read more</btn>',
+            lessLink: '<btn class="btn detail-read-more-btn text-xs-center">Close</btn>'
         });
     })
 </script>
