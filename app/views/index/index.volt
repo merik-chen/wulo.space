@@ -23,17 +23,6 @@
                 <button id="go" class="btn btn-info-outline index-target-btn"> 5樓？ </button>
             </div>
         </div>
-        <div class="row text-xs-center">
-            <div id="marquee">
-                <ul>
-                    {% for article in latest %}
-                    <li>
-                        <a href="/bbs/{{ article['board'] }}/{{ article['article'] }}.html">{{ article['title'] }} - {{ article['board'] }}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
         <div class="row">
             <div class="col-xs-12 col-lg-8 col-lg-push-2 index-ad-1">
                 <!-- Wulo -->
@@ -45,6 +34,17 @@
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
+            </div>
+        </div>
+        <div class="row text-xs-center index-marquee-1">
+            <div id="marquee">
+                <ul>
+                    {% for article in latest %}
+                    <li>
+                        <a href="/bbs/{{ article['board'] }}/{{ article['article'] }}.html">{{ article['title'] }} - {{ article['board'] }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
