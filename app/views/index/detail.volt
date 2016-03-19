@@ -90,7 +90,7 @@
         var board = '{{board}}',
             article = '{{article}}';
         $('.read-more').readmore({
-
+            collapsedHeight: 190
         });
     })
 </script>
