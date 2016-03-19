@@ -73,7 +73,7 @@
                     <div class="detail-title-info-spacer"></div>
 
                     <div>
-                        <span class="read-more" itemscope="text">{{ post['body'] }}</span>
+                        <span class="read-more" itemscope="text">{{ post['body'] | nl2br }}</span>
                     </div>
                 </div>
             </div>
