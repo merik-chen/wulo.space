@@ -32,6 +32,7 @@
     "iron-elements": "PolymerElements/iron-elements#^1.0.8",
     "paper-input-autocomplete-chips": "^0.26.2",
     "bootstrap": "4.0.0-alpha.2",
-    "tether": "^1.2.0"
+    "tether": "^1.2.0",
+    "Readmore.js": "readmore#^2.1.0"
   }
 }

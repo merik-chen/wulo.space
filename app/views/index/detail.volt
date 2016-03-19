@@ -46,7 +46,7 @@
                     <!--                </a>-->
                     <!--            </p>-->
                     <div>
-                        <pre itemscope="text">{{ post['body'] }}</pre>
+                        <span class="readmore" itemscope="text">{{ post['body'] }}</span>
                     </div>
                     <p>
                         <span>
@@ -61,11 +61,13 @@
 {% endblock %}
 
 {% block extJs %}
+<script src="/bower_components/Readmore.js/readmore.js"></script>
 <script>
     "use strict";
     $(function () {
         var board = '{{board}}',
             article = '{{article}}';
+        $('.readmore').readmore();
     })
 </script>
 {% endblock %}
