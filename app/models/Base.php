@@ -8,15 +8,21 @@
 
 namespace Wulo;
 
+use \Phalcon;
 
-class Base extends \Phalcon\Mvc\Model
+class Base extends Phalcon\Mvc\Model
 {
     protected $mongo;
     protected $gearman;
     protected $database;
     protected $collection;
+    protected $frontCache;
 
     function onConstruct() {
+
+        $this->frontCache = new Phalcon\Cache\Frontend\Data(array(
+            "lifetime" => 604800
+        ));
 
         $this->mongo = new \MongoClient("mongodb://192.168.122.1:27017");
         $this->gearman = new \GearmanClient();
@@ -33,5 +39,27 @@ class Base extends \Phalcon\Mvc\Model
 
     protected function make_hash($text) {
         return strval(sha1($text));
+    }
+
+    // Memcache 使用 phalcon 的 Libmemcached
+    protected function initCache( $prefix )
+    {
+        //Create the Cache setting memcached connection options
+        $cache = new Phalcon\Cache\Backend\Libmemcached($this->frontCache, array(
+            'servers' => array(
+                array(
+                    'host'      => '192.168.10.254',
+                    'port'      => 11211,
+                    'weight'    => 1
+                ),
+            ),
+            'client' => array(
+                \Memcached::OPT_HASH => \Memcached::HASH_MD5,
+                \Memcached::OPT_PREFIX_KEY => '_Phalcon.'.$this->projectName.'.'.$prefix.'.',
+            ),
+            'statsKey' => ''
+        ));
+
+        return $cache;
     }
 }

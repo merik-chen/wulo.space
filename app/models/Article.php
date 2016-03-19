@@ -11,24 +11,33 @@ namespace Wulo;
 
 class Article extends Base
 {
+    public $cache;
+
     public function onConstruct() {
         parent::onConstruct();
+        $this->cache = $this->initCache(get_class($this));
     }
 
-    public function getLatestArticle($count = 5) {
-        $re = "/bbs\\/(?P<board>.+)\\/(?P<article>M\\..+).html?/";
-        $find = $this->collection->find([], [
-            'url' => 1,
-            'date' => 1,
-            'title' => 1,
-        ])->limit($count)->sort(['$natural' => -1]);
+    public function getLatestArticle($count = 5, $renew = false) {
+        $memKey = "article:getLatestArticle:$count";
 
-        $find = iterator_to_array($find);
+        if ($this->cache->exitst($memKey) && $renew) {
+            $find = $this->cache->get($memKey);
+        } else {
+            $re = "/bbs\\/(?P<board>.+)\\/(?P<article>M\\..+).html?/";
+            $find = $this->collection->find([], [
+                'url' => 1,
+                'date' => 1,
+                'title' => 1,
+            ])->limit($count)->sort(['$natural' => -1]);
 
-        foreach($find as $id => &$data) {
-            if(preg_match($re, $data['url'], $matches)) {
-                $data['board'] = $matches['board'];
-                $data['article'] = $matches['article'];
+            $find = iterator_to_array($find);
+
+            foreach($find as $id => &$data) {
+                if(preg_match($re, $data['url'], $matches)) {
+                    $data['board'] = $matches['board'];
+                    $data['article'] = $matches['article'];
+                }
             }
         }
 
