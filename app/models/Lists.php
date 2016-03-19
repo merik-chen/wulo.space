@@ -34,11 +34,12 @@ class Lists extends Base
             $this->cache->save($memKeyTotalSize, $total, 60 * 60);
         }
 
+        $total_page = ceil($total / $count);
+
         if ( $this->cache->exists($memKey) && $cached )
         {
             $list = $this->cache->get($memKey);
         } else {
-            $total_page = ceil($total / $count);
             $page = $page > $total_page ? (int)$total_page : $page;
             $start = ($page - 1) * $count;
             $list = $redis->lRange($board, $start, $start + $count - 1);
@@ -47,6 +48,11 @@ class Lists extends Base
         foreach($list as $index =>  &$article) {
             $find = $this->getDI()->getShared('article')->getArticle(['board' => $board, 'article' => $article], true);
             if (!empty($find)) {
+                $re = "/bbs\\/(?P<board>.+)\\/(?P<article>M\\..+).html?/";
+                if(preg_match($re, $article['url'], $matches)) {
+                    $article['board'] = $matches['board'];
+                    $article['article'] = $matches['article'];
+                }
                 unset($find['body']);
                 unset($find['hash']);
                 unset($find['ip']);
@@ -56,6 +62,10 @@ class Lists extends Base
             }
         }
 
-        return $list;
+        return [
+            'now' => $page,
+            'list' => $list,
+            'total' => $total_page
+        ];
     }
 }

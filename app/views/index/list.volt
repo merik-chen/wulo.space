@@ -16,10 +16,16 @@
         {% include "layouts/navbar.volt" %}
         <div class="row list-warp">
             <div class="col-xs-12">
-                {{ board }} - {{ page }}
-                <pre>
-                    {{ dump(list) }}
-                </pre>
+                {{ board }} - {{ page }} / {{ data['total'] }}
+                <ul>
+                    {% for article in data['list'] %}
+                    <li>
+                        <a href="/bbs/{{ article['board'] }}/{{ article['article'] }}.html">
+                            <span>{{ article['title'] }}</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
