@@ -41,5 +41,8 @@
 
   .index-h2 {
     font-size: 1.5rem; } }
+@media (max-width: 320px) {
+  .slogan-margin-top {
+    margin-top: 5vh; } }
 
 /*# sourceMappingURL=index.css.map */
