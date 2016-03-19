@@ -60,6 +60,7 @@ class Article extends Base
             $find = $this->collection->findOne(
                 ['hash' => $hash]
             );
+            if (empty($find)) $this->cache->save($memKey, $find);;
         }
 
 
@@ -78,7 +79,6 @@ class Article extends Base
                 'ticket' => $ticket
             ];
         } else {
-            $this->cache->save($memKey, $find);
             return [
                 'status' => true,
                 'payload' => $find
