@@ -3,38 +3,26 @@
 {% block title %}{{ post['title'] }}，{% endblock %}
 
 {% block extCss %}
+<link rel="stylesheet" href="/scss/navbar.css">
+<link rel="stylesheet" href="/scss/detail.css">
 {% endblock %}
 
 {% block extModels %}
 {% endblock %}
 
 {% block body %}
-<div>
+{% include "layouts/navbar.volt" %}
+<div class="row">
+    <div class="col-xs-12">
+
+    </div>
     <p>
         <a href="/">
             繼續找五樓
         </a>
     </p>
 
-    <div itemscope itemtype="https://schema.org/BreadcrumbList">
-        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            <a href="/" title="五樓，你怎麼說？" itemprop="item">
-                <span itemprop="name">五樓，你怎麼說？</span>
-            </a>
-        </span>
-        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            <a href="/bbs/{{board}}/index.html" itemprop="item">
-                <span itemprop="name">{{ board }}</span>
-            </a>
-        </span>
-        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            <a href="/bbs/{{board}}/{{article}}.html" itemprop="item">
-                <span itemprop="name">{{ post['title'] }}</span>
-            </a>
-        </span>
 
-
-    </div>
     <div itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemPage">
         <p>Board: {{board}}</p>
         <p>Article: {{article}}</p>
