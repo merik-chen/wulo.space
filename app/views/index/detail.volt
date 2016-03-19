@@ -12,7 +12,7 @@
 
 {% block body %}
 <div class="row">
-    <div class="col-xs-8 col-xs-push-2">
+    <div class="col-xs-12 col-md-8 col-md-push-2">
         {% include "layouts/navbar.volt" %}
         <div class="row detail-warp">
             <div class="col-xs-12">
