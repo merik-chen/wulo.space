@@ -1,6 +1,6 @@
 {% extends "templates.volt" %}
 
-{% block title %}{{ post['board'] }}，{% endblock %}
+{% block title %}{{ board }}，{% endblock %}
 
 {% block extCss %}
 <link rel="stylesheet" href="/scss/navbar.css">

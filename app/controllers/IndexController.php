@@ -30,10 +30,10 @@ class IndexController extends ControllerBase
 
     }
 
-    public function listAction()
+    public function listAction($board = false, $page = 1)
     {
-        $board = $this->dispatcher->getParam('board', 'string', false);
-        $page = $this->dispatcher->getParam('page', 'int', 0);
+//        $board = $this->dispatcher->getParam('board', 'string', false);
+//        $page = $this->dispatcher->getParam('page', 'int', 0);
 
         if ( $board == false ) $this->response->redirect('/');
 
