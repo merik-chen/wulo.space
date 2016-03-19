@@ -14,6 +14,11 @@ h3 {
 .detail-title-info-spacer {
   margin-bottom: 3vh; }
 
+.detail-5f-warp {
+  background-color: lightgray;
+  border-radius: 5px;
+  padding: 6px; }
+
 @media (min-width: 768px) {
   h3 {
     font-size: 1.75rem; } }

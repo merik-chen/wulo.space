@@ -59,7 +59,7 @@
                     </h6>
                     <div class="detail-title-info-spacer"></div>
 
-                    <p>五樓評點：
+                    <div class="detail-5f-warp text-xs-center">
                         <span>
                         {% if not(post['wulo'] is empty) %}
                             [{{ post['wulo']['symbol'] }}]{{ post['wulo']['content'] }} by {{ post['wulo']['user'] }}
@@ -67,7 +67,7 @@
                             它的五樓，還未出現...（ＯＡＯ“）
                         {% endif %}
                         </span>
-                    </p>
+                    </div>
 
                     <div>
                         <span class="read-more" itemscope="text">{{ post['body'] }}</span>
