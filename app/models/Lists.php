@@ -43,6 +43,7 @@ class Lists extends Base
             $page = $page > $total_page ? (int)$total_page : $page;
             $start = ($page - 1) * $count;
             $list = $redis->lRange($board, $start, $start + $count - 1);
+            $this->cache->save($memKey, $list, 60 * 60);
         }
 
         foreach($list as $index => &$article) {
