@@ -35,9 +35,6 @@
         <script src="/js/wulo.js"></script>
         <script>
             $(function () {
-                var link = 'https://www.ptt.cc/bbs/LGBT_SEX/M.1456717141.A.C4D.html';
-
-                console.log( wulo.utility.ptt_link_extract(link) );
             })
         </script>
         {% block extJs %}{% endblock %}
