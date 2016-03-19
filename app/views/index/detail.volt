@@ -57,6 +57,7 @@
                             </span>
                         </a>
                     </h6>
+
                     <div class="detail-title-info-spacer"></div>
 
                     <div class="detail-5f-warp text-xs-center">
@@ -68,6 +69,8 @@
                         {% endif %}
                         </span>
                     </div>
+
+                    <div class="detail-title-info-spacer"></div>
 
                     <div>
                         <span class="read-more" itemscope="text">{{ post['body'] }}</span>
@@ -87,7 +90,7 @@
         var board = '{{board}}',
             article = '{{article}}';
         $('.read-more').readmore({
-            collapsedHeight: 50
+
         });
     })
 </script>
