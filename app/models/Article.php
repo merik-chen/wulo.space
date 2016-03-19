@@ -21,9 +21,9 @@ class Article extends Base
     public function getLatestArticle($count = 5, $renew = false) {
         $memKey = "article:getLatestArticle:$count";
 
-//        if ($this->cache->exists($memKey) && $renew) {
-//            $find = $this->cache->get($memKey);
-//        } else {
+        if ($this->cache->exists($memKey) && $renew) {
+            $find = $this->cache->get($memKey);
+        } else {
             $re = "/bbs\\/(?P<board>.+)\\/(?P<article>M\\..+).html?/";
             $find = $this->collection->find([], [
                 'url' => 1,
@@ -40,8 +40,8 @@ class Article extends Base
                 }
             }
 
-//            $this->cache->save($memKey, $find);
-//        }
+            $this->cache->save($memKey, $find);
+        }
 
         return $find;
     }
