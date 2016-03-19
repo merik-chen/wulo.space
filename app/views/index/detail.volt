@@ -40,11 +40,13 @@
                     </div>
 
                     <h1 itemprop="name">{{ post['title'] }}</h1>
-                    <!--            <p>-->
-                    <!--                <a href="https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html">-->
-                    <!--                    https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html-->
-                    <!--                </a>-->
-                    <!--            </p>-->
+                    <h6>作者：<span>{{ post['author'] }} ({{ post['nick']}})</span>發文時間：<span>{{ date('Y-m-d H:i:s', post['date']) }}</span></h6>
+                    <h6>原文網址：
+                        <a href="https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html">
+                            https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html
+                        </a>
+                    </h6>
+
                     <div>
                         <span class="read-more" itemscope="text">{{ post['body'] }}</span>
                     </div>
