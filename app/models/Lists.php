@@ -48,11 +48,8 @@ class Lists extends Base
         foreach($list as $index =>  &$article) {
             $find = $this->getDI()->getShared('article')->getArticle(['board' => $board, 'article' => $article], true);
             if (!empty($find)) {
-                $re = "/bbs\\/(?P<board>.+)\\/(?P<article>M\\..+).html?/";
-                if(preg_match($re, $article['url'], $matches)) {
-                    $article['board'] = $matches['board'];
-                    $article['article'] = $matches['article'];
-                }
+                $article['board'] = $board;
+                $article['article'] = $article;
                 unset($find['body']);
                 unset($find['hash']);
                 unset($find['ip']);
