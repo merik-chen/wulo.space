@@ -47,6 +47,9 @@ class Lists extends Base
         foreach($list as $index =>  &$article) {
             $find = $this->getDI()->getShared('article')->getArticle(['board' => $board, 'article' => $article], true);
             if (!empty($find)) {
+                unset($find['body']);
+                unset($find['hash']);
+                unset($find['ip']);
                 $article = $find;
             } else {
                 unset($list[$index]);
