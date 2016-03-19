@@ -78,7 +78,7 @@
                         <ins class="adsbygoogle"
                              style="display:inline-block;width:100%;height:90px"
                              data-ad-client="ca-pub-3001056417467618"
-                             data-ad-slot="4519532201"></ins>
+                             data-ad-slot="3125354204"></ins>
                         <script>
                             (adsbygoogle = window.adsbygoogle || []).push({});
                         </script>
