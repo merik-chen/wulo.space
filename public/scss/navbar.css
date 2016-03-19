@@ -7,4 +7,9 @@
 .navbar-breadcrumb-items:last-child::after {
   content: ""; }
 
+.navbar-warp h3 {
+  color: black; }
+  .navbar-warp h3, .navbar-warp h3 :visited, .navbar-warp h3 :active, .navbar-warp h3 :hover, .navbar-warp h3 :focus {
+    text-decoration: none; }
+
 /*# sourceMappingURL=navbar.css.map */

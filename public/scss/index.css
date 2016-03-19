@@ -11,7 +11,7 @@
   display: none;
   margin-top: 1rem; }
 
-#marquee a, #marquee a :hover, #marquee a :focus {
+#marquee a, #marquee a :visited, #marquee a :active, #marquee a :hover, #marquee a :focus {
   text-decoration: none; }
 
 #marquee ul {

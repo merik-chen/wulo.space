@@ -11,3 +11,14 @@
 .navbar-breadcrumb-items:last-child::after {
   content: "";
 }
+
+.navbar-warp h3 {
+  color: black;
+  &,
+  & :visited,
+  & :active,
+  & :hover,
+  & :focus {
+    text-decoration: none;
+  }
+}

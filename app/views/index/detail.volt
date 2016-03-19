@@ -28,13 +28,13 @@
                         </span>
                         <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
                               itemtype="https://schema.org/ListItem">
-                            <a href="/bbs/{{board}}/index.html" itemprop="item">
+                            <a href="/bbs/{{board}}/index.html" title="{{ board }} - 五樓，你怎麼說？" itemprop="item">
                                 <span itemprop="name">{{ board }}</span>
                             </a>
                         </span>
                         <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
                               itemtype="https://schema.org/ListItem">
-                            <a href="/bbs/{{board}}/{{article}}.html" itemprop="item">
+                            <a href="/bbs/{{board}}/{{article}}.html" title="{{ post['title'] }} - 五樓，你怎麼說？" itemprop="item">
                                 <span itemprop="name">{{ post['title'] }}</span>
                             </a>
                         </span>

@@ -21,6 +21,8 @@
 
 #marquee a {
   &,
+  & :visited,
+  & :active,
   & :hover,
   & :focus {
     text-decoration: none;
