@@ -45,6 +45,7 @@
                 </ul>
 
                 <div>
+                    {% set total = data['total'] %}
                     <ul class="pagination">
                         <li class="page-item{{ page > 1 ? '' : ' disabled' }}">
                             <a class="page-link" href="index{{ page > 1 ? page + 1 : '' }}.html" aria-label="Previous">
@@ -52,9 +53,9 @@
                                 <span class="sr-only">Previous</span>
                             </a>
                         </li>
-                        {% for next in 2..1 %}
-                        {% if (page - next) >= 1 %}
-                        <li class="page-item"><a class="page-link" href="index{{ page - next }}.html">{{ page - next }}</a></li>
+                        {% for prev in 2..1 %}
+                        {% if (page - prev) >= 1 %}
+                        <li class="page-item"><a class="page-link" href="index{{ page - prev }}.html">{{ page - prev }}</a></li>
                         {% endif %}
                         {% endfor %}
                         <li class="page-item active">
