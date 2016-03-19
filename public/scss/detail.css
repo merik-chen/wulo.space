@@ -8,7 +8,14 @@ h1 {
   font-size: 1.7rem;
   margin-bottom: 0.5vh; }
 
+h3 {
+  font-size: 1.5rem; }
+
 .detail-title-info-spacer {
   margin-bottom: 3vh; }
+
+@media (min-width: 768px) {
+  h3 {
+    font-size: 1.75rem; } }
 
 /*# sourceMappingURL=detail.css.map */

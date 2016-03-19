@@ -13,6 +13,16 @@ h1 {
   margin-bottom: 0.5vh;
 }
 
+h3 {
+  font-size: 1.5rem;
+}
+
 .detail-title-info-spacer {
   margin-bottom: 3vh;
+}
+
+@include media-breakpoint-up(md) {
+  h3 {
+    font-size: 1.75rem;
+  }
 }
