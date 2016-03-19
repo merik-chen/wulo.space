@@ -30,10 +30,13 @@
 .index-target-btn {
   margin-top: 1rem; }
 
+.index-ad-1 {
+  margin-top: 2vh; }
+
 .index-marquee-1 {
   position: fixed;
   bottom: 1vh;
-  text-align: center; }
+  width: 100%; }
 
 @media (min-width: 992px) {
   .slogan-margin-top {

@@ -47,13 +47,13 @@
 }
 
 .index-ad-1 {
-
+  margin-top: 2vh;
 }
 
 .index-marquee-1 {
   position: fixed;
   bottom: 1vh;
-  text-align: center;
+  width: 100%;
 }
 
 @include media-breakpoint-up(lg) {
