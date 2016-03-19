@@ -40,7 +40,7 @@ class Article extends Base
                 }
             }
 
-            $this->cache->save($memKey, $find);
+            $this->cache->save($memKey, $find, 60 * 60);
         }
 
         return $find;
