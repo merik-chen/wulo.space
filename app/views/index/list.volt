@@ -48,7 +48,7 @@
                     {% set total = data['total'] %}
                     <ul class="pagination">
                         <li class="page-item{{ page > 1 ? '' : ' disabled' }}">
-                            <a class="page-link" href="index{{ page > 1 ? page + 1 : '' }}.html" aria-label="Previous">
+                            <a class="page-link" href="index{{ page > 1 ? page - 1 : '1' }}.html" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                                 <span class="sr-only">Previous</span>
                             </a>
