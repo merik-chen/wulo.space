@@ -4,7 +4,7 @@
 
 {% block extCss %}
 <link rel="stylesheet" href="/scss/navbar.css">
-<!--<link rel="stylesheet" href="/scss/detail.css">-->
+<link rel="stylesheet" href="/scss/lists.css">
 {% endblock %}
 
 {% block extModels %}
@@ -16,11 +16,11 @@
         {% include "layouts/navbar.volt" %}
         <div class="row list-warp">
             <div class="col-xs-12">
-                <h1>
-                    {{ board }}
+                <h1 class="text-xs-center text-lg-left">
+                    [{{ board }}]
                 </h1>
 
-                <div class="detail-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+                <div class="lists-breadcrumb text-xs-center text-lg-left" itemscope itemtype="https://schema.org/BreadcrumbList">
                         <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
                               itemtype="https://schema.org/ListItem">
                             <a href="/" title="五樓，你怎麼說？" itemprop="item">
