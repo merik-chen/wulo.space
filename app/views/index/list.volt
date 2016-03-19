@@ -46,19 +46,25 @@
 
                 <div>
                     <ul class="pagination">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" aria-label="Previous">
+                        <li class="page-item{{ page > 1 ? '' : ' disabled' }}">
+                            <a class="page-link" href="index{{ page > 1 ? page + 1 : '' }}.html" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                                 <span class="sr-only">Previous</span>
                             </a>
                         </li>
+                        {% for next in 2..1 %}
+                        {% if (page - next) >= 1 %}
+                        <li class="page-item"><a class="page-link" href="index{{ page - next }}.html">{{ page - next }}</a></li>
+                        {% endif %}
+                        {% endfor %}
                         <li class="page-item active">
                             <a class="page-link" href="#">{{ page }} <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                        {% for next in 1..2 %}
+                        {% if (page + next) <= total %}
+                        <li class="page-item"><a class="page-link" href="index{{ page + next }}.html">{{ page + next }}</a></li>
+                        {% endif %}
+                        {% endfor %}
                         <li class="page-item">
                             <a class="page-link" href="index{{ page + 1 }}.html" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
