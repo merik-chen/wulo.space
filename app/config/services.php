@@ -105,8 +105,7 @@ $di->setShared('router', function () {
     $router->addGet("/bbs/(\\w+)/index.html?", [
         'controller'    => 'index',
         'action'        => 'list',
-        'board'         => 1,
-        'page'          => '1'
+        'board'         => 1
     ]);
 
     $api = new \Phalcon\Mvc\Router\Group();
