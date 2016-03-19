@@ -24,23 +24,33 @@ for post in all:
             post['board'] = find.groupdict()['b']
             post['article'] = find.groupdict()['a']
 
-    if 'wulo' in post:
-        # board <-> user relations
-        Database.Redis.zincrby(
-            'bd:' + post['board'].encode('utf-8'),
-            'ur:' + post['wulo']['user'].encode('utf-8'),
-            1
+    if 'title' in post:
+        if 'wulo' in post:
+            # board <-> user relations
+            Database.Redis.zincrby(
+                'bd:' + post['board'].encode('utf-8'),
+                'ur:' + post['wulo']['user'].encode('utf-8'),
+                1
+            )
+
+            # user <-> board relations
+            Database.Redis.zincrby(
+                'ur:' + post['wulo']['user'].encode('utf-8'),
+                'bd:' + post['board'].encode('utf-8'),
+                1
+            )
+
+        # board <-> articles
+        Database.Redis.rpush(
+            post['board'].encode('utf-8'),
+            post['article'].encode('utf-8'),
+        )
+        # global <-> articles
+        Database.Redis.sadd(
+            'allArticles',
+            json.dumps({
+                'board': post['board'].encode('utf-8'),
+                'article': post['article'].encode('utf-8')
+            }),
         )
 
-        # user <-> board relations
-        Database.Redis.zincrby(
-            'ur:' + post['wulo']['user'].encode('utf-8'),
-            'bd:' + post['board'].encode('utf-8'),
-            1
-        )
-
-    # board <-> articles
-    Database.Redis.sadd(
-        post['board'].encode('utf-8'),
-        post['article'].encode('utf-8'),
-    )

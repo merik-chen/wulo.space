@@ -42,26 +42,35 @@ def ptt_get_article(gearman_worker, gearman_job):
             upsert=True
         )
 
-        if 'wulo' in result:
-            # board <-> user relations
-            Database.Redis.zincrby(
-                'bd:' + data['board'].encode('utf-8'),
-                'ur:' + result['wulo']['user'].encode('utf-8'),
-                1
-            )
+        if 'title' in result:
+            if 'wulo' in result:
+                # board <-> user relations
+                Database.Redis.zincrby(
+                    'bd:' + data['board'].encode('utf-8'),
+                    'ur:' + result['wulo']['user'].encode('utf-8'),
+                    1
+                )
 
-            # user <-> board relations
-            Database.Redis.zincrby(
-                'ur:' + result['wulo']['user'].encode('utf-8'),
-                'bd:' + data['board'].encode('utf-8'),
-                1
-            )
+                # user <-> board relations
+                Database.Redis.zincrby(
+                    'ur:' + result['wulo']['user'].encode('utf-8'),
+                    'bd:' + data['board'].encode('utf-8'),
+                    1
+                )
 
-        # board <-> articles
-        Database.Redis.sadd(
-            data['board'].encode('utf-8'),
-            data['article'].encode('utf-8'),
-        )
+            # board <-> articles
+            Database.Redis.rpush(
+                data['board'].encode('utf-8'),
+                data['article'].encode('utf-8'),
+            )
+            # global <-> articles
+            Database.Redis.sadd(
+                'allArticles',
+                json.dumps({
+                    'board': data['board'].encode('utf-8'),
+                    'article': data['article'].encode('utf-8')
+                }),
+            )
 
         time.sleep(random.randrange(3, 6))
 
