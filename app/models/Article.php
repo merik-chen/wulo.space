@@ -39,6 +39,8 @@ class Article extends Base
                     $data['article'] = $matches['article'];
                 }
             }
+
+            $this->cache->save($memKey, $find);
         }
 
         return $find;
