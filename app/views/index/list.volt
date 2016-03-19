@@ -4,7 +4,7 @@
 
 {% block extCss %}
 <link rel="stylesheet" href="/scss/navbar.css">
-<link rel="stylesheet" href="/scss/lists.css">
+<link rel="stylesheet" href="/scss/list.css">
 {% endblock %}
 
 {% block extModels %}
@@ -36,7 +36,7 @@
                         </span>
                 </div>
 
-                <ul>
+                <ul class="list-article">
                     {% for article in data['list'] %}
                     <li>
                         <a href="/bbs/{{ article['board'] }}/{{ article['article'] }}.html">
