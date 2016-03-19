@@ -15,6 +15,8 @@ class Article extends Base
 
     public function onConstruct() {
         parent::onConstruct();
+        $this->initMongo();
+        $this->initGearman();
         $this->cache = $this->initCache(get_class($this));
     }
 
@@ -46,7 +48,7 @@ class Article extends Base
         return $find;
     }
 
-    public function getArticle(array $payload = []) {
+    public function getArticle(array $payload = [], $internal = false) {
         if (empty($payload)) return ['status' => false];
 
         $memKey = "{$payload['board']}_{$payload['article']}";
@@ -63,7 +65,9 @@ class Article extends Base
             if (!empty($find)) $this->cache->save($memKey, $find);;
         }
 
-
+        if ($internal) {
+            return $find;
+        }
 
         if (empty($find)) {
             $ticket = $this->sendBackgroundTask(
@@ -84,9 +88,5 @@ class Article extends Base
                 'payload' => $find
             ];
         }
-
-//        return [
-//            'status' => false
-//        ];
     }
 }

@@ -39,6 +39,7 @@ class IndexController extends ControllerBase
 
         $this->view->board = $board;
         $this->view->page = $page;
+        $this->view->list = $this->lists->getBoardList($board, $page);
     }
 
     public function postGet5FAction()

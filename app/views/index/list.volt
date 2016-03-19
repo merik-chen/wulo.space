@@ -17,6 +17,9 @@
         <div class="row list-warp">
             <div class="col-xs-12">
                 {{ board }} - {{ page }}
+                <pre>
+                    {{ dump(list) }}
+                </pre>
             </div>
         </div>
     </div>

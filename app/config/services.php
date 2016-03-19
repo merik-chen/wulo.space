@@ -124,3 +124,7 @@ $di->setShared('router', function () {
 $di->setShared('article', function () {
     return new Wulo\Article();
 });
+
+$di->setShared('lists', function () {
+    return new Wulo\Lists();
+});

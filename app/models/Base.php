@@ -12,10 +12,11 @@ use \Phalcon;
 
 class Base extends Phalcon\Mvc\Model
 {
-    protected $mongo;
-    protected $gearman;
-    protected $database;
-    protected $collection;
+    protected $mongo = false;
+    protected $reids = false;
+    protected $gearman = false;
+    protected $database = null;
+    protected $collection = null;
     protected $frontCache;
 
     function onConstruct() {
@@ -24,13 +25,6 @@ class Base extends Phalcon\Mvc\Model
             "lifetime" => 604800
         ));
 
-        $this->mongo = new \MongoClient("mongodb://192.168.122.1:27017");
-        $this->gearman = new \GearmanClient();
-        $this->gearman->addServer('192.168.122.1');
-
-
-        $this->database = $this->mongo->selectDB('wulo');
-        $this->collection = $this->database->selectCollection('data');
     }
 
     function sendBackgroundTask($task_name, $task_payload, $task_unique = null) {
@@ -39,6 +33,26 @@ class Base extends Phalcon\Mvc\Model
 
     protected function make_hash($text) {
         return strval(sha1($text));
+    }
+
+    protected function initGearman()
+    {
+        $this->gearman = new \GearmanClient();
+        $this->gearman->addServer('192.168.122.1');
+    }
+
+    protected function initMongo()
+    {
+        $this->mongo = new \MongoClient("mongodb://192.168.122.1:27017");
+        $this->database = $this->mongo->selectDB('wulo');
+        $this->collection = $this->database->selectCollection('data');
+    }
+
+    protected function initRedis()
+    {
+        $redis = new \Redis();
+        $redis->pconnect('192.168.122.1');
+        return $redis;
     }
 
     // Memcache 使用 phalcon 的 Libmemcached
