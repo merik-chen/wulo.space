@@ -63,7 +63,7 @@
                     <div class="detail-5f-warp text-xs-center">
                         <span>
                         {% if not(post['wulo'] is empty) %}
-                            {{ post['wulo']['content'] }} by {{ post['wulo']['user'] }}
+                            <span class="wulo-comment">{{ post['wulo']['content'] }}</span> by {{ post['wulo']['user'] }}
                         {% else %}
                             它的五樓，還未出現...（ＯＡＯ“）
                         {% endif %}
@@ -97,6 +97,11 @@
     $(function () {
         var board = '{{board}}',
             article = '{{article}}';
+
+        $('.wulo-comment').html( function () {
+            var text = $(this).html();
+            return text.replace(/^:/, '');
+        });
         $('.read-more').readmore({
             collapsedHeight: 20
         });
