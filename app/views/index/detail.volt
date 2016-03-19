@@ -22,7 +22,8 @@
                         <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
                               itemtype="https://schema.org/ListItem">
                             <a href="/" title="五樓，你怎麼說？" itemprop="item">
-                                <span itemprop="name">五樓，你怎麼說？</span>
+                                <span class="hidden-xs-up" itemprop="name">五樓，你怎麼說？</span>
+                                <span>首頁</span>
                             </a>
                         </span>
                         <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
@@ -40,8 +41,12 @@
                     </div>
 
                     <h1 itemprop="name">{{ post['title'] }}</h1>
-                    <h6>作者：<span>{{ post['author'] }} ({{ post['nick']}})</span></h6>
-                    <h6>發文時間：<span>{{ date('Y-m-d H:i:s', post['date']) }}</span></h6>
+                    <h6>作者：
+                        <span>{{ post['author'] }} ({{ post['nick']}})</span>
+                    </h6>
+                    <h6>發文時間：
+                        <span>{{ date('Y-m-d H:i:s', post['date']) }}</span>
+                    </h6>
                     <h6>原文網址：
                         <a href="https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html">
                             <span class="hidden-md-up">
