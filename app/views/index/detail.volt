@@ -46,7 +46,7 @@
                     <!--                </a>-->
                     <!--            </p>-->
                     <div>
-                        <span class="readmore" itemscope="text">{{ post['body'] }}</span>
+                        <span class="read-more" itemscope="text">{{ post['body'] }}</span>
                     </div>
                     <p>
                         <span>
@@ -67,7 +67,9 @@
     $(function () {
         var board = '{{board}}',
             article = '{{article}}';
-        $('.readmore').readmore();
+        $('.read-more').readmore({
+            collapsedHeight: 50
+        });
     })
 </script>
 {% endblock %}
