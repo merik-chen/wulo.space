@@ -30,6 +30,17 @@ class IndexController extends ControllerBase
 
     }
 
+    public function listAction()
+    {
+        $board = $this->dispatcher->getParam('board', 'string', false);
+        $page = $this->dispatcher->getParam('page', 'int', 0);
+
+        if ( $board == false ) $this->response->redirect('/');
+
+        $this->view->board = $board;
+        $this->view->page = $page;
+    }
+
     public function postGet5FAction()
     {
         if ($payload = $this->request->getPost('payload', null, false)) {

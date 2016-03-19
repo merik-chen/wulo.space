@@ -12,6 +12,7 @@ all = Database.Database.find({"title": {"$exists": True}}, {
     'article': 1,
     'board': 1,
     'title': 1,
+    'wulo': 1,
     'url': 1,
 })
 
