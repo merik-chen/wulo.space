@@ -1,24 +1,8 @@
-<div class="row">
-    <div class="col-xs-12">
-        <h2>五樓，你怎麼說？</h2>
+<div class="row navbar-warp">
+    <div class="col-xs-12 col-md-8 text-xs-center">
+        <h3>五樓，你怎麼說？<small>每個文章的心中，都有一個五樓。</small></h3>
     </div>
-    <div class="col-xs-12">
-        <div itemscope itemtype="https://schema.org/BreadcrumbList">
-            <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <a href="/" title="五樓，你怎麼說？" itemprop="item">
-                    <span itemprop="name">五樓，你怎麼說？</span>
-                </a>
-            </span>
-            <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <a href="/bbs/{{board}}/index.html" itemprop="item">
-                    <span itemprop="name">{{ board }}</span>
-                </a>
-            </span>
-            <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <a href="/bbs/{{board}}/{{article}}.html" itemprop="item">
-                    <span itemprop="name">{{ post['title'] }}</span>
-                </a>
-            </span>
-        </div>
+    <div class="col-xs-12 col-md-4">
+        menu
     </div>
 </div>

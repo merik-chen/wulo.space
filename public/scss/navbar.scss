@@ -1,5 +1,9 @@
 @import "bootstrap/scss/variables", "bootstrap/scss/mixins";
 
+.navbar-warp {
+
+}
+
 .navbar-breadcrumb-items::after {
   content: "/";
 }
