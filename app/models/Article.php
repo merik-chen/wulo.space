@@ -49,12 +49,20 @@ class Article extends Base
     public function getArticle(array $payload = []) {
         if (empty($payload)) return ['status' => false];
 
-        $target = "https://www.ptt.cc/bbs/{$payload['board']}/{$payload['article']}.html";
-        $hash = $this->make_hash($target);
+        $memKey = "{$payload['board']}_{$payload['article']}";
 
-        $find = $this->collection->findOne(
-            ['hash' => $hash]
-        );
+        if ($this->cache->exists($memKey)) {
+            $find = $this->cache->get($memKey);
+        } else {
+            $target = "https://www.ptt.cc/bbs/{$payload['board']}/{$payload['article']}.html";
+            $hash = $this->make_hash($target);
+
+            $find = $this->collection->findOne(
+                ['hash' => $hash]
+            );
+        }
+
+
 
         if (empty($find)) {
             $ticket = $this->sendBackgroundTask(
@@ -70,6 +78,7 @@ class Article extends Base
                 'ticket' => $ticket
             ];
         } else {
+            $this->cache->save($memKey, $find);
             return [
                 'status' => true,
                 'payload' => $find
