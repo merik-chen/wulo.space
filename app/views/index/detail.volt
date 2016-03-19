@@ -44,12 +44,12 @@
                     <h6>發文時間：<span>{{ date('Y-m-d H:i:s', post['date']) }}</span></h6>
                     <h6>原文網址：
                         <a href="https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html">
-                            <div class="hidden-md-up">
+                            <span class="hidden-md-up">
                                 連結
-                            </div>
-                            <div class="hidden-sm-down">
+                            </span>
+                            <span class="hidden-sm-down">
                                 https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html
-                            </div>
+                            </span>
                         </a>
                     </h6>
                     <div class="detail-title-info-spacer"></div>
