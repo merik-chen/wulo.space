@@ -59,14 +59,19 @@
                     </h6>
                     <div class="detail-title-info-spacer"></div>
 
+                    <p>五樓評點：
+                        <span>
+                        {% if not(post['wulo'] is empty) %}
+                            [{{ post['wulo']['symbol'] }}]{{ post['wulo']['content'] }} by {{ post['wulo']['user'] }}
+                        {% else %}
+                            它的五樓，還未出現...（ＯＡＯ“）
+                        {% endif %}
+                        </span>
+                    </p>
+
                     <div>
                         <span class="read-more" itemscope="text">{{ post['body'] }}</span>
                     </div>
-                    <p>
-                        <span>
-                            {{ post['wulo']['user'] }}[{{ post['wulo']['symbol'] }}]{{ post['wulo']['content'] }}
-                        </span>
-                    </p>
                 </div>
             </div>
         </div>
