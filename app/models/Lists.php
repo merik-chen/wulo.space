@@ -45,11 +45,12 @@ class Lists extends Base
             $list = $redis->lRange($board, $start, $start + $count - 1);
         }
 
-        foreach($list as $index =>  &$article) {
+        foreach($list as $index => &$article) {
+            $aid = $article;
             $find = $this->getDI()->getShared('article')->getArticle(['board' => $board, 'article' => $article], true);
             if (!empty($find)) {
                 $article['board'] = $board;
-                $article['article'] = $article;
+                $article['article'] = $aid;
                 unset($find['body']);
                 unset($find['hash']);
                 unset($find['ip']);
