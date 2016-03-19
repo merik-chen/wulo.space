@@ -63,7 +63,7 @@
                     <div class="detail-5f-warp text-xs-center">
                         <span>
                         {% if not(post['wulo'] is empty) %}
-                            [{{ post['wulo']['symbol'] }}]{{ post['wulo']['content'] }} by {{ post['wulo']['user'] }}
+                            {{ post['wulo']['content'] }} by {{ post['wulo']['user'] }}
                         {% else %}
                             它的五樓，還未出現...（ＯＡＯ“）
                         {% endif %}
