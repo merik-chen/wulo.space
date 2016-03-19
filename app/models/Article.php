@@ -20,10 +20,10 @@ class Article extends Base
         $this->cache = $this->initCache(get_class($this));
     }
 
-    public function getLatestArticle($count = 5, $renew = false) {
+    public function getLatestArticle($count = 5, $cached = true) {
         $memKey = "article:getLatestArticle:$count";
 
-        if ($this->cache->exists($memKey) && $renew) {
+        if ($this->cache->exists($memKey) && $cached) {
             $find = $this->cache->get($memKey);
         } else {
             $re = "/bbs\\/(?P<board>.+)\\/(?P<article>M\\..+).html?/";

@@ -19,19 +19,30 @@ class Lists extends Base
         $this->cache = $this->initCache(get_class($this));
     }
 
-    public function getBoardList($board = '', $page = 1)
+    public function getBoardList($board = '', $page = 1, $cached = true)
     {
         $count = 50;
         $redis = $this->initRedis();
         $memKey = "$board:$page";
         $memKeyTotalSize = "$board:size";
 
-        $total = $redis->lLen($board);
-        $total_page = ceil($total / $count);
-        $page = $page > $total_page ? (int)$total_page : $page;
-        $start = ($page - 1) * $count;
+        if ( $this->cache->exists($memKeyTotalSize) && $cached )
+        {
+            $total = $this->cache->get($memKeyTotalSize);
+        } else {
+            $total = $redis->lLen($board);
+            $this->cache->save($memKeyTotalSize, $total, 60 * 60);
+        }
 
-        $list = $redis->lRange($board, $start, $start + $count);
+        if ( $this->cache->exists($memKey) && $cached )
+        {
+            $list = $this->cache->get($memKey);
+        } else {
+            $total_page = ceil($total / $count);
+            $page = $page > $total_page ? (int)$total_page : $page;
+            $start = ($page - 1) * $count;
+            $list = $redis->lRange($board, $start, $start + $count - 1);
+        }
 
         foreach($list as $index =>  &$article) {
             $find = $this->getDI()->getShared('article')->getArticle(['board' => $board, 'article' => $article], true);
