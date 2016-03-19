@@ -19,16 +19,6 @@ h3 {
   border-radius: 5px;
   padding: 6px; }
 
-.read-more-btn-bg {
-  background-image: -moz-linear-gradient(bottom, white, rgba(255, 255, 255, 0));
-  background-image: -ms-linear-gradient(bottom, white, rgba(255, 255, 255, 0));
-  background-image: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(rgba(255, 255, 255, 0)));
-  background-image: -webkit-linear-gradient(bottom, white, rgba(255, 255, 255, 0));
-  background-image: -o-linear-gradient(bottom, white, rgba(255, 255, 255, 0));
-  background-image: linear-gradient(bottom, white, rgba(255, 255, 255, 0));
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(255, 255, 255, 1)', endColorstr='rgba(255, 255, 255, 0)', GradientType=1); }
-
 @media (min-width: 768px) {
   h3 {
     font-size: 1.75rem; } }
