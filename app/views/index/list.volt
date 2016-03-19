@@ -16,6 +16,10 @@
         {% include "layouts/navbar.volt" %}
         <div class="row list-warp">
             <div class="col-xs-12">
+                <h1>
+                    {{ board }}
+                </h1>
+
                 <div class="detail-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
                         <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
                               itemtype="https://schema.org/ListItem">
@@ -32,8 +36,6 @@
                         </span>
                 </div>
 
-                {{ page }} / {{ data['total'] }}
-
                 <ul>
                     {% for article in data['list'] %}
                     <li>
@@ -44,7 +46,7 @@
                     {% endfor %}
                 </ul>
 
-                <div>
+                <div class="text-xs-center">
                     {% set total = data['total'] %}
                     <ul class="pagination">
                         <li class="page-item{{ page > 1 ? '' : ' disabled' }}">
