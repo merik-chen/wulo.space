@@ -14,26 +14,29 @@
 <div class="row">
     <div class="col-xs-8 col-xs-push-2">
         {% include "layouts/navbar.volt" %}
-        <div class="row content-warp">
+        <div class="row detail-warp">
             <div class="col-xs-12">
                 <div itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemPage">
 
-                    <div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-                <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                    <a href="/" title="五樓，你怎麼說？" itemprop="item">
-                        <span itemprop="name">五樓，你怎麼說？</span>
-                    </a>
-                </span>
-                <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                    <a href="/bbs/{{board}}/index.html" itemprop="item">
-                        <span itemprop="name">{{ board }}</span>
-                    </a>
-                </span>
-                <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                    <a href="/bbs/{{board}}/{{article}}.html" itemprop="item">
-                        <span itemprop="name">{{ post['title'] }}</span>
-                    </a>
-                </span>
+                    <div class="detail-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+                        <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
+                              itemtype="https://schema.org/ListItem">
+                            <a href="/" title="五樓，你怎麼說？" itemprop="item">
+                                <span itemprop="name">五樓，你怎麼說？</span>
+                            </a>
+                        </span>
+                        <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
+                              itemtype="https://schema.org/ListItem">
+                            <a href="/bbs/{{board}}/index.html" itemprop="item">
+                                <span itemprop="name">{{ board }}</span>
+                            </a>
+                        </span>
+                        <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
+                              itemtype="https://schema.org/ListItem">
+                            <a href="/bbs/{{board}}/{{article}}.html" itemprop="item">
+                                <span itemprop="name">{{ post['title'] }}</span>
+                            </a>
+                        </span>
                     </div>
 
                     <h1 itemprop="name">{{ post['title'] }}</h1>
@@ -46,9 +49,9 @@
                         <pre itemscope="text">{{ post['body'] }}</pre>
                     </div>
                     <p>
-                <span>
-                    {{ post['wulo']['user'] }}[{{ post['wulo']['symbol'] }}]{{ post['wulo']['content'] }}
-                </span>
+                        <span>
+                            {{ post['wulo']['user'] }}[{{ post['wulo']['symbol'] }}]{{ post['wulo']['content'] }}
+                        </span>
                     </p>
                 </div>
             </div>
