@@ -37,15 +37,15 @@ class Base extends Phalcon\Mvc\Model
 
     protected function initGearman()
     {
-        $this->gearman = new \GearmanClient();
-        $this->gearman->addServer('192.168.122.1');
+        $gearman = new \GearmanClient();
+        $gearman->addServer('192.168.122.1');
+        return $gearman;
     }
 
     protected function initMongo()
     {
-        $this->mongo = new \MongoClient("mongodb://192.168.122.1:27017");
-        $this->database = $this->mongo->selectDB('wulo');
-        $this->collection = $this->database->selectCollection('data');
+        $mongo = new \MongoClient("mongodb://192.168.122.1:27017");
+        return $mongo;
     }
 
     protected function initRedis()
