@@ -64,6 +64,10 @@
             var link = $.trim($("#target").val()),
                 params = wulo.utility.ptt_link_extract(link);
 
+            if (link == '') {
+                return false;
+            }
+
             $("#loading").fadeIn();
             wulo.utility.promisePost(
                 '/api/get5F',
