@@ -65,7 +65,7 @@ def ptt_get_article(gearman_worker, gearman_job):
             )
 
             # global <-> articles
-            Database.Redis.zadd(
+            Database.Redis.hset(
                 'allArticlesList',
                 data['article'].encode('utf-8'),
                 data['board'].encode('utf-8')

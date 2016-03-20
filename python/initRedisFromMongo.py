@@ -48,7 +48,7 @@ for post in all:
         )
 
         # global <-> articles
-        Database.Redis.zadd(
+        Database.Redis.hset(
             'allArticlesList',
             post['article'].encode('utf-8'),
             post['board'].encode('utf-8')
