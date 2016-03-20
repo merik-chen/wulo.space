@@ -2,7 +2,6 @@
 
 
 {% block extCss %}
-<link rel="stylesheet" href="/css/spinner.css">
 <link rel="stylesheet" href="/scss/index.css">
 {% endblock %}
 
@@ -10,13 +9,6 @@
 {% endblock %}
 
 {% block body %}
-<div id="loading" style="background: white; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index:99;">
-    <div class="bounce-spinner">
-        <div class="double-bounce1"></div>
-        <div class="double-bounce2"></div>
-    </div>
-    <div class="col-xs-12 text-xs-center m-t-1" style="top: 50%;">載入中...五樓，你怎麼說？</div>
-</div>
 <div class="row">
     <div class="col-xs-12 text-xs-center">
         <div class="row slogan-margin-top">
@@ -63,7 +55,6 @@
 <script src="//assets.interview.tw/js/jquery.vticker.min.js"></script>
 <script>
     $(function () {
-        $("#loading").fadeOut();
         $("#marquee").show().delay(100).vTicker({
             height: 30,
             margin: 5

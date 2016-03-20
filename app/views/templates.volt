@@ -12,6 +12,7 @@
         <title>{% block title %}{% endblock %}五樓，你怎麼說？ - 每個文章的心中，都有一個五樓。</title>
         <link rel="stylesheet" href="/bower_components/tether/dist/css/tether.css">
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/spinner.css">
         <style>
             @import url('//fonts.googleapis.com/earlyaccess/cwtexhei.css');
             body {
@@ -23,6 +24,13 @@
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     </head>
     <body>
+        <div id="loading" style="background: white; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index:99;">
+            <div class="bounce-spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+            <div class="col-xs-12 text-xs-center m-t-1" style="top: 50%;">載入中...五樓，你怎麼說？</div>
+        </div>
         <div class="container-fluid">
             {% block body %}{% endblock %}
         </div>
@@ -35,6 +43,7 @@
         <script src="/js/wulo.js"></script>
         <script>
             $(function () {
+                $("#loading").fadeOut();
             })
         </script>
         {% block extJs %}{% endblock %}
