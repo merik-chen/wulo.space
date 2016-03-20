@@ -78,9 +78,10 @@ class Article:
                     if date:
                         article['date'] = int(time.mktime(time.strptime(date, "%a %b %d %H:%M:%S %Y")))
 
+            article['like'] = 0  # 推
+            article['dislike'] = 0  # 噓
+
             for index, push in enumerate(selector.css('#main-content > div.push')):
-                article['like'] = 0  # 推
-                article['dislike'] = 0  # 噓
                 symbol = push.css('span.push-tag::text').extract()[0].strip()
                 if symbol == u'推':
                     article['like'] += 1
