@@ -43,7 +43,7 @@
                             <span>{{ article['title'] }}</span>
                         </a>
                     </li>
-                    {% if loop.index % 5 == 0 %}
+                    {# if loop.index % 5 == 0 #}
                     <li>
                         <!-- wulo-detail-水平-1 -->
                         <ins class="adsbygoogle"
@@ -54,7 +54,7 @@
                             (adsbygoogle = window.adsbygoogle || []).push({});
                         </script>
                     </li>
-                    {% endif %}
+                    {# endif #}
                     {% endfor %}
                 </ul>
 
@@ -88,6 +88,15 @@
                         </li>
                     </ul>
                 </div>
+
+                <!-- wulo-detail-水平-1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:100%;min-height:60px;height:90px;max-height:100px"
+                     data-ad-client="ca-pub-3001056417467618"
+                     data-ad-slot="4519532201"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </div>
     </div>
