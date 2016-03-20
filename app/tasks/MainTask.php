@@ -24,6 +24,6 @@ class MainTask extends BaseTask
     public function mainAction()
     {
         $sitemap = new \Wulo\Sitemap();
-        $sitemap->test();
+        $sitemap->build();
     }
 }

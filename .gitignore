@@ -338,3 +338,5 @@ bower_components/
 *.pyc
 
 #scss
+
+public/sitemaps/

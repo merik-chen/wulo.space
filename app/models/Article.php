@@ -89,4 +89,10 @@ class Article extends Base
             ];
         }
     }
+
+    public function getAllArticles(array $filter = [], array $return = [], $iterator = true)
+    {
+        $find = $this->collection->find($filter, $return);
+        return $iterator ? iterator_to_array($find) : $find;
+    }
 }
