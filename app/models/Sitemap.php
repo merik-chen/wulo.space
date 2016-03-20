@@ -104,31 +104,31 @@ class Sitemap extends Base
             }
         }
 
-//        // Tags
-//        $tags = $this->redis->zRevRange('iask:AllTag', 0, -1);
-//        foreach( $tags as $tag )
-//        {
-//            echo $counter++.self::TAB.$tag.self::NEWLINE;
-//            if( mb_strlen( $tag, "UTF-8" ) > 0 )
-//            {
-//                echo "OK\n";
-//                $sitemapDoc	.= self::TAB."<url>".self::NEWLINE
-//                    .self::TAB.self::TAB.'<loc>http://iask.tw/tag/'.urlencode( $tag ).'/1</loc>'.self::NEWLINE
-//                    .self::TAB.self::TAB.'<changefreq>hourly</changefreq>'.self::NEWLINE
-//                    .self::TAB."</url>".self::NEWLINE;
-//
-//                $sitemapCounter++;
-//            }
-//
-//            if( $sitemapCounter >= $sitemapLimit )
-//            {
-//                $sitemaps[] = $this->createFile( $sitemapSerial, $sitemapHeader, $sitemapDoc, $sitemapFooter );
-//                $sitemapCounter	= 0;
-//                $sitemapDoc		= "";
-//                $sitemapSerial++;
-//                $counter 		= 1;
-//            }
-//        }
+        // Tags
+        $boards = $this->getDI()->getShared('lists')->getAllBoards();
+        foreach( $boards as $board )
+        {
+            echo $counter++.self::TAB.$board.self::NEWLINE;
+            if( mb_strlen( $board, "UTF-8" ) > 0 )
+            {
+                echo "OK\n";
+                $sitemapDoc	.= self::TAB."<url>".self::NEWLINE
+                    .self::TAB.self::TAB."<loc>https://wulo.space/bbs/$board/index.html</loc>" . self::NEWLINE
+                    .self::TAB.self::TAB.'<changefreq>hourly</changefreq>'.self::NEWLINE
+                    .self::TAB."</url>".self::NEWLINE;
+
+                $sitemapCounter++;
+            }
+
+            if( $sitemapCounter >= $sitemapLimit )
+            {
+                $sitemaps[] = $this->createFile( $sitemapSerial, $sitemapHeader, $sitemapDoc, $sitemapFooter );
+                $sitemapCounter	= 0;
+                $sitemapDoc		= "";
+                $sitemapSerial++;
+                $counter 		= 1;
+            }
+        }
 
         if ($sitemapCounter != 0) {
             $sitemaps[] = $this->createFile($sitemapSerial, $sitemapHeader, $sitemapDoc, $sitemapFooter);
