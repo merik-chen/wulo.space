@@ -1,2 +1,5 @@
+### NOTICE: IF YOU HAVE TO MODIFY THIS, TELL MERIK, THX.
 User-agent: *
-Allow: /
+Sitemap: https://wulo.space/sitemaps/sitemap-1.xml
+Sitemap: https://wulo.space/sitemaps/sitemap-2.xml
+Sitemap: https://wulo.space/sitemaps/sitemap-3.xml
