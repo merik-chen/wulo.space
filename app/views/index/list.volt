@@ -58,6 +58,17 @@
                     {% endfor %}
                 </ul>
 
+                <div class="list-ad-h-01">
+                    <!-- wulo-detail-水平-1 -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:100%;min-height:60px;height:90px;max-height:100px"
+                         data-ad-client="ca-pub-3001056417467618"
+                         data-ad-slot="4519532201"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+
                 <div class="text-xs-center">
                     {% set total = data['total'] %}
                     <ul class="pagination">
@@ -89,14 +100,6 @@
                     </ul>
                 </div>
 
-                <!-- wulo-detail-水平-1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:100%;min-height:60px;height:90px;max-height:100px"
-                     data-ad-client="ca-pub-3001056417467618"
-                     data-ad-slot="4519532201"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             </div>
         </div>
     </div>

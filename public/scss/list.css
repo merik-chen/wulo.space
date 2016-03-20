@@ -4,4 +4,11 @@
 .list-article {
   margin-top: 1vh; }
 
+.list-ad-h-01 {
+  height: 60px; }
+
+@media (min-width: 992px) {
+  .list-ad-h-01 {
+    height: 90px; } }
+
 /*# sourceMappingURL=list.css.map */

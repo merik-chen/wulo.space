@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "AAEA,gBAAiB;EACf,WAAW,EAAE,IAAI;;AAInB,aAAc;EACZ,UAAU,EAAE,GAAG",
-"sources": ["list.scss"],
+"mappings": "AAEA,gBAAiB;EACf,WAAW,EAAE,IAAI;;AAInB,aAAc;EACZ,UAAU,EAAE,GAAG;;AAGjB,aAAc;EACZ,MAAM,EAAC,IAAI;;ACiCT,yBAAyB;ED7B3B,aAAc;IACZ,MAAM,EAAC,IAAI",
+"sources": ["list.scss","bootstrap/scss/mixins/_breakpoints.scss"],
 "names": [],
 "file": "list.css"
 }

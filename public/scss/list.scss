@@ -8,3 +8,13 @@
 .list-article {
   margin-top: 1vh;
 }
+
+.list-ad-h-01 {
+  height: 60px;
+}
+
+@include media-breakpoint-up(lg) {
+  .list-ad-h-01 {
+    height: 90px;
+  }
+}
