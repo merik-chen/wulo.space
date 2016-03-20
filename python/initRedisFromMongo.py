@@ -48,17 +48,16 @@ for post in all:
         )
 
         # global <-> articles
-        Database.Redis.rpush(
+        Database.Redis.zadd(
             'allArticlesList',
-            json.dumps({
-                'board': post['board'].encode('utf-8'),
-                'article': post['article'].encode('utf-8')
-            }),
+            post['article'].encode('utf-8'),
+            post['board'].encode('utf-8')
         )
         # global <-> boards
-        Database.Redis.rpush(
+        Database.Redis.zincrby(
             'allBoardsList',
             post['board'].encode('utf-8'),
+            1
         )
 
         # global <-> articles
