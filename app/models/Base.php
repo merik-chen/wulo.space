@@ -12,6 +12,7 @@ use \Phalcon;
 
 class Base extends Phalcon\Mvc\Model
 {
+    public $projectName = 'Wulo';
     protected $mongo = false;
     protected $reids = false;
     protected $gearman = false;
