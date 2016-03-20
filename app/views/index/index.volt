@@ -2,6 +2,7 @@
 
 
 {% block extCss %}
+<link rel="stylesheet" href="/css/spinners.css">
 <link rel="stylesheet" href="/scss/index.css">
 {% endblock %}
 
