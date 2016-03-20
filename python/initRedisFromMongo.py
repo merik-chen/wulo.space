@@ -46,12 +46,32 @@ for post in all:
             post['board'].encode('utf-8'),
             post['article'].encode('utf-8'),
         )
+
         # global <-> articles
-        Database.Redis.sadd(
-            'allArticles',
+        Database.Redis.rpush(
+            'allArticlesList',
             json.dumps({
                 'board': post['board'].encode('utf-8'),
                 'article': post['article'].encode('utf-8')
             }),
+        )
+        # global <-> boards
+        Database.Redis.rpush(
+            'allBoardsList',
+            post['board'].encode('utf-8'),
+        )
+
+        # global <-> articles
+        Database.Redis.sadd(
+            'allArticlesSets',
+            json.dumps({
+                'board': post['board'].encode('utf-8'),
+                'article': post['article'].encode('utf-8')
+            }),
+        )
+        # global <-> boards
+        Database.Redis.sadd(
+            'allBoardsSets',
+            post['board'].encode('utf-8'),
         )
 
