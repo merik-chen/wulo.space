@@ -44,14 +44,16 @@
                         </a>
                     </li>
                     {% if loop.index % 5 == 0 %}
-                    <!-- wulo-detail-水平-1 -->
-                    <ins class="adsbygoogle"
-                         style="display:inline-block;width:100%;min-height:60px;height:100%;max-height:100px"
-                         data-ad-client="ca-pub-3001056417467618"
-                         data-ad-slot="4519532201"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                    <li>
+                        <!-- wulo-detail-水平-1 -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:100%;min-height:60px;height:100%;max-height:100px"
+                             data-ad-client="ca-pub-3001056417467618"
+                             data-ad-slot="4519532201"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </li>
                     {% endif %}
                     {% endfor %}
                 </ul>
