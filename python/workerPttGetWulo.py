@@ -63,13 +63,32 @@ def ptt_get_article(gearman_worker, gearman_job):
                 data['board'].encode('utf-8'),
                 data['article'].encode('utf-8'),
             )
+
+            # global <-> articles
+            Database.Redis.hset(
+                'allArticlesList',
+                data['article'].encode('utf-8'),
+                data['board'].encode('utf-8')
+            )
+            # global <-> boards
+            Database.Redis.zincrby(
+                'allBoardsList',
+                data['board'].encode('utf-8'),
+                1
+            )
+
             # global <-> articles
             Database.Redis.sadd(
-                'allArticles',
+                'allArticlesSets',
                 json.dumps({
                     'board': data['board'].encode('utf-8'),
                     'article': data['article'].encode('utf-8')
                 }),
+            )
+            # global <-> boards
+            Database.Redis.sadd(
+                'allBoardsSets',
+                data['board'].encode('utf-8'),
             )
 
         time.sleep(random.randrange(3, 6))

@@ -72,8 +72,8 @@ class Sitemap extends Base
         $counter = 1;
 
         // Questions
-        foreach ($articles as $data) {
-            echo $counter++ . self::TAB . $data['_id'] . self::NEWLINE;
+        foreach ($articles as $article => $board) {
+            echo $counter++ . self::TAB . $article . self::NEWLINE;
 //            if( isset( $data[ 'url' ] ) && !empty( $data[ 'url' ] ) )
 //            {
 //                if(preg_match($this->urlExtractor, $data['url'], $matches)) {
@@ -87,16 +87,13 @@ class Sitemap extends Base
 //
 //                    $sitemapCounter++;
 //                }
-            $json = json_decode($data, true);
-            if (!is_null($json)) {
-                echo "OK\n";
-                $sitemapDoc .= self::TAB . "<url>" . self::NEWLINE
-                    . self::TAB . self::TAB . "<loc>https://wulo.space/bbs/{$json['board']}/{$json['article']}.html</loc>" . self::NEWLINE
-                    . self::TAB . self::TAB . '<changefreq>always</changefreq>' . self::NEWLINE
-                    . self::TAB . "</url>" . self::NEWLINE;
+            echo "OK\n";
+            $sitemapDoc .= self::TAB . "<url>" . self::NEWLINE
+                . self::TAB . self::TAB . "<loc>https://wulo.space/bbs/$board/$article.html</loc>" . self::NEWLINE
+                . self::TAB . self::TAB . '<changefreq>always</changefreq>' . self::NEWLINE
+                . self::TAB . "</url>" . self::NEWLINE;
 
-                $sitemapCounter++;
-            }
+            $sitemapCounter++;
 
             if ($sitemapCounter >= $sitemapLimit) {
                 $sitemaps[] = $this->createFile($sitemapSerial, $sitemapHeader, $sitemapDoc, $sitemapFooter);

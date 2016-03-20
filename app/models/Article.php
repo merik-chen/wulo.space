@@ -103,6 +103,6 @@ class Article extends Base
     public function getAllArticlesRedis()
     {
         $this->redis = $this->initRedis();
-        return $this->redis->lRange('allArticles', 0, -1);
+        return $this->redis->hGetAll('allArticlesList');
     }
 }
