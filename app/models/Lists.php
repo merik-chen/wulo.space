@@ -25,7 +25,8 @@ class Lists extends Base
 
     public function getAllBoards($with_count = false, $cached = true)
     {
-        $memKey = 'allBoards' . $with_count ? 'WithCount' : '';
+        $memKey = 'allBoards';
+        $memKey = $with_count ? $memKey . 'WithCount' : $memKey;
         if ( $this->cache->exists($memKey) && $cached )
         {
             $boards = $this->cache->get($memKey);
