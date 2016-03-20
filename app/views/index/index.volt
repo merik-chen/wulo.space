@@ -65,6 +65,7 @@
                 params = wulo.utility.ptt_link_extract(link);
 
             if (link == '') {
+                $("#target").attr('placeholder', '記得把網址貼上喔！！！');
                 return false;
             }
 
