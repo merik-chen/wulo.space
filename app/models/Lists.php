@@ -23,14 +23,16 @@ class Lists extends Base
         $this->collection = $this->database->selectCollection('data');
     }
 
-    public function getAllBoards($cached = true)
+    public function getAllBoards($with_count = false, $cached = true)
     {
-        $memKey = 'allBoards';
+        $memKey = 'allBoards' . $with_count ? 'WithCount' : '';
         if ( $this->cache->exists($memKey) && $cached )
         {
             $boards = $this->cache->get($memKey);
         } else {
-
+            $this->redis = $this->initRedis();
+            $boards = $this->redis->zRange('allBoardsList', 0, -1, $with_count);
+            $this->cache->save($memKey, $boards, 60 * 60);
         }
 
         return $boards;
