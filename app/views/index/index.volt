@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block body %}
+<div class="loader" style="display: none;">Loading...</div>
 <div class="row">
     <div class="col-xs-12 text-xs-center">
         <div class="row slogan-margin-top">
