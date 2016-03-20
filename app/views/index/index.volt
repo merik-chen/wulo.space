@@ -15,7 +15,7 @@
         <div class="double-bounce1"></div>
         <div class="double-bounce2"></div>
     </div>
-    <div class="col-xs-12 text-xs-center m-t-1" style="top: 50%;">We're preparing the data...</div>
+    <div class="col-xs-12 text-xs-center m-t-1" style="top: 50%;">載入中...五樓，你怎麼說？</div>
 </div>
 <div class="row">
     <div class="col-xs-12 text-xs-center">
