@@ -44,7 +44,7 @@
                         </a>
                     </li>
                     {# if loop.index % 5 == 0 #}
-                    <li>
+                    {# <li>
                         <!-- wulo-detail-水平-1 -->
                         <ins class="adsbygoogle"
                              style="display:inline-block;width:100%;min-height:60px;height:100%;max-height:100px"
@@ -53,7 +53,7 @@
                         <script>
                             (adsbygoogle = window.adsbygoogle || []).push({});
                         </script>
-                    </li>
+                    </li> #}
                     {# endif #}
                     {% endfor %}
                 </ul>
