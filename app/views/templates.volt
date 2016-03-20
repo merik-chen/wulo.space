@@ -10,6 +10,8 @@
         <meta property="og:description" content="每個文章的心中，都有一個五樓。">
         <meta property="fb:app_id" content="1551853838477846">
         <title>{% block title %}{% endblock %}五樓，你怎麼說？ - 每個文章的心中，都有一個五樓。</title>
+        <meta property="description" content="每個文章的心中，都有一個五樓。">
+        <meta property="keywords" content="Ptt,5樓,五樓,big data">
         <link rel="stylesheet" href="/bower_components/tether/dist/css/tether.css">
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="/css/spinner.css">
