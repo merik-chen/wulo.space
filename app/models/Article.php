@@ -12,12 +12,16 @@ namespace Wulo;
 class Article extends Base
 {
     public $cache;
+    public $redis;
 
     public function onConstruct() {
         parent::onConstruct();
-        $this->initMongo();
-        $this->initGearman();
+        $this->redis = $this->initRedis();
         $this->cache = $this->initCache(get_class($this));
+        $this->mongo = $this->initMongo();
+        $this->gearman  = $this->initGearman();
+        $this->database = $this->mongo->selectDB('wulo');
+        $this->collection = $this->database->selectCollection('data');
     }
 
     public function getLatestArticle($count = 5, $cached = true) {
@@ -94,5 +98,11 @@ class Article extends Base
     {
         $find = $this->collection->find($filter, $return);
         return $iterator ? iterator_to_array($find) : $find;
+    }
+
+    public function getAllArticlesRedis()
+    {
+        $this->redis = $this->initRedis();
+        return $this->redis->lRange('allArticles', 0, -1);
     }
 }

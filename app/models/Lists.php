@@ -17,6 +17,23 @@ class Lists extends Base
     public function onConstruct() {
         parent::onConstruct();
         $this->cache = $this->initCache(get_class($this));
+        $this->mongo = $this->initMongo();
+        $this->gearman  = $this->initGearman();
+        $this->database = $this->mongo->selectDB('wulo');
+        $this->collection = $this->database->selectCollection('data');
+    }
+
+    public function getAllBoards($cached = true)
+    {
+        $memKey = 'allBoards';
+        if ( $this->cache->exists($memKey) && $cached )
+        {
+            $boards = $this->cache->get($memKey);
+        } else {
+
+        }
+
+        return $boards;
     }
 
     public function getBoardList($board = '', $page = 1, $cached = true)

@@ -9,16 +9,17 @@
 namespace Wulo;
 
 use Wulo, Phalcon;
+
 class Sitemap extends Base
 {
-    const NEWLINE				= "\n";
-    const TAB					= "\t";
-    private  $rootPath          = '';
-    protected $dirPath			= "/public/sitemaps";
-    protected $sitemapPrefix	= 'sitemap-';
-    protected $sitemapPostfix	= '.xml';
-    protected $robots			= '/public/robots.txt';
-    protected $urlExtractor     = "/bbs\\/(?P<board>.+)\\/(?P<article>M\\..+).html?/";
+    const NEWLINE = "\n";
+    const TAB = "\t";
+    private $rootPath = '';
+    protected $dirPath = "/public/sitemaps";
+    protected $sitemapPrefix = 'sitemap-';
+    protected $sitemapPostfix = '.xml';
+    protected $robots = '/public/robots.txt';
+    protected $urlExtractor = "/bbs\\/(?P<board>.+)\\/(?P<article>M\\..+).html?/";
 
     public function onConstruct()
     {
@@ -39,65 +40,70 @@ class Sitemap extends Base
 
     public function build()
     {
-        if( !file_exists( $this->dirPath ) && !is_dir( $this->dirPath ) )
-        {
-            echo $this->dirPath." not exists, create it!\n";
-            mkdir( $this->dirPath );
+        if (!file_exists($this->dirPath) && !is_dir($this->dirPath)) {
+            echo $this->dirPath . " not exists, create it!\n";
+            mkdir($this->dirPath);
         }
 
-        $exists_files	= scandir( $this->dirPath );
+        $exists_files = scandir($this->dirPath);
 
-        foreach( $exists_files as $e_file )
-        {
-            if( preg_match_all( '/^sitemap-\d+\.xml$/', $e_file, $matches ) )
-            {
-                $del_file	= $this->dirPath.'/'.$e_file;
-                echo "Delete ".$del_file."\n";
-                unlink( $del_file );
+        foreach ($exists_files as $e_file) {
+            if (preg_match_all('/^sitemap-\d+\.xml$/', $e_file, $matches)) {
+                $del_file = $this->dirPath . '/' . $e_file;
+                echo "Delete " . $del_file . "\n";
+                unlink($del_file);
             }
         }
 
-        $sitemapSerial		= 1;
-        $sitemapCounter	    = 0;
-        $sitemapLimit		= 50000;
+        $sitemapSerial = 1;
+        $sitemapCounter = 0;
+        $sitemapLimit = 50000;
 
-        $sitemapHeader	= '<?xml version="1.0" encoding="UTF-8"?>'.self::NEWLINE.'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'.self::NEWLINE;
-        $sitemapFooter	= '</urlset>';
+        $sitemapHeader = '<?xml version="1.0" encoding="UTF-8"?>' . self::NEWLINE . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . self::NEWLINE;
+        $sitemapFooter = '</urlset>';
 
-        $sitemapDoc		= "";
+        $sitemapDoc = "";
 
-        $sitemaps		= array();
+        $sitemaps = array();
 
-        $articles		= $this->getDI()->getShared('article')->getAllArticles( array(), array( 'url' => 1 ) );
+//        $articles		= $this->getDI()->getShared('article')->getAllArticles( array(), array( 'url' => 1 ) );
+        $articles = $this->getDI()->getShared('article')->getAllArticlesRedis();
 
-        $counter		= 1;
+        $counter = 1;
 
         // Questions
-        foreach( $articles as $data )
-        {
-            echo $counter++.self::TAB.$data[ '_id' ].self::NEWLINE;
-            if( isset( $data[ 'url' ] ) && !empty( $data[ 'url' ] ) )
-            {
-                if(preg_match($this->urlExtractor, $data['url'], $matches)) {
-                    echo "OK\n";
-                    $data['board'] = $matches['board'];
-                    $data['article'] = $matches['article'];
-                    $sitemapDoc	.= self::TAB."<url>".self::NEWLINE
-                        .self::TAB.self::TAB."<loc>https://wulo.space/bbs/{$data['board']}/{$data['article']}.html</loc>".self::NEWLINE
-                        .self::TAB.self::TAB.'<changefreq>always</changefreq>'.self::NEWLINE
-                        .self::TAB."</url>".self::NEWLINE;
+        foreach ($articles as $data) {
+            echo $counter++ . self::TAB . $data['_id'] . self::NEWLINE;
+//            if( isset( $data[ 'url' ] ) && !empty( $data[ 'url' ] ) )
+//            {
+//                if(preg_match($this->urlExtractor, $data['url'], $matches)) {
+//                    echo "OK\n";
+//                    $data['board'] = $matches['board'];
+//                    $data['article'] = $matches['article'];
+//                    $sitemapDoc	.= self::TAB."<url>".self::NEWLINE
+//                        .self::TAB.self::TAB."<loc>https://wulo.space/bbs/{$data['board']}/{$data['article']}.html</loc>".self::NEWLINE
+//                        .self::TAB.self::TAB.'<changefreq>always</changefreq>'.self::NEWLINE
+//                        .self::TAB."</url>".self::NEWLINE;
+//
+//                    $sitemapCounter++;
+//                }
+            $json = json_decode($data, true);
+            if (!is_null($json)) {
+                echo "OK\n";
+                $sitemapDoc .= self::TAB . "<url>" . self::NEWLINE
+                    . self::TAB . self::TAB . "<loc>https://wulo.space/bbs/{$json['board']}/{$json['article']}.html</loc>" . self::NEWLINE
+                    . self::TAB . self::TAB . '<changefreq>always</changefreq>' . self::NEWLINE
+                    . self::TAB . "</url>" . self::NEWLINE;
 
-                    $sitemapCounter++;
-                }
+                $sitemapCounter++;
             }
 
-            if( $sitemapCounter >= $sitemapLimit )
-            {
-                $sitemaps[] = $this->createFile( $sitemapSerial, $sitemapHeader, $sitemapDoc, $sitemapFooter );
-                $sitemapCounter	= 0;
-                $sitemapDoc		= "";
+            if ($sitemapCounter >= $sitemapLimit) {
+                $sitemaps[] = $this->createFile($sitemapSerial, $sitemapHeader, $sitemapDoc, $sitemapFooter);
+                $sitemapCounter = 0;
+                $sitemapDoc = "";
                 $sitemapSerial++;
-                $counter 		= 1;
+                $counter = 1;
             }
         }
 
@@ -127,37 +133,35 @@ class Sitemap extends Base
 //            }
 //        }
 
-        if( $sitemapCounter != 0 )
-        {
-            $sitemaps[] = $this->createFile( $sitemapSerial, $sitemapHeader, $sitemapDoc, $sitemapFooter );
+        if ($sitemapCounter != 0) {
+            $sitemaps[] = $this->createFile($sitemapSerial, $sitemapHeader, $sitemapDoc, $sitemapFooter);
         }
 
-        $this->createRobots( $sitemaps );
+        $this->createRobots($sitemaps);
 
         $this->notify();
     }
 
-    private function createFile( $sitemapSerial, $sitemapHeader, $sitemapDoc, $sitemapFooter )
+    private function createFile($sitemapSerial, $sitemapHeader, $sitemapDoc, $sitemapFooter)
     {
-        $fname		= $this->sitemapPrefix.$sitemapSerial.$this->sitemapPostfix;
-        $file		= $this->dirPath.'/'.$fname;
-        $content	= $sitemapHeader.$sitemapDoc.$sitemapFooter;
-        file_put_contents( $file, $content );
+        $fname = $this->sitemapPrefix . $sitemapSerial . $this->sitemapPostfix;
+        $file = $this->dirPath . '/' . $fname;
+        $content = $sitemapHeader . $sitemapDoc . $sitemapFooter;
+        file_put_contents($file, $content);
         return $fname;
     }
 
-    private function createRobots( $sitemaps )
+    private function createRobots($sitemaps)
     {
-        $file		= $this->robots;
-        $content	= "### NOTICE: IF YOU HAVE TO MODIFY THIS, TELL MERIK, THX.".self::NEWLINE;
-        $content	.= "User-agent: *".self::NEWLINE;
+        $file = $this->robots;
+        $content = "### NOTICE: IF YOU HAVE TO MODIFY THIS, TELL MERIK, THX." . self::NEWLINE;
+        $content .= "User-agent: *" . self::NEWLINE;
 
-        foreach( $sitemaps as $sitemap )
-        {
-            $content	.= 'Sitemap: https://wulo.space/sitemaps/'.$sitemap.self::NEWLINE;
+        foreach ($sitemaps as $sitemap) {
+            $content .= 'Sitemap: https://wulo.space/sitemaps/' . $sitemap . self::NEWLINE;
         }
 
-        file_put_contents( $file, $content );
+        file_put_contents($file, $content);
     }
 
     private function notify()
