@@ -36,6 +36,18 @@
                 </script>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-12 col-lg-8 col-lg-push-2 index-board-list-warp">
+                <ul class="list-inline">
+                    {% for board in boards %}
+                    <li class="list-inline-item{{ loop.index > 15 ? ' hidden-xs-up' : '' }}">
+                        <a href="/bbs/{{ board }}/index.html" title="{{board}}版-5樓，你怎麼說？">{{ board }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+        </div>
         <div class="row text-xs-center index-marquee-1">
             <div id="marquee">
                 <ul>

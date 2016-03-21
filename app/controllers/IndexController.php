@@ -7,12 +7,15 @@ class IndexController extends ControllerBase
     {
         $latest     = $this->article->getLatestArticle(50);
         $most_like  = $this->lists->getMostLikePosts(50);
+        $all_board  = $this->lists->getAllBoards(false, false);
 
         $posts = array_merge($latest, $most_like);
 
         shuffle($posts);
+        shuffle($all_board);
 
-        $this->view->posts = $posts;
+        $this->view->posts  = $posts;
+        $this->view->boards = $all_board;
     }
 
     public function detailAction()
