@@ -6,7 +6,7 @@ class IndexController extends ControllerBase
     public function indexAction()
     {
         $latest     = $this->article->getLatestArticle(50);
-        $most_like  = $this->lists->getMostLikePosts(50, false);
+        $most_like  = $this->lists->getMostLikePosts(50);
 
         $posts = array_merge($latest, $most_like);
 
