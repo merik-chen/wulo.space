@@ -34,10 +34,16 @@ class IndexController extends ControllerBase
 
         unset($find['payload']['_id']);
         $post = $find['payload'];
-        $this->view->post = $post;
-        $this->view->latest_posts   = $this->article->getLatestArticle(10);
-        $this->view->most_like      = $this->lists->getMostLikePosts();
-        $this->view->same_board     = $this->lists->getBoardList($post['board'], 1);
+
+        $this->view->post       = $post;
+        $this->view->most_like  = $this->lists->getMostLikePosts();
+
+        $latest_posts   = $this->article->getLatestArticle(50);
+        $same_board     = $this->lists->getBoardList($post['board'], 1);
+        shuffle($same_board);
+        shuffle($latest_posts);
+        $this->view->latest_posts   = $latest_posts;
+        $this->view->same_board     = $same_board;
 
     }
 
