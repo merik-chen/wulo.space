@@ -5,7 +5,14 @@ class IndexController extends ControllerBase
 
     public function indexAction()
     {
-        $this->view->latest = $this->article->getLatestArticle(50);
+        $latest     = $this->article->getLatestArticle(50);
+        $most_like  = $this->lists->getMostLikePosts(50);
+
+        $posts = array_merge($latest, $most_like);
+
+        shuffle($posts);
+
+        $this->view->posts = $posts;
     }
 
     public function detailAction()
@@ -26,7 +33,11 @@ class IndexController extends ControllerBase
         $this->view->article= $post;
 
         unset($find['payload']['_id']);
-        $this->view->post = $find['payload'];
+        $post = $find['payload'];
+        $this->view->post = $post;
+        $this->view->latest_posts   = $this->article->getLatestArticle(10);
+        $this->view->most_like      = $this->lists->getMostLikePosts();
+        $this->view->same_board     = $this->lists->getBoardList($post['board'], 1);
 
     }
 

@@ -87,4 +87,28 @@ class Lists extends Base
             'total' => $total_page
         ];
     }
+
+    public function getMostLikePosts($count = 20, $cached = true)
+    {
+        $memKey = "Global:Most:Like:$count";
+
+        if ($this->cache->exists($memKey) && $cached)
+        {
+            $find = $this->cache->get($memKey);
+        }else{
+            $query = $this->collection->find(['like' => ['$exists' => true]],
+                [
+                    'url' => 1,
+                    'like' => 1,
+                    'title' => 1,
+                    'board' => 1,
+                ]
+            )->sort(['like' => -1])->limit($count);
+
+            $find = iterator_to_array($query);
+            if (!empty($find)) $this->cache->save($memKey, $find, 60 * 10);
+        }
+
+        return$find;
+    }
 }

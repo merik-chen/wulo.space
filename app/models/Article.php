@@ -66,7 +66,7 @@ class Article extends Base
             $find = $this->collection->findOne(
                 ['hash' => $hash]
             );
-            if (!empty($find)) $this->cache->save($memKey, $find);;
+            if (!empty($find)) $this->cache->save($memKey, $find, 60 * 30);
         }
 
         if ($internal) {

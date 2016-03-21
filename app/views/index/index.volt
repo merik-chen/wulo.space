@@ -39,7 +39,7 @@
         <div class="row text-xs-center index-marquee-1">
             <div id="marquee">
                 <ul>
-                    {% for article in latest %}
+                    {% for article in posts %}
                     <li>
                         <a href="/bbs/{{ article['board'] }}/{{ article['article'] }}.html">{{ article['title'] }} - {{ article['board'] }}</a>
                     </li>
