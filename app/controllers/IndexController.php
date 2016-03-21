@@ -58,7 +58,7 @@ class IndexController extends ControllerBase
 
         if ( $board == false ) $this->response->redirect('/');
 
-        $all_board = $this->lists->getAllBoards(false, false);
+        $all_board = $this->lists->getAllBoards();
         shuffle($all_board);
         $this->view->boards = $all_board;
         $this->view->board  = $board;
