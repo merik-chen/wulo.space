@@ -23,7 +23,7 @@ class PttSpider(CrawlSpider):
     links_db = Database.Collection['ptt_links']
     rules = (
         # Rule(LinkExtractor(allow=('\/bbs\/[0-9a-zA-Z\.-_]+\.html', )), callback='show_1', follow=True),
-        Rule(LinkExtractor(allow=('\/bbs\/[0-9a-zA-Z\.-_]+\/index[0-9]{0,4}\.html', )), callback='show1', follow=True),
+        Rule(LinkExtractor(allow=('\/bbs\/[0-9a-zA-Z\.-_]+\/index[0-9]{0,4}\.html', )), callback='show_1', follow=True),
         Rule(LinkExtractor(allow=('\/bbs\/[0-9a-zA-Z\.-_]+\/M\..+\.html$', )), callback='parse_article', follow=True),
     )
 
@@ -32,28 +32,30 @@ class PttSpider(CrawlSpider):
 
     def parse_article(self, response):
         filter_regex = re.compile(ur'ptt.+/bbs/(?P<b>\w+)/(?P<a>[\w\.]+)\.html?')
-        find = re.search(filter_regex, response.url)
-        if find:
-            info = find.groupdict()
+        if self.links_db.find_one({'link': response.url}):
+            find = re.search(filter_regex, response.url)
+            if find:
+                info = find.groupdict()
 
-            Database.JobClient.submit_job(
-                'wulo-get-ptt-article',
-                json.dumps({
-                    'board': info['b'],
-                    'article': info['a']
-                }),
-                background=True
+                Database.JobClient.submit_job(
+                    'wulo-get-ptt-article',
+                    json.dumps({
+                        'board': info['b'],
+                        'article': info['a']
+                    }),
+                    background=True
+                )
+
+            self.links_db.update_one(
+                {'link': response.url},
+                {
+                    '$set': {
+                        'link': response.url,
+                        # 'title': response.title
+                    }
+                }, upsert=True
             )
 
-        self.links_db.update_one(
-            {'link': response.url},
-            {
-                '$set': {
-                    'link': response.url,
-                    # 'title': response.title
-                }
-            }, upsert=True
-        )
+            print 'saved', response.url
 
-        time.sleep(random.randrange(0, 1))
-        print 'saved', response.url
+        time.sleep(random.randrange(1, 2))
