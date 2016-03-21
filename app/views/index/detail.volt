@@ -85,7 +85,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-6 col-xl-4">
+            <div class="col-xs-12 col-md-5 col-md-push-1">
                 <div class="card">
                     <div class="card-block">
                         <h4 class="card-title">也許你有興趣</h4>
@@ -113,7 +113,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-6 col-xl-4">
+            <div class="col-xs-12 col-md-5 col-md-pull-1">
                 <div class="card">
                     <div class="card-block">
                         <h4 class="card-title">最新五樓</h4>
@@ -141,7 +141,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-6 col-xl-4">
+            <div class="col-xs-12 col-md-6">
                 <div class="card">
                     <div class="card-block">
                         <h4 class="card-title">推薦五樓</h4>
@@ -169,7 +169,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-6 col-xl-4">
+            <div class="col-xs-12 col-md-6">
                 <div class="card">
                     <div class="card-block">
                         <h4 class="card-title">熱門看板</h4>
