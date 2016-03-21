@@ -38,10 +38,10 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-lg-8 col-lg-push-2 index-board-list-warp">
-                <p class="text-xs-canter">熱門看板</p>
+                <span class="text-xs-canter">熱門看板</span>
                 <ul class="list-inline">
                     {% for board in boards %}
-                    <li class="list-inline-item{{ loop.index > 10 ? ' hidden-xs-up' : '' }}">
+                    <li class="list-inline-item{{ loop.index > 4 ? ' hidden-sm-down' : '' }}{{ loop.index > 10 ? ' hidden-xs-up' : '' }}">
                         <a href="/bbs/{{ board }}/index.html" title="{{board}}版-5樓，你怎麼說？">{{ board }}</a>
                     </li>
                     {% endfor %}
