@@ -44,10 +44,13 @@ class IndexController extends ControllerBase
         $latest_posts   = $this->article->getLatestArticle(50);
         $same_board     = $this->lists->getBoardList($post['board'], 1);
         $same_board     = $same_board['list'];
+        $all_board      = $this->lists->getAllBoards();
+        shuffle($all_board);
         shuffle($same_board);
         shuffle($latest_posts);
         $this->view->latest_posts   = $latest_posts;
         $this->view->same_board     = $same_board;
+        $this->view->boards         = $all_board;
 
     }
 

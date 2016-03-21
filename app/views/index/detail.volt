@@ -98,7 +98,7 @@
                             </a>
                         </li>
                         {% if loop.first %}
-                        <li class="list-group-item" style="padding-left: 0.5vw;padding-right: 0.5vw">
+                        <li class="list-group-item hidden-sm-down" style="padding-left: 0.5vw;padding-right: 0.5vw">
                             <!-- wulo-detail-recommend -->
                             <ins class="adsbygoogle"
                                  style="display:inline-block;min-width:100px;width:320px;max-width:320px;min-height:10px;height:100px;max-height: 100px"
@@ -126,7 +126,7 @@
                             </a>
                         </li>
                         {% if loop.first %}
-                        <li class="list-group-item" style="padding-left: 0.5vw;padding-right: 0.5vw">
+                        <li class="list-group-item hidden-sm-down" style="padding-left: 0.5vw;padding-right: 0.5vw">
                             <!-- wulo-detail-recommend -->
                             <ins class="adsbygoogle"
                                  style="display:inline-block;min-width:100px;width:320px;max-width:320px;min-height:10px;height:100px;max-height: 100px"
@@ -154,7 +154,35 @@
                             </a>
                         </li>
                         {% if loop.first %}
-                        <li class="list-group-item" style="padding-left: 0.5vw;padding-right: 0.5vw">
+                        <li class="list-group-item hidden-sm-down" style="padding-left: 0.5vw;padding-right: 0.5vw">
+                            <!-- wulo-detail-recommend -->
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;min-width:100px;width:320px;max-width:320px;min-height:10px;height:100px;max-height: 100px"
+                                 data-ad-client="ca-pub-3001056417467618"
+                                 data-ad-slot="1496857009"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 col-xl-4">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">熱門看板</h4>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for post in boards %}
+                        <li class="list-group-item{{ loop.index > 10 ? ' hidden-xs-up' : '' }}">
+                            <a href="/bbs/{{ board }}//index.html" title="{{ board }}">
+                                {{ board }}
+                            </a>
+                        </li>
+                        {% if loop.first %}
+                        <li class="list-group-item hidden-sm-down" style="padding-left: 0.5vw;padding-right: 0.5vw">
                             <!-- wulo-detail-recommend -->
                             <ins class="adsbygoogle"
                                  style="display:inline-block;min-width:100px;width:320px;max-width:320px;min-height:10px;height:100px;max-height: 100px"
