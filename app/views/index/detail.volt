@@ -177,8 +177,8 @@
                     <ul class="list-group list-group-flush">
                         {% for post in boards %}
                         <li class="list-group-item{{ loop.index > 10 ? ' hidden-xs-up' : '' }}">
-                            <a href="/bbs/{{ board }}//index.html" title="{{ board }}">
-                                {{ board }}
+                            <a href="/bbs/{{ post }}//index.html" title="{{ post }}">
+                                {{ post }}
                             </a>
                         </li>
                         {% if loop.first %}
