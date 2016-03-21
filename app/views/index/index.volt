@@ -41,7 +41,7 @@
                 <ul>
                     {% for article in posts %}
                     <li>
-                        <a href="/bbs/{{ article['board'] }}/{{ article['article'] }}.html">{{ article['title'] }} - {{ article['board'] }}</a>
+                        <a href="/bbs/{{ article['board'] }}/{{ article['article'] }}.html" title="{{ article['title'] }} - {{ article['board'] }}">{{ article['title'] }} - {{ article['board'] }}</a>
                     </li>
                     {% endfor %}
                 </ul>

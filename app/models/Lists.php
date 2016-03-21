@@ -106,6 +106,15 @@ class Lists extends Base
             )->sort(['like' => -1])->limit($count);
 
             $find = iterator_to_array($query);
+
+            foreach($find as $key => &$value)
+            {
+                if(preg_match($this->link_parse, $value['url'], $matches)) {
+                    $value['board'] = $matches['board'];
+                    $value['article'] = $matches['article'];
+                }
+            }
+
             if (!empty($find)) $this->cache->save($memKey, $find, 60 * 10);
         }
 

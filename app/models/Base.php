@@ -20,6 +20,8 @@ class Base extends Phalcon\Mvc\Model
     protected $collection = null;
     protected $frontCache;
 
+    public $link_parse = "/bbs\\/(?P<board>.+)\\/(?P<article>M\\..+).html?/";
+
     function onConstruct() {
 
         $this->frontCache = new Phalcon\Cache\Frontend\Data(array(
