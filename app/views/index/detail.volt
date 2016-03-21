@@ -93,8 +93,8 @@
                     <ul class="list-group list-group-flush">
                         {% for post in most_like %}
                         <li class="list-group-item{{ loop.index > 10 ? ' hidden-xs-up' : '' }}">
-                            <a href="/bbs/{{ post['board'] }}//{{ post['article'] }}.html" title="{{ post['title'] }} - {{ post['board] }}">
-                                {{ post['title'] }} - {{ post['board] }}
+                            <a href="/bbs/{{ post['board'] }}//{{ post['article'] }}.html" title="{{ post['title'] }} - {{ post['board'] }}">
+                                {{ post['title'] }} - {{ post['board'] }}
                             </a>
                         </li>
                         {% endfor %}
@@ -109,8 +109,8 @@
                     <ul class="list-group list-group-flush">
                         {% for post in latest_posts %}
                         <li class="list-group-item{{ loop.index > 10 ? ' hidden-xs-up' : '' }}">
-                            <a href="/bbs/{{ post['board'] }}//{{ post['article'] }}.html" title="{{ post['title'] }} - {{ post['board] }}">
-                                {{ post['title'] }} - {{ post['board] }}
+                            <a href="/bbs/{{ post['board'] }}//{{ post['article'] }}.html" title="{{ post['title'] }} - {{ post['board'] }}">
+                                {{ post['title'] }} - {{ post['board'] }}
                             </a>
                         </li>
                         {% endfor %}
@@ -125,8 +125,8 @@
                     <ul class="list-group list-group-flush">
                         {% for post in same_board %}
                         <li class="list-group-item{{ loop.index > 10 ? ' hidden-xs-up' : '' }}">
-                            <a href="/bbs/{{ post['board'] }}//{{ post['article'] }}.html" title="{{ post['title'] }} - {{ post['board] }}">
-                                {{ post['title'] }} - {{ post['board] }}
+                            <a href="/bbs/{{ post['board'] }}//{{ post['article'] }}.html" title="{{ post['title'] }} - {{ post['board'] }}">
+                                {{ post['title'] }} - {{ post['board'] }}
                             </a>
                         </li>
                         {% endfor %}
