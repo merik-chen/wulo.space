@@ -147,7 +147,7 @@
                         <h4 class="card-title">推薦五樓</h4>
                     </div>
                     <ul class="list-group list-group-flush">
-                        {% for post in same_board['list'] %}
+                        {% for post in same_board %}
                         <li class="list-group-item{{ loop.index > 10 ? ' hidden-xs-up' : '' }}">
                             <a href="/bbs/{{ post['board'] }}//{{ post['article'] }}.html" title="{{ post['title'] }} - {{ post['board'] }}">
                                 {{ post['title'] }} - {{ post['board'] }}
