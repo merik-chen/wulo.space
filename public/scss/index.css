@@ -38,6 +38,9 @@
   bottom: 1vh;
   width: 100%; }
 
+.index-board-list-warp {
+  margin-top: 1vh; }
+
 @media (min-width: 992px) {
   .slogan-margin-top {
     margin-top: 30vh; }

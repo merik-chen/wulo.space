@@ -58,6 +58,10 @@
   width: 100%;
 }
 
+.index-board-list-warp {
+  margin-top: 1vh;
+}
+
 @include media-breakpoint-up(lg) {
   .slogan-margin-top {
     margin-top: 30vh;
