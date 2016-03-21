@@ -32,7 +32,7 @@ class PttSpider(CrawlSpider):
 
     def parse_article(self, response):
         filter_regex = re.compile(ur'ptt.+/bbs/(?P<b>\w+)/(?P<a>[\w\.]+)\.html?')
-        if self.links_db.find_one({'link': response.url}):
+        if self.links_db.find_one({'link': response.url}) is None:
             find = re.search(filter_regex, response.url)
             if find:
                 info = find.groupdict()
