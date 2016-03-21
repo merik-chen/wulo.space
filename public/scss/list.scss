@@ -13,6 +13,10 @@
   height: 60px;
 }
 
+.list-board-list-warp {
+  margin-top: 1vh;
+}
+
 @include media-breakpoint-up(lg) {
   .list-ad-h-01 {
     height: 60px;

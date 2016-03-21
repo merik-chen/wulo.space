@@ -7,6 +7,9 @@
 .list-ad-h-01 {
   height: 60px; }
 
+.list-board-list-warp {
+  margin-top: 1vh; }
+
 @media (min-width: 992px) {
   .list-ad-h-01 {
     height: 60px; } }

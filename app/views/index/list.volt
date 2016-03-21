@@ -58,6 +58,18 @@
                     {% endfor %}
                 </ul>
 
+                <div class="list-board-list-warp">
+                    <span class="text-xs-canter">熱門看板</span>
+                    <ul class="list-inline">
+                        {% for board in boards %}
+                        <li class="list-inline-item{{ loop.index > 3 ? ' hidden-sm-down' : '' }}{{ loop.index > 10 ? ' hidden-xs-up' : '' }}">
+                            <a href="/bbs/{{ board }}/index.html" title="{{board}}版-5樓，你怎麼說？">{{ board }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+
                 <div class="list-ad-h-01">
                     <!-- wulo-detail-水平-1 -->
                     <ins class="adsbygoogle"
