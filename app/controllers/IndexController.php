@@ -7,7 +7,7 @@ class IndexController extends ControllerBase
     {
         $latest     = $this->article->getLatestArticle(50);
         $most_like  = $this->lists->getMostLikePosts(50);
-        $all_board  = $this->lists->getAllBoards(false, false);
+        $all_board  = $this->lists->getAllBoards();
 
         $posts = array_merge($latest, $most_like);
 
@@ -58,9 +58,12 @@ class IndexController extends ControllerBase
 
         if ( $board == false ) $this->response->redirect('/');
 
-        $this->view->board = $board;
-        $this->view->page = $page;
-        $this->view->data = $this->lists->getBoardList($board, $page);
+        $all_board = $this->lists->getAllBoards(false, false);
+        shuffle($all_board);
+        $this->view->boards = $all_board;
+        $this->view->board  = $board;
+        $this->view->page   = $page;
+        $this->view->data   = $this->lists->getBoardList($board, $page);
     }
 
     public function postGet5FAction()
