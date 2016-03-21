@@ -98,10 +98,10 @@
                             </a>
                         </li>
                         {% if loop.first %}
-                        <li class="list-group-item">
+                        <li class="list-group-item" style="padding-left: 0.8vw;padding-right: 0.8vw">
                             <!-- wulo-detail-recommend -->
                             <ins class="adsbygoogle"
-                                 style="display:inline-block;width:320px;height:100px"
+                                 style="display:inline-block;min-width:100px;width:100%;max-width:320px;min-height:10px;max-height: 100px"
                                  data-ad-client="ca-pub-3001056417467618"
                                  data-ad-slot="1496857009"></ins>
                             <script>
@@ -126,10 +126,10 @@
                             </a>
                         </li>
                         {% if loop.first %}
-                        <li class="list-group-item">
+                        <li class="list-group-item" style="padding-left: 0.8vw;padding-right: 0.8vw">
                             <!-- wulo-detail-recommend -->
                             <ins class="adsbygoogle"
-                                 style="display:inline-block;width:320px;height:100px"
+                                 style="display:inline-block;min-width:100px;width:100%;max-width:320px;min-height:10px;max-height: 100px"
                                  data-ad-client="ca-pub-3001056417467618"
                                  data-ad-slot="1496857009"></ins>
                             <script>
@@ -154,10 +154,10 @@
                             </a>
                         </li>
                         {% if loop.first %}
-                        <li class="list-group-item">
+                        <li class="list-group-item" style="padding-left: 0.8vw;padding-right: 0.8vw">
                             <!-- wulo-detail-recommend -->
                             <ins class="adsbygoogle"
-                                 style="display:inline-block;width:320px;height:100px"
+                                 style="display:inline-block;min-width:100px;width:100%;max-width:320px;min-height:10px;max-height: 100px"
                                  data-ad-client="ca-pub-3001056417467618"
                                  data-ad-slot="1496857009"></ins>
                             <script>
