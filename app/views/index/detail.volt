@@ -85,7 +85,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-5 col-md-push-1">
+            <div class="col-xs-12 col-md-6">
                 <div class="card">
                     <div class="card-block">
                         <h4 class="card-title">也許你有興趣</h4>
@@ -97,23 +97,11 @@
                                 {{ post['title'] }} - {{ post['board'] }}
                             </a>
                         </li>
-                        {% if loop.first %}
-                        <li class="list-group-item hidden-sm-down" style="padding-left: 0.5vw;padding-right: 0.5vw">
-                            <!-- wulo-detail-recommend -->
-                            <ins class="adsbygoogle"
-                                 style="display:inline-block;min-width:100px;width:320px;max-width:320px;min-height:10px;height:100px;max-height: 100px"
-                                 data-ad-client="ca-pub-3001056417467618"
-                                 data-ad-slot="1496857009"></ins>
-                            <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
-                        </li>
-                        {% endif %}
                         {% endfor %}
                     </ul>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-5 col-md-pull-1">
+            <div class="col-xs-12 col-md-6">
                 <div class="card">
                     <div class="card-block">
                         <h4 class="card-title">最新五樓</h4>
@@ -125,18 +113,6 @@
                                 {{ post['title'] }} - {{ post['board'] }}
                             </a>
                         </li>
-                        {% if loop.first %}
-                        <li class="list-group-item hidden-sm-down" style="padding-left: 0.5vw;padding-right: 0.5vw">
-                            <!-- wulo-detail-recommend -->
-                            <ins class="adsbygoogle"
-                                 style="display:inline-block;min-width:100px;width:320px;max-width:320px;min-height:10px;height:100px;max-height: 100px"
-                                 data-ad-client="ca-pub-3001056417467618"
-                                 data-ad-slot="1496857009"></ins>
-                            <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
-                        </li>
-                        {% endif %}
                         {% endfor %}
                     </ul>
                 </div>
@@ -153,18 +129,6 @@
                                 {{ post['title'] }} - {{ post['board'] }}
                             </a>
                         </li>
-                        {% if loop.first %}
-                        <li class="list-group-item hidden-sm-down" style="padding-left: 0.5vw;padding-right: 0.5vw">
-                            <!-- wulo-detail-recommend -->
-                            <ins class="adsbygoogle"
-                                 style="display:inline-block;min-width:100px;width:320px;max-width:320px;min-height:10px;height:100px;max-height: 100px"
-                                 data-ad-client="ca-pub-3001056417467618"
-                                 data-ad-slot="1496857009"></ins>
-                            <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
-                        </li>
-                        {% endif %}
                         {% endfor %}
                     </ul>
                 </div>
@@ -181,18 +145,6 @@
                                 {{ post }}
                             </a>
                         </li>
-                        {% if loop.first %}
-                        <li class="list-group-item hidden-sm-down" style="padding-left: 0.5vw;padding-right: 0.5vw">
-                            <!-- wulo-detail-recommend -->
-                            <ins class="adsbygoogle"
-                                 style="display:inline-block;min-width:100px;width:320px;max-width:320px;min-height:10px;height:100px;max-height: 100px"
-                                 data-ad-client="ca-pub-3001056417467618"
-                                 data-ad-slot="1496857009"></ins>
-                            <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
-                        </li>
-                        {% endif %}
                         {% endfor %}
                     </ul>
                 </div>
