@@ -139,7 +139,7 @@
 {% endblock %}
 
 {% block extJs %}
-<script src="/bower_components/Readmore.js/readmore.js"></script>
+<script src="/bower_components/Readmore.js/readmore.min.js"></script>
 <script>
     "use strict";
     $(function () {

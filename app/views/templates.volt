@@ -40,8 +40,8 @@
         <script src="https://www.promisejs.org/polyfills/promise-done-7.0.4.min.js"></script>
         <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script src="/bower_components/tether/dist/js/tether.js"></script>
-        <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="/bower_components/tether/dist/js/tether.min.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="/js/wulo.js"></script>
         <script>
             $(function () {
