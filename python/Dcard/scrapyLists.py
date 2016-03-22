@@ -66,7 +66,7 @@ if '__main__' == __name__:
             for index, data in enumerate(scrap_list(str(INITIAL_PAGE))):
                 if RawDatabase.find_one({'id': data['id']}) is None:
                     RawDatabase.save(data)
-            print 'Scraped Dcard page %.\tSleep %s sec(s).' % (INITIAL_PAGE, random_sleep)
+            print 'Scraped Dcard page %s.\tSleep %s sec(s).' % (INITIAL_PAGE, random_sleep)
             time.sleep(random_sleep)
         except KeyboardInterrupt:
             print "\nBye"
