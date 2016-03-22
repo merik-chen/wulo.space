@@ -58,13 +58,15 @@ def scrap_list(page):
 
 if '__main__' == __name__:
     initial_connect()
-
-    while True:
+    isContinue = True
+    while isContinue:
         try:
+            isContinue = False
             random_sleep = random.randrange(5, 30)
             USER_AGENT = random_ua()
             for index, data in enumerate(scrap_list(str(INITIAL_PAGE))):
                 if RawDatabase.find_one({'id': data['id']}) is None:
+                    isContinue = True or isContinue
                     RawDatabase.save(data)
             print 'Scraped Dcard page %s.\tSleep %s sec(s).' % (INITIAL_PAGE, random_sleep)
             time.sleep(random_sleep)
@@ -75,3 +77,6 @@ if '__main__' == __name__:
         except 'Exception' as e:
             traceback.print_exc()
             sys.exit()
+
+    print "No more update, Bye~\n"
+    sys.exit()
