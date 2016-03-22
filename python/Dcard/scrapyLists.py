@@ -61,13 +61,14 @@ if '__main__' == __name__:
 
     while True:
         try:
-            random_sleep = random.randrange(3, 10)
+            random_sleep = random.randrange(5, 30)
             USER_AGENT = random_ua()
             for index, data in enumerate(scrap_list(str(INITIAL_PAGE))):
                 if RawDatabase.find_one({'id': data['id']}) is None:
                     RawDatabase.save(data)
             print 'Scraped Dcard page %s.\tSleep %s sec(s).' % (INITIAL_PAGE, random_sleep)
             time.sleep(random_sleep)
+            INITIAL_PAGE += 1
         except KeyboardInterrupt:
             print "\nBye"
             sys.exit()
