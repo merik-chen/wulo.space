@@ -9,11 +9,14 @@ import Cookie
 import time
 
 INITIAL_ENDPOINT = 'https://www.dcard.tw/f'
+INITIAL_BOARD_LIST_ENDPOINT = 'https://www.dcard.tw/api/forum'
 USER_AGENT = random_ua()
 COOKIE = Cookie.SimpleCookie()
 COOKIE_XSRF = ''
+BOARDS = {}
+NOW_BOARD = {}
 
-LIST_ENDPOINT_PREFIX = 'https://www.dcard.tw/api/forum/all/%s/'
+LIST_ENDPOINT_PREFIX = 'https://www.dcard.tw/api/forum/%s/%s/'
 LIST_ENDPOINT_HEADER = {
     'referer': 'https://www.dcard.tw/f',
     'x-xsrf-token': COOKIE_XSRF
@@ -45,10 +48,25 @@ def initial_connect():
         exit()
 
 
-def scrap_list(page):
-    global COOKIE, USER_AGENT, COOKIE_XSRF, LIST_ENDPOINT_HEADER, LIST_ENDPOINT_PREFIX
+def get_board_list():
+    global COOKIE, USER_AGENT, INITIAL_BOARD_LIST_ENDPOINT, COOKIE_XSRF, LIST_ENDPOINT_HEADER
     r = requests.get(
-        LIST_ENDPOINT_PREFIX % page.encode('utf-8'),
+        INITIAL_BOARD_LIST_ENDPOINT,
+        headers=LIST_ENDPOINT_HEADER
+    )
+
+    if r.status_code == 200:
+        parse_xsrf_token(r.headers['set-cookie'])
+        return r.json()
+    else:
+        print 'Initial connection failed.'
+        exit()
+
+
+def scrap_list(page):
+    global COOKIE, USER_AGENT, COOKIE_XSRF, LIST_ENDPOINT_HEADER, LIST_ENDPOINT_PREFIX, NOW_BOARD
+    r = requests.get(
+        LIST_ENDPOINT_PREFIX % (NOW_BOARD['alias'].encode('utf-8'), page.encode('utf-8')),
         headers=LIST_ENDPOINT_HEADER
     )
 
@@ -58,6 +76,8 @@ def scrap_list(page):
 
 if '__main__' == __name__:
     initial_connect()
+    BOARDS = get_board_list()['forum']
+    NOW_BOARD = BOARDS.pop(0)
     isContinue = True
     while isContinue:
         try:
@@ -68,9 +88,22 @@ if '__main__' == __name__:
                 if RawDatabase.find_one({'id': data['id']}) is None:
                     isContinue = True or isContinue
                     RawDatabase.save(data)
-            print 'Scraped Dcard page %s.\tSleep %s sec(s).' % (INITIAL_PAGE, random_sleep)
+            print 'Dcard: Scraped %s page %s.\tSleep %s sec(s).' % (
+                NOW_BOARD['alias'].encode('utf-8'),
+                INITIAL_PAGE,
+                random_sleep
+            )
             time.sleep(random_sleep)
-            INITIAL_PAGE += 1
+
+            if isContinue:
+                INITIAL_PAGE += 1
+            else:
+                if len(BOARDS) > 0:
+                    print "This Board: %s scraped. Do next.\n" % NOW_BOARD['alias'].encode('utf-8')
+                    NOW_BOARD = BOARDS.pop(0)
+                    INITIAL_PAGE = 1
+                    isContinue = True
+
         except KeyboardInterrupt:
             print "\nBye"
             sys.exit()
