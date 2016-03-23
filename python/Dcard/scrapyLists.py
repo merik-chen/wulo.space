@@ -132,16 +132,27 @@ def dcard_scarp_board(gearman_worker, gearman_job):
 if '__main__' == __name__:
     print app_env
 
-    board_remain = SimpleGearManAdmin.SimpleGearManAdmin(
-        app_cfg['gearman']['address'],
-        app_cfg['gearman']['port']
-    ).get_status('dcard-scarp-board')
+    try:
 
-    if (board_remain is None) or (board_remain['queued'] == 0):
-        get_board_list()
+        board_remain = SimpleGearManAdmin.SimpleGearManAdmin(
+            app_cfg['gearman']['address'],
+            app_cfg['gearman']['port']
+        ).get_status('dcard-scarp-board')
 
-    JobWorker.register_task('dcard-scarp-board', dcard_scarp_board)
-    JobWorker.work()
+        if (board_remain is None) or (board_remain['queued'] == 0):
+            print 'Re-Fill boards...\t'
+            get_board_list()
+            print 'done.\n'
+
+        JobWorker.register_task('dcard-scarp-board', dcard_scarp_board)
+        JobWorker.work()
+
+    except KeyboardInterrupt:
+        print "\nBye"
+        sys.exit()
+    except 'Exception' as e:
+        traceback.print_exc()
+        sys.exit()
 
     # initial_connect()
     # BOARDS = get_board_list()['forum']
