@@ -133,7 +133,6 @@ if '__main__' == __name__:
     print app_env
 
     try:
-
         board_remain = SimpleGearManAdmin.SimpleGearManAdmin(
             app_cfg['gearman']['address'],
             app_cfg['gearman']['port']
@@ -141,11 +140,14 @@ if '__main__' == __name__:
 
         if (board_remain is None) or (board_remain['queued'] == 0):
             print 'Re-Fill boards...\t'
+            initial_connect()
             get_board_list()
             print 'done.\n'
 
+        print 'Start Worker...\t'
         JobWorker.register_task('dcard-scarp-board', dcard_scarp_board)
         JobWorker.work()
+        print 'done.\n'
 
     except KeyboardInterrupt:
         print "\nBye"
