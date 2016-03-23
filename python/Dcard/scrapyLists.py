@@ -114,7 +114,7 @@ def dcard_scarp_board(gearman_worker, gearman_job):
                     app_cfg['gearman']['address'],
                     app_cfg['gearman']['port']
                 ).get_status('dcard-scarp-board')
-                if (_board_remain is None) or (int(_board_remain['queued']) <= 1):
+                if (_board_remain is None) or (int(_board_remain['queued']) <= (int(_board_remain['workers']) + 1)):
                     get_board_list()
                     print "Re-Filling.\n"
                 else:
