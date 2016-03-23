@@ -138,6 +138,7 @@ if '__main__' == __name__:
             app_cfg['gearman']['port']
         ).get_status('dcard-scarp-board')
 
+        print board_remain
         if (board_remain is None) or (board_remain['queued'] == 0):
             print 'Re-Fill boards...\t'
             initial_connect()
