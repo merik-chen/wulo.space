@@ -26,5 +26,5 @@ Database = Collection['posts']
 RawDatabase = Collection['raw_posts']
 
 
-_hash = hashlib.sha224()
+_hash = hashlib.sha1()
 
