@@ -49,7 +49,7 @@ class Article:
             self.utility.parse_xsrf_token(r.headers['set-cookie'])
             return r.json()
         else:
-            raise InputError('Can not get the article.')
+            raise InputError('Can not get the article.', None)
 
 
 if '__main__' == __name__:

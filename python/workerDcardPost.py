@@ -44,6 +44,8 @@ def get_dcard_post(gearman_worker, gearman_job):
     except KeyboardInterrupt:
         print 'Bye~\n'
         exit()
+    except InputError as e:
+        print e.message
     except Exception as e:
         print e.message
         Database.JobClient.submit_job(
