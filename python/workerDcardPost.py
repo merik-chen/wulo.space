@@ -5,6 +5,7 @@ from Dcard import Article
 from Exceptions.InputError import InputError
 import traceback
 import Database
+import requests
 import random
 import json
 import time
@@ -14,11 +15,10 @@ article = Article.Article()
 
 def get_dcard_post(gearman_worker, gearman_job):
     global article
+    data = json.loads(gearman_job.data)
+    board = data['board']
+    article_id = data['article']
     try:
-        data = json.loads(gearman_job.data)
-        board = data['board']
-        article_id = data['article']
-
         post = article.get_article(board, article_id)
 
         if '_id' in post:
@@ -46,6 +46,16 @@ def get_dcard_post(gearman_worker, gearman_job):
         exit()
     except InputError as e:
         print e.message
+    except requests.ConnectionError as e:
+        print e.message
+        Database.JobClient.submit_job(
+            'dcard-scrap-post',
+            gearman_job.data,
+            background=True,
+            priority=Database.gearman.PRIORITY_LOW
+        )
+        print 'get %s error, sleep 30 minute(s).' % article_id
+        time.sleep(30 * 60)
     except Exception as e:
         print e.message
         Database.JobClient.submit_job(
@@ -55,7 +65,7 @@ def get_dcard_post(gearman_worker, gearman_job):
             priority=Database.gearman.PRIORITY_LOW
         )
         traceback.print_exc()
-        print 'get %s error'
+        print 'get %s error' % article_id
         exit()
 
     return 'ok'
