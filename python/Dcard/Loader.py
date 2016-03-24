@@ -4,6 +4,7 @@ sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 
 from Config import *
 from Commons import *
+from Exceptions.InputError import InputError
 from scrapy import Selector
 import requests
 import gearman
