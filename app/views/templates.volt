@@ -46,7 +46,7 @@
         <script>
             $(function () {
                 $("#loading").fadeOut();
-                amplitude.logEvent('EVENT_IDENTIFIER_HERE');
+                amplitude.logEvent('PV');
             })
         </script>
         {% block extJs %}{% endblock %}
