@@ -124,7 +124,7 @@ def dcard_scarp_board(gearman_worker, gearman_job):
                 )
                 time.sleep(random_sleep)
 
-                if is_continue:
+                if is_continue and (INITIAL_PAGE <= 200):
                     INITIAL_PAGE += 1
                 else:
                     print "This Board: %s scraped. Do next.\n" % NOW_BOARD.encode('utf-8')
