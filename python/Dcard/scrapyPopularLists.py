@@ -92,66 +92,73 @@ def scrap_list(page):
 
 
 def dcard_scarp_board(gearman_worker, gearman_job):
-    global USER_AGENT, INITIAL_PAGE, NOW_BOARD
-    NOW_BOARD = gearman_job.data
-    initial_connect()
-    is_continue = True
-    INITIAL_PAGE = 1
-    while is_continue:
-        try:
-            is_continue = False
-            random_sleep = random.randrange(5, 30)
-            USER_AGENT = random_ua()
-            for index, data in enumerate(scrap_list(str(INITIAL_PAGE))):
-                # if RawDatabase.find_one({'id': data['id']}) is None:
-                #     is_continue = True or is_continue
-                # RawDatabase.save(data)
-                is_continue = True
-                Database.JobClient.submit_job(
-                    'dcard-scrap-post',
-                    json.dumps({'board': data['forum_alias'], 'article': data['id']}),
-                    background=True,
-                    unique=str(data['id'])
+    try:
+        global USER_AGENT, INITIAL_PAGE, NOW_BOARD
+        NOW_BOARD = gearman_job.data
+        initial_connect()
+        is_continue = True
+        INITIAL_PAGE = 1
+        while is_continue:
+            try:
+                is_continue = False
+                random_sleep = random.randrange(5, 30)
+                USER_AGENT = random_ua()
+                rsp = scrap_list(str(INITIAL_PAGE))
+
+                if len(rsp) > 0:
+                    is_continue = True
+                    for index, data in enumerate(rsp):
+                        # if RawDatabase.find_one({'id': data['id']}) is None:
+                        #     is_continue = True or is_continue
+                        # RawDatabase.save(data)
+                        JobClient.submit_job(
+                            'dcard-scrap-post',
+                            json.dumps({'board': data['forum_alias'], 'article': data['id']}),
+                            background=True,
+                            unique=str(data['id'])
+                        )
+                print 'Dcard: Scraped %s page %s.\tSleep %s sec(s).' % (
+                    NOW_BOARD.encode('utf-8'),
+                    INITIAL_PAGE,
+                    random_sleep
                 )
-            print 'Dcard: Scraped %s page %s.\tSleep %s sec(s).' % (
-                NOW_BOARD.encode('utf-8'),
-                INITIAL_PAGE,
-                random_sleep
-            )
-            time.sleep(random_sleep)
+                time.sleep(random_sleep)
 
-            if is_continue:
-                INITIAL_PAGE += 1
-            else:
-                print "This Board: %s scraped. Do next.\n" % NOW_BOARD.encode('utf-8')
-                print "Checking board remains in pool...\t"
-                _board_remain = SimpleGearManAdmin.SimpleGearManAdmin(
-                    app_cfg['gearman']['address'],
-                    app_cfg['gearman']['port']
-                ).get_status('dcard-scarp-board-popular')
-                if (_board_remain is None) or (int(_board_remain['queued']) <= (int(_board_remain['workers']) + 1)):
-                    get_board_list()
-                    print "Re-Filling.\n"
+                if is_continue:
+                    INITIAL_PAGE += 1
                 else:
-                    print "Enough.\n"
-        except requests.ConnectionError as e:
-            print e.message
-            Database.JobClient.submit_job(
-                'dcard-scrap-post-popular',
-                gearman_job.data,
-                background=True,
-                priority=Database.gearman.PRIORITY_LOW
-            )
-            print 'get %s error, sleep 30 minute(s).' % NOW_BOARD
-            time.sleep(30 * 60)
-        except 'Exception':
-            traceback.print_exc()
-            sys.exit()
+                    print "This Board: %s scraped. Do next.\n" % NOW_BOARD.encode('utf-8')
+                    print "Checking board remains in pool...\t"
+                    _board_remain = SimpleGearManAdmin.SimpleGearManAdmin(
+                        app_cfg['gearman']['address'],
+                        app_cfg['gearman']['port']
+                    ).get_status('dcard-scarp-board-popular')
+                    if (_board_remain is None) or (int(_board_remain['queued']) <= (int(_board_remain['workers']) + 1)):
+                        get_board_list()
+                        print "Re-Filling.\n"
+                    else:
+                        print "Enough.\n"
+            except requests.ConnectionError as e:
+                print e.message
+                JobClient.submit_job(
+                    'dcard-scrap-board-popular',
+                    gearman_job.data,
+                    background=True,
+                    priority=Database.gearman.PRIORITY_LOW
+                )
+                print 'get %s error, sleep 30 minute(s).' % NOW_BOARD
+                time.sleep(30 * 60)
+            except 'Exception':
+                traceback.print_exc()
+                sys.exit()
 
-    print 'Sleep for 5 minutes.\n'
-    time.sleep(5 * 60)
+        print 'Sleep for 5 minutes.\n'
+        time.sleep(5 * 60)
 
-    return 'ok'
+        return 'ok'
+    except Exception:
+        traceback.print_exc()
+        sys.exit()
 
 if '__main__' == __name__:
     print app_env
