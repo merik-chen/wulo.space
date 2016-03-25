@@ -60,10 +60,17 @@ def get_board_list():
     if r.status_code == 200:
         parse_xsrf_token(r.headers['set-cookie'])
         boards = r.json()['forum']
+        school = r.json()['school']
         for board in boards:
             JobClient.submit_job(
                 'dcard-scarp-board',
                 board['alias'].encode('utf-8'),
+                background=True
+            )
+        for _school in school:
+            JobClient.submit_job(
+                'dcard-scarp-board',
+                _school['alias'].encode('utf-8'),
                 background=True
             )
     else:
