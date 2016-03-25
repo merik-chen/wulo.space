@@ -109,7 +109,7 @@
                     <ul class="list-group list-group-flush">
                         {% for post in latest_posts %}
                         <li class="list-group-item{{ loop.index > 10 ? ' hidden-xs-up' : '' }}">
-                            <a href="/bbs/{{ post['board'] }}//{{ post['article'] }}.html" title="{{ post['title'] }} - {{ post['board'] }}">
+                            <a itemprop="relatedLink" href="/bbs/{{ post['board'] }}//{{ post['article'] }}.html" title="{{ post['title'] }} - {{ post['board'] }}">
                                 {{ post['title'] }} - {{ post['board'] }}
                             </a>
                         </li>
@@ -125,7 +125,7 @@
                     <ul class="list-group list-group-flush">
                         {% for post in same_board %}
                         <li class="list-group-item{{ loop.index > 10 ? ' hidden-xs-up' : '' }}">
-                            <a href="/bbs/{{ post['board'] }}//{{ post['article'] }}.html" title="{{ post['title'] }} - {{ post['board'] }}">
+                            <a itemprop="relatedLink" href="/bbs/{{ post['board'] }}//{{ post['article'] }}.html" title="{{ post['title'] }} - {{ post['board'] }}">
                                 {{ post['title'] }} - {{ post['board'] }}
                             </a>
                         </li>
@@ -141,7 +141,7 @@
                     <ul class="list-group list-group-flush">
                         {% for post in boards %}
                         <li class="list-group-item{{ loop.index > 10 ? ' hidden-xs-up' : '' }}">
-                            <a href="/bbs/{{ post }}//index.html" title="{{ post }}">
+                            <a itemprop="relatedLink" href="/bbs/{{ post }}//index.html" title="{{ post }}">
                                 {{ post }}
                             </a>
                         </li>
