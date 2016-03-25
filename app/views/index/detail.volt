@@ -48,14 +48,14 @@
                         <span>{{ date('Y-m-d H:i:s', post['date']) }}</span>
                     </h6>
                     <h6>原文網址：
-                        <a href="https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html">
+                        <span data-open-url="https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html">
                             <span class="hidden-md-up">
                                 連結
                             </span>
                             <span class="hidden-sm-down">
                                 https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html
                             </span>
-                        </a>
+                        </span>
                     </h6>
 
                     <div class="detail-title-info-spacer"></div>
@@ -170,6 +170,11 @@
             collapsedHeight: 20,
             moreLink: '<btn class="btn detail-read-more-btn text-xs-center">Read more</btn>',
             lessLink: '<btn class="btn detail-read-more-btn text-xs-center">Close</btn>'
+        });
+        $('span[data-open-url]').click(function () {
+            var link = $(this).data('open-url');
+            open(link);
+            return false;
         });
     })
 </script>
