@@ -64,13 +64,13 @@ def get_board_list():
         school = r.json()['school']
         for board in boards:
             JobClient.submit_job(
-                'dcard-scarp-board',
+                'dcard-scarp-board-popular',
                 board['alias'].encode('utf-8'),
                 background=True
             )
         for _school in school:
             JobClient.submit_job(
-                'dcard-scarp-board',
+                'dcard-scarp-board-popular',
                 _school['alias'].encode('utf-8'),
                 background=True
             )
@@ -80,9 +80,9 @@ def get_board_list():
 
 
 def scrap_list(page):
-    global COOKIE, USER_AGENT, COOKIE_XSRF, LIST_ENDPOINT_HEADER, LIST_ENDPOINT_PREFIX, NOW_BOARD
+    global COOKIE, USER_AGENT, COOKIE_XSRF, LIST_ENDPOINT_HEADER, LIST_POPULAR_ENDPOINT_PREFIX, NOW_BOARD
     r = requests.get(
-        LIST_ENDPOINT_PREFIX % (NOW_BOARD.encode('utf-8'), page.encode('utf-8')),
+        LIST_POPULAR_ENDPOINT_PREFIX % (NOW_BOARD.encode('utf-8'), page.encode('utf-8')),
         headers=LIST_ENDPOINT_HEADER
     )
 
@@ -99,13 +99,19 @@ def dcard_scarp_board(gearman_worker, gearman_job):
     INITIAL_PAGE = 1
     while is_continue:
         try:
-            is_continue = False
+            # is_continue = False
             random_sleep = random.randrange(5, 30)
             USER_AGENT = random_ua()
             for index, data in enumerate(scrap_list(str(INITIAL_PAGE))):
-                if RawDatabase.find_one({'id': data['id']}) is None:
-                    is_continue = True or is_continue
-                    RawDatabase.save(data)
+                # if RawDatabase.find_one({'id': data['id']}) is None:
+                #     is_continue = True or is_continue
+                # RawDatabase.save(data)
+                Database.JobClient.submit_job(
+                    'dcard-scrap-post',
+                    json.dumps({'board': data['forum_alias'], 'article': data['id']}),
+                    background=True,
+                    unique=str(data['id'])
+                )
             print 'Dcard: Scraped %s page %s.\tSleep %s sec(s).' % (
                 NOW_BOARD.encode('utf-8'),
                 INITIAL_PAGE,
@@ -113,22 +119,32 @@ def dcard_scarp_board(gearman_worker, gearman_job):
             )
             time.sleep(random_sleep)
 
-            if is_continue:
+            if INITIAL_PAGE <= 200:
                 INITIAL_PAGE += 1
             else:
+                is_continue = False
                 print "This Board: %s scraped. Do next.\n" % NOW_BOARD.encode('utf-8')
                 print "Checking board remains in pool...\t"
                 _board_remain = SimpleGearManAdmin.SimpleGearManAdmin(
                     app_cfg['gearman']['address'],
                     app_cfg['gearman']['port']
-                ).get_status('dcard-scarp-board')
+                ).get_status('dcard-scarp-board-popular')
                 if (_board_remain is None) or (int(_board_remain['queued']) <= (int(_board_remain['workers']) + 1)):
                     get_board_list()
                     print "Re-Filling.\n"
                 else:
                     print "Enough.\n"
-
-        except 'Exception' as e:
+        except requests.ConnectionError as e:
+            print e.message
+            Database.JobClient.submit_job(
+                'dcard-scrap-post-popular',
+                gearman_job.data,
+                background=True,
+                priority=Database.gearman.PRIORITY_LOW
+            )
+            print 'get %s error, sleep 30 minute(s).' % NOW_BOARD
+            time.sleep(30 * 60)
+        except 'Exception':
             traceback.print_exc()
             sys.exit()
 
@@ -144,7 +160,7 @@ if '__main__' == __name__:
         board_remain = SimpleGearManAdmin.SimpleGearManAdmin(
             app_cfg['gearman']['address'],
             app_cfg['gearman']['port']
-        ).get_status('dcard-scarp-board')
+        ).get_status('dcard-scarp-board-popular')
 
         print board_remain
         if (board_remain is None) or (int(board_remain['queued']) == 0):
@@ -154,7 +170,7 @@ if '__main__' == __name__:
             print 'done.\n'
 
         print 'Start Worker...\t'
-        JobWorker.register_task('dcard-scarp-board', dcard_scarp_board)
+        JobWorker.register_task('dcard-scarp-board-popular', dcard_scarp_board)
         JobWorker.work()
         print 'done.\n'
 
