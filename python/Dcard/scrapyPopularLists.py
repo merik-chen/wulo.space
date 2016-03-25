@@ -120,7 +120,7 @@ def dcard_scarp_board(gearman_worker, gearman_job):
             )
             time.sleep(random_sleep)
 
-            if is_continue <= 200:
+            if is_continue:
                 INITIAL_PAGE += 1
             else:
                 is_continue = False
