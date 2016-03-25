@@ -39,6 +39,7 @@ def random_ua():
 
 
 def make_sha1(text):
-    m = hashlib.sha1()
-    m.update(text)
-    return m.hexdigest()
+    return hashlib.sha224(text).hexdigest()
+    # m = hashlib.sha1()
+    # m.update(text)
+    # return m.hexdigest()

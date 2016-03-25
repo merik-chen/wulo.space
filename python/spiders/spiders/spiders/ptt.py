@@ -3,10 +3,12 @@ import sys
 from os import path
 sys.path.append(path.dirname(path.dirname(path.dirname(path.dirname(path.abspath(__file__))))))
 print sys.path
+
 import scrapy
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 import Database
+import Commons
 import random
 import time
 import json
@@ -21,6 +23,8 @@ class PttSpider(CrawlSpider):
     )
 
     links_db = Database.Collection['ptt_links']
+    index_db = Database.Collection['ptt_index']
+
     rules = (
         # Rule(LinkExtractor(allow=('\/bbs\/[0-9a-zA-Z\.-_]+\.html', )), callback='show_1', follow=True),
         Rule(LinkExtractor(allow=('\/bbs\/[0-9a-zA-Z\.-_]+\/index[0-9]{0,4}\.html', )), callback='show_1', follow=True),
@@ -28,6 +32,15 @@ class PttSpider(CrawlSpider):
     )
 
     def show_1(self, response):
+        self.index_db.update_one(
+            {'link': response.url},
+            {
+                '$set': {
+                    'link': response.url,
+                    'hash': Commons.make_sha1(response.url.encode('utf-8'))
+                }
+            }, upsert=True
+        )
         print response.url
 
     def parse_article(self, response):
