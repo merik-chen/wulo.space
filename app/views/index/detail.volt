@@ -16,7 +16,7 @@
         {% include "layouts/navbar.volt" %}
         <div class="row detail-warp">
             <div class="col-xs-12">
-                <div itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemPage">
+                <div>
 
                     <div class="detail-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
                         <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
