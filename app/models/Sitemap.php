@@ -153,6 +153,7 @@ class Sitemap extends Base
         $file = $this->robots;
         $content = "### NOTICE: IF YOU HAVE TO MODIFY THIS, TELL MERIK, THX." . self::NEWLINE;
         $content .= "User-agent: *" . self::NEWLINE;
+        $content .= "Disallow: /api/*" . self::NEWLINE;
 
         foreach ($sitemaps as $sitemap) {
             $content .= 'Sitemap: https://wulo.space/sitemaps/' . $sitemap . self::NEWLINE;
