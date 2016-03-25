@@ -63,7 +63,7 @@
                     <div class="detail-5f-warp text-xs-center">
                         <span>
                         {% if not(post['wulo'] is empty) %}
-                            <span itemprop="text" itemscope="comment" itemtype="https://schema.org/Comment"class="wulo-comment">{{ post['wulo']['content'] }}</span> by {{ post['wulo']['user'] }}
+                            <span itemprop="comment" itemscope="text" itemtype="https://schema.org/Comment"class="wulo-comment">{{ post['wulo']['content'] }}</span> by {{ post['wulo']['user'] }}
                         {% else %}
                             它的五樓，還未出現...（ＯＡＯ“）
                         {% endif %}
