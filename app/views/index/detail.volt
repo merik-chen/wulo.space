@@ -16,7 +16,7 @@
         {% include "layouts/navbar.volt" %}
         <div class="row detail-warp">
             <div class="col-xs-12">
-                <div>
+                <div itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemPage">
 
                     <div class="detail-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
                         <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
@@ -73,7 +73,7 @@
                     <div class="detail-title-info-spacer"></div>
 
                     <div>
-                        <span class="read-more" itemscope="text">{{ post['body'] | trim | nl2br }}</span>
+                        <span class="read-more" itemprop="text">{{ post['body'] | trim | nl2br }}</span>
                         <!-- wulo-detail-水平-1 -->
                         <ins class="adsbygoogle"
                              style="display:inline-block;width:100%;height:90px"
