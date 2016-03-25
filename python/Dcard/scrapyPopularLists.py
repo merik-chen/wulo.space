@@ -99,13 +99,14 @@ def dcard_scarp_board(gearman_worker, gearman_job):
     INITIAL_PAGE = 1
     while is_continue:
         try:
-            # is_continue = False
+            is_continue = False
             random_sleep = random.randrange(5, 30)
             USER_AGENT = random_ua()
             for index, data in enumerate(scrap_list(str(INITIAL_PAGE))):
                 # if RawDatabase.find_one({'id': data['id']}) is None:
                 #     is_continue = True or is_continue
                 # RawDatabase.save(data)
+                is_continue = True
                 Database.JobClient.submit_job(
                     'dcard-scrap-post',
                     json.dumps({'board': data['forum_alias'], 'article': data['id']}),
