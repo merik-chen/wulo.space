@@ -40,12 +40,12 @@
                         </span>
                     </div>
 
-                    <h1 itemprop="name">{{ post['title'] }}</h1>
+                    <h1 itemprop="headline">{{ post['title'] }}</h1>
                     <h6>作者：
-                        <span>{{ post['author'] }} ({{ post['nick']}})</span>
+                        <span itemprop="author">{{ post['author'] }} ({{ post['nick']}})</span>
                     </h6>
                     <h6>發文時間：
-                        <span>{{ date('Y-m-d H:i:s', post['date']) }}</span>
+                        <span itemprop="datePublished">{{ date('Y-m-d H:i:s', post['date']) }}</span>
                     </h6>
                     <h6>原文網址：
                         <span data-open-url="https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html">
@@ -93,7 +93,7 @@
                     <ul class="list-group list-group-flush">
                         {% for post in most_like %}
                         <li class="list-group-item{{ loop.index > 10 ? ' hidden-xs-up' : '' }}">
-                            <a href="/bbs/{{ post['board'] }}//{{ post['article'] }}.html" title="{{ post['title'] }} - {{ post['board'] }}">
+                            <a itemprop="relatedLink" href="/bbs/{{ post['board'] }}//{{ post['article'] }}.html" title="{{ post['title'] }} - {{ post['board'] }}">
                                 {{ post['title'] }} - {{ post['board'] }}
                             </a>
                         </li>
