@@ -127,6 +127,7 @@ def dcard_scarp_board(gearman_worker, gearman_job):
                 if is_continue and (INITIAL_PAGE <= 200):
                     INITIAL_PAGE += 1
                 else:
+                    is_continue = False
                     print "This Board: %s scraped. Do next.\n" % NOW_BOARD.encode('utf-8')
                     print "Checking board remains in pool...\t"
                     _board_remain = SimpleGearManAdmin.SimpleGearManAdmin(
