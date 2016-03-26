@@ -37,7 +37,7 @@ def get_dcard_post(gearman_worker, gearman_job):
             }
         )
 
-        random_sleep = random.randrange(5, 30)
+        random_sleep = random.randrange(5, 10)
         print '[%s] Scraped %s, sleep %s sec(s).' % (post['id'], post['version'][-1]['title'].encode('utf-8'), random_sleep)
         time.sleep(random_sleep)
 
