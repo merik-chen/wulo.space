@@ -55,6 +55,7 @@ def get_dcard_post(gearman_worker, gearman_job):
                 }
             }
         )
+        time.sleep(5)
     except requests.ConnectionError as e:
         print e.message
         Database.JobClient.submit_job(
