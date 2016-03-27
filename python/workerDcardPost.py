@@ -46,6 +46,15 @@ def get_dcard_post(gearman_worker, gearman_job):
         exit()
     except InputError as e:
         print e.message
+        Article.RawDatabase.find_one_and_update(
+            {'id': article_id},
+            {
+                '$set': {
+                    'fetched': True,
+                    'error': True
+                }
+            }
+        )
     except requests.ConnectionError as e:
         print e.message
         Database.JobClient.submit_job(
