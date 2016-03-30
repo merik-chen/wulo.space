@@ -26,4 +26,3 @@ if __name__ == "__main__":
     for (word, count) in output:
         print("%i\t%s" % (word, count))
 
-    sc.stop()

@@ -7,7 +7,7 @@ import json
 for post in RawDatabase.find(
     {'fetched': {'$ne': True}}
 ):
-    print post['version'][-1]['title'].encode('utf-8')
+    print (post['version'][-1]['title'].encode('utf-8'))
     JobClient.submit_job(
         'dcard-scrap-post',
         json.dumps({
@@ -15,5 +15,6 @@ for post in RawDatabase.find(
             'article': post['id']
         }).encode('utf-8'),
         background=True,
+        priority=gearman.PRIORITY_HIGH,
         unique=str(post['id'])
     )
