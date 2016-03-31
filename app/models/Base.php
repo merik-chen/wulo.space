@@ -65,7 +65,7 @@ class Base extends Phalcon\Mvc\Model
         $cache = new Phalcon\Cache\Backend\Libmemcached($this->frontCache, array(
             'servers' => array(
                 array(
-                    'host'      => '192.168.122.1',
+                    'host'      => '127.0.0.1',
                     'port'      => 11211,
                     'weight'    => 1
                 ),
