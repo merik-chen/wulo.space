@@ -33,7 +33,7 @@ class Lists extends Base
         } else {
             $this->redis = $this->initRedis();
             $boards = $this->redis->zRange('allBoardsList', 0, -1, $with_count);
-            $this->cache->save($memKey, $boards, 60 * 60);
+            $this->cache->save($memKey, $boards, 60 * 60 * 2);
         }
 
         return $boards;
@@ -51,7 +51,7 @@ class Lists extends Base
             $total = $this->cache->get($memKeyTotalSize);
         } else {
             $total = $redis->lLen($board);
-            $this->cache->save($memKeyTotalSize, $total, 60 * 60);
+            $this->cache->save($memKeyTotalSize, $total, 60 * 60 * 2);
         }
 
         $total_page = ceil($total / $count);
@@ -63,7 +63,7 @@ class Lists extends Base
             $page = $page > $total_page ? (int)$total_page : $page;
             $start = ($page - 1) * $count;
             $list = $redis->lRange($board, $start, $start + $count - 1);
-            $this->cache->save($memKey, $list, 60 * 60);
+            $this->cache->save($memKey, $list, 60 * 60 * 2);
         }
 
         foreach($list as $index => &$article) {
@@ -115,7 +115,7 @@ class Lists extends Base
                 }
             }
 
-            if (!empty($find)) $this->cache->save($memKey, $find, 60 * 10);
+            if (!empty($find)) $this->cache->save($memKey, $find, 60 * 60 * 2);
         }
 
         return$find;

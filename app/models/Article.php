@@ -46,7 +46,7 @@ class Article extends Base
                 }
             }
 
-            $this->cache->save($memKey, $find, 60 * 60);
+            $this->cache->save($memKey, $find, 60 * 60 * 2);
         }
 
         return $find;
@@ -66,7 +66,7 @@ class Article extends Base
             $find = $this->collection->findOne(
                 ['hash' => $hash]
             );
-            if (!empty($find)) $this->cache->save($memKey, $find, 60 * 30);
+            if (!empty($find)) $this->cache->save($memKey, $find, 60 * 60 * 24);
         }
 
         if ($internal) {
