@@ -40,7 +40,7 @@
                     {% for article in data['list'] %}
                     <li>
                         <a href="/bbs/{{ article['board'] }}/{{ article['article'] }}.html">
-                            <span>{{ article['title'] }}</span>
+                            <span>{{ article['like'] | default('0') }}</span><span>{{ article['title'] }}</span>
                         </a>
                     </li>
                     {% endfor %}
