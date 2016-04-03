@@ -1,4 +1,4 @@
-@import "bootstrap/scss/variables", "bootstrap/scss/mixins";
+@import "bootstrap/scss/variables", "bootstrap/scss/mixins", "bootstrap/scss/card";
 
 .list-breadcrumb {
   margin-left: 1rem;
@@ -20,5 +20,29 @@
 @include media-breakpoint-up(lg) {
   .list-ad-h-01 {
     height: 60px;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .card-columns {
+    column-count: 1;
+    column-gap: 1.25rem;
+
+    .card {
+      display: inline-block;
+      width: 100%; // Don't let them exceed the column width
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .card-columns {
+    column-count: 3;
+    column-gap: 1.25rem;
+
+    .card {
+      display: inline-block;
+      width: 100%; // Don't let them exceed the column width
+    }
   }
 }
