@@ -85,10 +85,6 @@
 
             $("#loading").fadeIn();
 
-            amplitude.logEvent('ab-Index-Search-Btn', {
-                'class': ab
-            });
-
             wulo.utility.promisePost(
                 '/api/get5F',
                 {
@@ -96,6 +92,9 @@
                 },
                 'json'
             ).done(function (rsp) {
+                amplitude.logEvent('ab-Index-Search-Btn', {
+                    'class': ab
+                });
                 switch (rsp.status) {
                     case true:
                         window.location.href = '/bbs/' + params.board + '/' + params.article + '.html';
