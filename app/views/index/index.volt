@@ -94,31 +94,32 @@
             ).done(function (rsp) {
                 amplitude.logEvent('ab-Index-Search-Btn', {
                     'class': ab
+                }, function () {
+                    switch (rsp.status) {
+                        case true:
+                            window.location.href = '/bbs/' + params.board + '/' + params.article + '.html';
+                            break;
+                        case false:
+                            console.error('Get article failed!', rsp);
+                            break;
+                        case null:
+                            wulo.utility.trackingArticle(
+                                '/api/get5F',
+                                {
+                                    'payload': params
+                                },
+                                'json',
+                                function (rsp) {
+                                    console.log(rsp);
+                                    window.location.href = '/bbs/' + params.board + '/' + params.article + '.html';
+                                }
+                            );
+                            break;
+                        default:
+                            console.error('Un-know state.', rsp);
+                            break;
+                    }
                 });
-                switch (rsp.status) {
-                    case true:
-                        window.location.href = '/bbs/' + params.board + '/' + params.article + '.html';
-                        break;
-                    case false:
-                        console.error('Get article failed!', rsp);
-                        break;
-                    case null:
-                        wulo.utility.trackingArticle(
-                            '/api/get5F',
-                            {
-                                'payload': params
-                            },
-                            'json',
-                            function (rsp) {
-                                console.log(rsp);
-                                window.location.href = '/bbs/' + params.board + '/' + params.article + '.html';
-                            }
-                        );
-                        break;
-                    default:
-                        console.error('Un-know state.', rsp);
-                        break;
-                }
             });
         });
 
