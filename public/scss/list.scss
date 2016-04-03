@@ -27,11 +27,10 @@
   .card-columns {
     column-count: 1;
     column-gap: 1.25rem;
-
-    .card {
-      display: inline-block;
-      width: 100%; // Don't let them exceed the column width
-    }
+    -webkit-column-count: 1;
+    -webkit-column-gap: 1.25rem;
+    -moz-column-count: 1;
+    -moz-column-gap: 1.25rem;
   }
 }
 
@@ -39,10 +38,9 @@
   .card-columns {
     column-count: 3;
     column-gap: 1.25rem;
-
-    .card {
-      display: inline-block;
-      width: 100%; // Don't let them exceed the column width
-    }
+    -webkit-column-count: 3;
+    -webkit-column-gap: 1.25rem;
+    -moz-column-count: 3;
+    -moz-column-gap: 1.25rem;
   }
 }
