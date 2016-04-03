@@ -60,7 +60,7 @@
                                 <p class="card-text">{{ article['abstract'] }}</p>
                                 <p class="card-text">
                                     <small class="text-muted">
-                                        推: {{ article['like'] default('0') }}  噓: {{ article['dislike'] default('0') }}
+                                        推: {{ article['like']| default('0') }}  噓: {{ article['dislike']| default('0') }}
                                     </small>
                                 </p>
                             </div>
