@@ -14,6 +14,11 @@ class IndexController extends ControllerBase
         shuffle($posts);
         shuffle($all_board);
 
+        $this->ab['index'] = [
+            'cta' => rand(0,999) >= 500 ? '-outline' : null
+        ];
+
+        $this->view->ab = $this->ab;
         $this->view->posts  = $posts;
         $this->view->boards = $all_board;
     }
