@@ -36,7 +36,7 @@
                         </span>
                 </div>
 
-                <ul class="list-article">
+                {#<ul class="list-article">
                     {% for article in data['list'] %}
                     <li>
                         <a href="/bbs/{{ article['board'] }}/{{ article['article'] }}.html">
@@ -44,7 +44,30 @@
                         </a>
                     </li>
                     {% endfor %}
-                </ul>
+                </ul>#}
+
+                <div class="list-article">
+                    <div class="card-columns">
+                        {% for article in data['list'] %}
+                        <div class="card">
+                            <img class="card-img-top" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=300&h=150" data-src="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=300&h=150" alt="{{ article['title'] }}">
+                            <div class="card-block">
+                                <h4 class="card-title">
+                                    <a href="/bbs/{{ article['board'] }}/{{ article['article'] }}.html">
+                                        {{ article['title'] }}
+                                    </a>
+                                </h4>
+                                <p class="card-text">{{ article['abstract'] }}</p>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        推: {{ article['like'] default('0') }}  噓: {{ article['dislike'] default('0') }}
+                                    </small>
+                                </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
 
                 <div class="list-board-list-warp">
                     <ul class="list-inline">
