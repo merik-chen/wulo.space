@@ -72,7 +72,7 @@ class Lists extends Base
             if (!empty($find)) {
                 $find['board'] = $board;
                 $find['article'] = $aid;
-                $find['abstract'] = mb_strimwidth($find['body'], 0, 50, '...');
+                $find['abstract'] = mb_strimwidth($find['body'], 0, 50, '...', 'utf-8');
                 unset($find['body']);
                 unset($find['hash']);
                 unset($find['ip']);
