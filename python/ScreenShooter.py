@@ -67,7 +67,7 @@ class ScreenShooter:
         size = 260, 150
         im = Image.open(_file)
         im.thumbnail(size, Image.ANTIALIAS)
-        thum = im.tostring
+        thum = im.tostring()
 
         _binary = binary.Binary(picture)
 
