@@ -126,7 +126,6 @@ def start_work():
 
 
 if '__main__' == __name__:
-    global screen_shooter
     screen_shooter = ScreenShooter()
     start_work()
 
