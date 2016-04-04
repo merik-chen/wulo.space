@@ -6,6 +6,7 @@ from xvfbwrapper import Xvfb
 from gridfs import GridFS
 from bson import binary
 from Database import *
+from PIL import Image
 import hashlib
 import time
 import uuid
@@ -57,6 +58,17 @@ class ScreenShooter:
     def save_to_mongo(_hash, picture, url):
         # mongo_gfs = GridFS(Mongo['screenshot'])
 
+        _file = '/tmp/%s.png' % _hash
+
+        _pic = open(_file, 'w')
+        _pic.write(picture)
+        _pic.close()
+
+        size = 260, 150
+        im = Image.open(_file)
+        im.thumbnail(size, Image.ANTIALIAS)
+        thum = im.tostring
+
         _binary = binary.Binary(picture)
 
         return Mongo['screenshot']['store'].update_one(
@@ -67,6 +79,7 @@ class ScreenShooter:
                     'hash': _hash,
                     'uuid': str(uuid.uuid4()),
                     'file': _binary,
+                    'thumbnail': thum,
                     'content-type': 'image/png'
                 }
             }, upsert=True
