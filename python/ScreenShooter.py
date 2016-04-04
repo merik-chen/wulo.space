@@ -6,6 +6,7 @@ from xvfbwrapper import Xvfb
 from gridfs import GridFS
 from bson import binary
 from Database import *
+import hashlib
 import time
 import uuid
 
@@ -80,6 +81,9 @@ class ScreenShooter:
 
 if '__main__' == __name__:
     screen_shooter = ScreenShooter()
-    print (screen_shooter.get_screen_shot('http://google.com', 'test'))
+    print (screen_shooter.get_screen_shot(
+        'https://www.ptt.cc/bbs/Newcastle/M.1062554034.A.784.html',
+        hashlib.sha1('https://www.ptt.cc/bbs/Newcastle/M.1062554034.A.784.html').hexdigest()
+    ))
 
 
