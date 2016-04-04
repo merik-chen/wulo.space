@@ -59,6 +59,7 @@ class ScreenShooter:
         # mongo_gfs = GridFS(Mongo['screenshot'])
 
         _file = '/tmp/%s.png' % _hash
+        _t_file = '/tmp/%s_t.png' % _hash
 
         _pic = open(_file, 'w')
         _pic.write(picture)
@@ -67,9 +68,9 @@ class ScreenShooter:
         size = 260, 150
         im = Image.open(_file)
         im.thumbnail(size, Image.ANTIALIAS)
-        thum = im.tostring()
+        im.save(_t_file)
 
-        _thum = binary.Binary(thum)
+        _thum = binary.Binary(open(_t_file))
         _binary = binary.Binary(picture)
 
         return Mongo['screenshot']['store'].update_one(
