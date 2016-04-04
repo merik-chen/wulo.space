@@ -7,6 +7,7 @@ from xvfbwrapper import Xvfb
 from bson import binary
 from Database import *
 from PIL import Image
+import traceback
 import hashlib
 import time
 import json
@@ -103,21 +104,25 @@ class ScreenShooter:
 
 def worker(gearman_worker, gearman_job):
     global screen_shooter
-    data = json.loads(gearman_job.data)
-    if 'ptt' == data['type']:
-        url = 'https://www.ptt.cc/bbs/%s/%s.html' % (data['board'], data['article'])
-        screen_shooter.get_screen_shot(
-            url,
-            hashlib.sha1(url).hexdigest()
-        )
-    else:
-        screen_shooter.get_screen_shot(
-            data['url'],
-            hashlib.sha1(data['url']).hexdigest()
-        )
-    time.sleep(1)
+    try:
+        data = json.loads(gearman_job.data)
+        if 'ptt' == data['type']:
+            url = 'https://www.ptt.cc/bbs/%s/%s.html' % (data['board'], data['article'])
+            screen_shooter.get_screen_shot(
+                url,
+                hashlib.sha1(url).hexdigest()
+            )
+        else:
+            screen_shooter.get_screen_shot(
+                data['url'],
+                hashlib.sha1(data['url']).hexdigest()
+            )
+        time.sleep(1)
 
-    return 'ok'
+        return 'ok'
+    except Exception:
+        traceback.print_exc()
+        exit()
 
 
 def start_work():
