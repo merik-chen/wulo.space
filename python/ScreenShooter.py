@@ -4,6 +4,7 @@
 from selenium import webdriver
 from xvfbwrapper import Xvfb
 from gridfs import GridFS
+from bson import binary
 from Database import *
 import time
 import uuid
@@ -53,14 +54,28 @@ class ScreenShooter:
 
     @staticmethod
     def save_to_mongo(_hash, picture, url):
-        mongo_gfs = GridFS(Mongo['screenshot'])
+        # mongo_gfs = GridFS(Mongo['screenshot'])
 
-        return mongo_gfs.put(
-            picture,
-            url=url,
-            hash=_hash,
-            uuid=str(uuid.uuid4()),
+        _binary = binary.Binary(picture)
+
+        return Mongo['screenshot']['store'].update_one(
+            {'hash': _hash},
+            {
+                'url': url,
+                'hash': _hash,
+                'uuid': str(uuid.uuid4()),
+                'file': _binary,
+                'content-type': 'image/png'
+
+            }, upsert=True
         )
+
+        # return mongo_gfs.put(
+        #     picture,
+        #     url=url,
+        #     hash=_hash,
+        #     uuid=str(uuid.uuid4()),
+        # )
 
 if '__main__' == __name__:
     screen_shooter = ScreenShooter()
