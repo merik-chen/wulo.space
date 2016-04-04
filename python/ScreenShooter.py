@@ -69,6 +69,7 @@ class ScreenShooter:
         im.thumbnail(size, Image.ANTIALIAS)
         thum = im.tostring()
 
+        _thum = binary.Binary(thum)
         _binary = binary.Binary(picture)
 
         return Mongo['screenshot']['store'].update_one(
@@ -79,7 +80,7 @@ class ScreenShooter:
                     'hash': _hash,
                     'uuid': str(uuid.uuid4()),
                     'file': _binary,
-                    'thumbnail': thum,
+                    'thumbnail': _thum,
                     'content-type': 'image/png'
                 }
             }, upsert=True
