@@ -46,7 +46,7 @@ class ScreenShooter:
         time.sleep(0.5)
         # browser.save_screenshot("")
 
-        picture = browser.get_screenshot_as_png()
+        picture = browser.get_screenshot_as_base64()
 
         browser.quit()
         display.stop()
