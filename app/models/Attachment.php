@@ -24,7 +24,7 @@ class Attachment extends Base
 
     public function getScreenShot($hash)
     {
-        $find = $this->collection->find_one(['hash' => $hash]);
+        $find = $this->collection->findOne(['hash' => $hash]);
         return empty($find) ? false : $find;
     }
 }
