@@ -186,6 +186,9 @@
 .list-board-list-warp {
   margin-top: 1vh; }
 
+.card-img-top {
+  width: 100%; }
+
 @media (min-width: 992px) {
   .list-ad-h-01 {
     height: 60px; } }

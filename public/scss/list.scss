@@ -17,6 +17,10 @@
   margin-top: 1vh;
 }
 
+.card-img-top {
+  width: 100%;
+}
+
 @include media-breakpoint-up(lg) {
   .list-ad-h-01 {
     height: 60px;
