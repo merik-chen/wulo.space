@@ -106,7 +106,7 @@ def worker(gearman_worker, gearman_job):
     global screen_shooter
     try:
         data = json.loads(gearman_job.data)
-        screen_shooter.get_screen_shot(
+        print screen_shooter.get_screen_shot(
             data['url'],
             hashlib.sha1(data['url']).hexdigest()
         )
