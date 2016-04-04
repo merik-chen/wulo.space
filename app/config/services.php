@@ -88,6 +88,13 @@ $di->setShared('session', function () {
 $di->setShared('router', function () {
     $router = new \Phalcon\Mvc\Router();
 
+    $router->addGet("/screenshot/(\\w+)/([\\w\\.]+).png?", [
+        'controller'    => 'index',
+        'action'        => 'getScreenshot',
+        'board'         => 1,
+        'post'          => 2
+    ]);
+
     $router->addGet("/bbs/(\\w+)/([\\w\\.]+).html?", [
         'controller'    => 'index',
         'action'        => 'detail',
@@ -127,4 +134,8 @@ $di->setShared('article', function () {
 
 $di->setShared('lists', function () {
     return new Wulo\Lists();
+});
+
+$di->setShared('attachment', function () {
+    return new Wulo\Attachment();
 });

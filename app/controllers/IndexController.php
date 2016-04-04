@@ -91,5 +91,28 @@ class IndexController extends ControllerBase
         $this->response->send();
     }
 
+    public function getScreenshotAction()
+    {
+        $board = $this->dispatcher->getParam('board', 'string', false);
+        $post = $this->dispatcher->getParam('post', 'string', false);
+
+        if( $board == false || $post == false ) $this->response->redirect('/');
+
+        $this->view->disable();
+
+        $hash = sha1("https://www.ptt.cc/bbs/$board/$post.html");
+
+        if($find = $this->attachment->getScreenShot($hash))
+        {
+            $this->response->setContentType($find['content-type']);
+            $this->response->sendHeaders();
+            echo $find['file'];
+        }else{
+            $this->response->redirect('/');
+        }
+
+        return;
+    }
+
 }
 
