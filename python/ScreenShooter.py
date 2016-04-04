@@ -59,7 +59,7 @@ class ScreenShooter:
             picture,
             url=url,
             hash=_hash,
-            uuid=uuid.uuid4(),
+            uuid=str(uuid.uuid4()),
         )
 
 if '__main__' == __name__:
