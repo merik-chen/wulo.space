@@ -61,12 +61,13 @@ class ScreenShooter:
         return Mongo['screenshot']['store'].update_one(
             {'hash': _hash},
             {
-                'url': url,
-                'hash': _hash,
-                'uuid': str(uuid.uuid4()),
-                'file': _binary,
-                'content-type': 'image/png'
-
+                '$set': {
+                    'url': url,
+                    'hash': _hash,
+                    'uuid': str(uuid.uuid4()),
+                    'file': _binary,
+                    'content-type': 'image/png'
+                }
             }, upsert=True
         )
 
