@@ -106,21 +106,18 @@ def worker(gearman_worker, gearman_job):
     global screen_shooter
     try:
         data = json.loads(gearman_job.data)
-        if 'ptt' == data['type']:
-            url = 'https://www.ptt.cc/bbs/%s/%s.html' % (data['board'], data['article'])
-            screen_shooter.get_screen_shot(
-                url,
-                hashlib.sha1(url).hexdigest()
-            )
-        else:
-            screen_shooter.get_screen_shot(
-                data['url'],
-                hashlib.sha1(data['url']).hexdigest()
-            )
+        screen_shooter.get_screen_shot(
+            data['url'],
+            hashlib.sha1(data['url']).hexdigest()
+        )
+
         time.sleep(1)
 
         return 'ok'
-    except Exception:
+    except KeyboardInterrupt:
+        print ('Bye~\n')
+        exit()
+    except 'Exception':
         traceback.print_exc()
         exit()
 
