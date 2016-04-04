@@ -25,7 +25,7 @@ for post in all:
             json.dumps({
                 'url': post['url']
             }),
-            unique=post['hash'],
+            unique=str(post['hash']),
             background=True
         )
         print ('queued.')
