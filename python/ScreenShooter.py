@@ -58,8 +58,7 @@ class ScreenShooter:
 
         return self.save_to_mongo(_hash, picture, url)
 
-    @staticmethod
-    def save_to_mongo(_hash, picture, url):
+    def save_to_mongo(self, _hash, picture, url):
         # mongo_gfs = GridFS(Mongo['screenshot'])
 
         _file = '/tmp/%s.png' % _hash
@@ -71,11 +70,12 @@ class ScreenShooter:
 
         size = 260, 150
         im = Image.open(_file)
+        im.crop((0, 0, self.display_width, self.display_height)).save(_file)
         im.thumbnail(size, Image.ANTIALIAS)
         im.save(_t_file)
 
         _thum = binary.Binary(open(_t_file, mode='rb').read())
-        _binary = binary.Binary(picture)
+        _binary = binary.Binary(open(_file, mode='rb').read())
 
         os.remove(_file)
         os.remove(_t_file)
