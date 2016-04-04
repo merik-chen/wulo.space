@@ -96,6 +96,8 @@ class IndexController extends ControllerBase
         $board = $this->dispatcher->getParam('board', 'string', false);
         $post = $this->dispatcher->getParam('post', 'string', false);
 
+        $original = $this->request->hasQuery('orig');
+
         if( $board == false || $post == false ) $this->response->redirect('/');
 
         $this->view->disable();
@@ -106,7 +108,12 @@ class IndexController extends ControllerBase
         {
             $this->response->setContentType($find['content-type']);
             $this->response->sendHeaders();
-            echo $find['thumbnail']->bin;
+            if($original)
+            {
+                echo $find['file']->bin;
+            }else{
+                echo $find['thumbnail']->bin;
+            }
         }else{
             $this->response->redirect('/');
         }
