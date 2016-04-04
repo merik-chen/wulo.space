@@ -19,7 +19,7 @@ for post in all:
 
     find = Database.Mongo['screenshot']['store'].find_one({'hash': post['hash']})
 
-    if find:
+    if find is None:
         Database.JobClient.submit_job(
             'scrap-screenshot',
             json.dumps({
