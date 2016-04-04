@@ -70,7 +70,7 @@ class ScreenShooter:
         im.thumbnail(size, Image.ANTIALIAS)
         im.save(_t_file)
 
-        _thum = binary.Binary(open(_t_file, mode='rb'))
+        _thum = binary.Binary(open(_t_file, mode='rb').read())
         _binary = binary.Binary(picture)
 
         return Mongo['screenshot']['store'].update_one(
