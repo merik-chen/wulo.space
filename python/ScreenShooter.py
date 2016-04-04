@@ -73,6 +73,9 @@ class ScreenShooter:
         _thum = binary.Binary(open(_t_file, mode='rb').read())
         _binary = binary.Binary(picture)
 
+        os.remove(_file)
+        os.remove(_t_file)
+
         return Mongo['screenshot']['store'].update_one(
             {'hash': _hash},
             {
