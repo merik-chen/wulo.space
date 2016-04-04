@@ -3,13 +3,16 @@
 
 from selenium import webdriver
 from xvfbwrapper import Xvfb
-from gridfs import GridFS
+# from gridfs import GridFS
 from bson import binary
 from Database import *
 from PIL import Image
 import hashlib
 import time
+import json
 import uuid
+
+screen_shooter = None
 
 
 class ScreenShooter:
@@ -97,11 +100,33 @@ class ScreenShooter:
         #     uuid=str(uuid.uuid4()),
         # )
 
+
+def worker(gearman_worker, gearman_job):
+    global screen_shooter
+    data = json.loads(gearman_job.data)
+    if 'ptt' == data['type']:
+        url = 'https://www.ptt.cc/bbs/%s/%s.html' % (data['board'], data['article'])
+        screen_shooter.get_screen_shot(
+            url,
+            hashlib.sha1(url).hexdigest()
+        )
+    else:
+        screen_shooter.get_screen_shot(
+            data['url'],
+            hashlib.sha1(data['url']).hexdigest()
+        )
+    time.sleep(1)
+
+
+def start_work():
+    Database.JobWorker.register_task('scrap-screenshot', worker)
+    Database.JobWorker.work()
+
+
 if '__main__' == __name__:
+    global screen_shooter
     screen_shooter = ScreenShooter()
-    print (screen_shooter.get_screen_shot(
-        'https://www.ptt.cc/bbs/Newcastle/M.1062554034.A.784.html',
-        hashlib.sha1('https://www.ptt.cc/bbs/Newcastle/M.1062554034.A.784.html').hexdigest()
-    ))
+    start_work()
+
 
 

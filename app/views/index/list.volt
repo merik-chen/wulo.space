@@ -50,7 +50,8 @@
                     <div class="card-columns">
                         {% for article in data['list'] %}
                         <div class="card">
-                            <img class="card-img-top hidden-md-down" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=260%C3%97150&w=260&h=150" data-src="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=300&h=150" alt="{{ article['title'] }}">
+                            <img class="card-img-top hidden-md-down" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=260%C3%97150&w=260&h=150"
+                                 data-src="/screenshot/{{ article['board'] }}/{{ article['article'] }}.png" alt="{{ article['title'] }}">
                             <div class="card-block">
                                 <h4 class="card-title">
                                     <a href="/bbs/{{ article['board'] }}/{{ article['article'] }}.html">
