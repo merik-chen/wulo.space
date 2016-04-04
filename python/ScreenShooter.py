@@ -117,10 +117,12 @@ def worker(gearman_worker, gearman_job):
         )
     time.sleep(1)
 
+    return 'ok'
+
 
 def start_work():
-    Database.JobWorker.register_task('scrap-screenshot', worker)
-    Database.JobWorker.work()
+    JobWorker.register_task('scrap-screenshot', worker)
+    JobWorker.work()
 
 
 if '__main__' == __name__:
