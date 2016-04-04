@@ -106,7 +106,7 @@ class IndexController extends ControllerBase
         {
             $this->response->setContentType($find['content-type']);
             $this->response->sendHeaders();
-            echo $find['thumbnail']->bin;
+            echo $find['thumbnail'];
         }else{
             $this->response->redirect('/');
         }
