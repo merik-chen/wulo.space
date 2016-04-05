@@ -41,8 +41,8 @@ class ScreenShooter:
 
     def get_screen_shot(self, url, _hash):
 
-        self.display = self.setup_display()
-        self.display.start()
+        # self.display = self.setup_display()
+        # self.display.start()
 
         profile = webdriver.FirefoxProfile()
         # profile.set_preference("general.useragent.override", '')
@@ -88,7 +88,7 @@ class ScreenShooter:
         os.remove(_t_file)
 
         self.browser.quit()
-        self.display.stop()
+        # self.display.stop()
 
         return Mongo['screenshot']['store'].update_one(
             {'hash': _hash},
