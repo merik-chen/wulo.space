@@ -9,6 +9,7 @@ from Database import *
 from PIL import Image
 import traceback
 import hashlib
+import random
 import time
 import json
 import uuid
@@ -106,12 +107,14 @@ def worker(gearman_worker, gearman_job):
     global screen_shooter
     try:
         data = json.loads(gearman_job.data)
-        print screen_shooter.get_screen_shot(
+        r = screen_shooter.get_screen_shot(
             data['url'],
             hashlib.sha1(data['url']).hexdigest()
         )
 
-        time.sleep(1)
+        print (r.matched_count, r.upserted_id)
+
+        time.sleep(random.randrange(2, 5))
 
         return 'ok'
     except KeyboardInterrupt:
