@@ -48,11 +48,11 @@ class ScreenShooter:
         # profile.set_preference("general.useragent.override", '')
 
         # self.browser = webdriver.Firefox(profile)
-        _service = service.Service('/root/chromedriver')
-        _service.start()
+        # _service = service.Service('/root/chromedriver')
+        # _service.start()
         # / usr / bin / google - chrome
         capabilities = {'chrome.binary': '/usr/bin/google-chrome'}
-        self.browser = webdriver.Remote(_service.service_url, capabilities)
+        self.browser = webdriver.Remote("http://127.0.0.1:9515", capabilities)
         # self.browser = webdriver.Chrome('/root/chromedriver')
         self.browser.add_cookie({'name': 'over18', 'value': '1'})
         self.browser.set_window_size(int(self.display_width), int(self.display_height))
