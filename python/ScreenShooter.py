@@ -48,7 +48,7 @@ class ScreenShooter:
 
         # self.browser = webdriver.Firefox(profile)
         self.browser = webdriver.Chrome('/root/chromedriver')
-        self.browser.add_cookie({'name': 'over18', 'value': '1'})
+        # self.browser.add_cookie({'name': 'over18', 'value': '1'})
         self.browser.set_window_size(int(self.display_width), int(self.display_height))
         self.browser.get(url)
         self.browser.implicitly_wait(3)
