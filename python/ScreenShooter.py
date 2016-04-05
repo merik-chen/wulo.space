@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import selenium.webdriver.chrome.service as service
 from selenium import webdriver
 from xvfbwrapper import Xvfb
 # from gridfs import GridFS
@@ -47,8 +48,13 @@ class ScreenShooter:
         # profile.set_preference("general.useragent.override", '')
 
         # self.browser = webdriver.Firefox(profile)
-        self.browser = webdriver.Chrome('/root/chromedriver')
-        # self.browser.add_cookie({'name': 'over18', 'value': '1'})
+        _service = service.Service('/root/chromedriver')
+        _service.start()
+        # / usr / bin / google - chrome
+        capabilities = {'chrome.binary': '/usr/bin/google-chrome'}
+        self.browser = webdriver.Remote(_service.service_url, capabilities)
+        # self.browser = webdriver.Chrome('/root/chromedriver')
+        self.browser.add_cookie({'name': 'over18', 'value': '1'})
         self.browser.set_window_size(int(self.display_width), int(self.display_height))
         self.browser.get(url)
         self.browser.implicitly_wait(3)
