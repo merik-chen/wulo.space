@@ -46,9 +46,9 @@ class ScreenShooter:
 
         browser = webdriver.Firefox(profile)
         browser.add_cookie({'name': 'over18', 'value': '1'})
-        browser.implicitly_wait(3)
         browser.set_window_size(int(self.display_width), int(self.display_height))
         browser.get(url)
+        browser.implicitly_wait(3)
         time.sleep(0.5)
         # browser.save_screenshot("")
 
@@ -62,43 +62,38 @@ class ScreenShooter:
     def save_to_mongo(self, _hash, picture, url):
         # mongo_gfs = GridFS(Mongo['screenshot'])
 
-        try:
-            _file = '/tmp/%s.png' % _hash
-            _t_file = '/tmp/%s_t.png' % _hash
+        _file = '/tmp/%s.png' % _hash
+        _t_file = '/tmp/%s_t.png' % _hash
 
-            _pic = open(_file, 'w')
-            _pic.write(picture)
-            _pic.close()
+        _pic = open(_file, 'w')
+        _pic.write(picture)
+        _pic.close()
 
-            size = 260, 150
-            im = Image.open(_file)
-            im.crop((0, 0, self.display_width, self.display_height)).save(_file)
-            im.thumbnail(size, Image.ANTIALIAS)
-            im.save(_t_file)
+        size = 260, 150
+        im = Image.open(_file)
+        im.crop((0, 0, self.display_width, self.display_height)).save(_file)
+        im.thumbnail(size, Image.ANTIALIAS)
+        im.save(_t_file)
 
-            _thum = binary.Binary(open(_t_file, mode='rb').read())
-            _binary = binary.Binary(open(_file, mode='rb').read())
+        _thum = binary.Binary(open(_t_file, mode='rb').read())
+        _binary = binary.Binary(open(_file, mode='rb').read())
 
-            os.remove(_file)
-            os.remove(_t_file)
+        os.remove(_file)
+        os.remove(_t_file)
 
-            return Mongo['screenshot']['store'].update_one(
-                {'hash': _hash},
-                {
-                    '$set': {
-                        'url': url,
-                        'hash': _hash,
-                        'uuid': str(uuid.uuid4()),
-                        'file': _binary,
-                        'thumbnail': _thum,
-                        'content-type': 'image/png'
-                    }
-                }, upsert=True
-            )
-
-        except Exception:
-            traceback.print_exc()
-            exit()
+        return Mongo['screenshot']['store'].update_one(
+            {'hash': _hash},
+            {
+                '$set': {
+                    'url': url,
+                    'hash': _hash,
+                    'uuid': str(uuid.uuid4()),
+                    'file': _binary,
+                    'thumbnail': _thum,
+                    'content-type': 'image/png'
+                }
+            }, upsert=True
+        )
 
         # return mongo_gfs.put(
         #     picture,
