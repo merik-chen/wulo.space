@@ -43,10 +43,11 @@ class ScreenShooter:
         self.display = self.setup_display()
         self.display.start()
 
-        profile = webdriver.FirefoxProfile()
+        # profile = webdriver.FirefoxProfile()
         # profile.set_preference("general.useragent.override", '')
 
-        self.browser = webdriver.Firefox(profile)
+        # self.browser = webdriver.Firefox(profile)
+        self.browser = webdriver.Chrome('/root/chromedriver')
         self.browser.add_cookie({'name': 'over18', 'value': '1'})
         self.browser.set_window_size(int(self.display_width), int(self.display_height))
         self.browser.get(url)
