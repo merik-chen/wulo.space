@@ -19,6 +19,8 @@ screen_shooter = None
 
 class ScreenShooter:
 
+    display = None
+    browser = None
     display_depth = 24
     display_width = 1280
     display_height = 768
@@ -38,24 +40,21 @@ class ScreenShooter:
 
     def get_screen_shot(self, url, _hash):
 
-        display = self.setup_display()
-        display.start()
+        self.display = self.setup_display()
+        self.display.start()
 
         profile = webdriver.FirefoxProfile()
         # profile.set_preference("general.useragent.override", '')
 
-        browser = webdriver.Firefox(profile)
-        browser.add_cookie({'name': 'over18', 'value': '1'})
-        browser.set_window_size(int(self.display_width), int(self.display_height))
-        browser.get(url)
-        browser.implicitly_wait(3)
+        self.browser = webdriver.Firefox(profile)
+        self.browser.add_cookie({'name': 'over18', 'value': '1'})
+        self.browser.set_window_size(int(self.display_width), int(self.display_height))
+        self.browser.get(url)
+        self.browser.implicitly_wait(3)
         time.sleep(0.5)
         # browser.save_screenshot("")
 
-        picture = browser.get_screenshot_as_png()
-
-        browser.quit()
-        display.stop()
+        picture = self.browser.get_screenshot_as_png()
 
         return self.save_to_mongo(_hash, picture, url)
 
@@ -80,6 +79,9 @@ class ScreenShooter:
 
         os.remove(_file)
         os.remove(_t_file)
+
+        self.browser.quit()
+        self.display.stop()
 
         return Mongo['screenshot']['store'].update_one(
             {'hash': _hash},
