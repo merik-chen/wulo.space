@@ -3,6 +3,7 @@
 
 from Loader import *
 import pprint
+import json
 import time
 
 
@@ -34,6 +35,27 @@ class History:
                 return float(s)
         except ValueError:
             return s
+
+    def initial_worker(self):
+        while True:
+            _now_date = self.shift_time()
+            _now_ts = int(time.mktime(_now_date.timetuple()))
+            _timeStr = self.str_time()
+            _is_big = _now_ts >= int(time.time())
+            if _is_big:
+                break
+            else:
+                print (_timeStr, _is_big)
+                for _station_id, __station in STATIONS.items():
+                    JobClient.submit_job(
+                        'cwb-get-weather',
+                        json.dumps({
+                            'date': _timeStr,
+                            'station': _station_id
+                        }),
+                        '%s.%s' % (_now_ts, _station_id),
+                        background=True
+                    )
 
     def get_daily_weather(self, station, date):
         target = self.ENDPOINT_URL + self.ENDPOINT_PATH % (station, date)
@@ -88,30 +110,31 @@ class History:
 
 if '__main__' == __name__:
     weatherHistory = History()
-    while True:
-        now_date = weatherHistory.shift_time()
-        now_ts = int(time.mktime(now_date.timetuple()))
-        timeStr = weatherHistory.str_time()
-        is_big = now_ts >= int(time.time())
-        if is_big:
-            break
-        else:
-            print timeStr, is_big
-            for station_id, _station in STATIONS.items():
-                data = weatherHistory.get_daily_weather(station_id, timeStr)
-                pprint.pprint(data)
-
-                Database.find_one_and_update(
-                    {
-                        'station': data['station'],
-                        'date': data['date']
-                    },
-                    {
-                        '$set':  data
-                    }, upsert=True
-                )
-
-                time.sleep(random.randrange(60, 120))
+    weatherHistory.initial_worker()
+    # while True:
+    #     now_date = weatherHistory.shift_time()
+    #     now_ts = int(time.mktime(now_date.timetuple()))
+    #     timeStr = weatherHistory.str_time()
+    #     is_big = now_ts >= int(time.time())
+    #     if is_big:
+    #         break
+    #     else:
+    #         print timeStr, is_big
+    #         for station_id, _station in STATIONS.items():
+    #             data = weatherHistory.get_daily_weather(station_id, timeStr)
+    #             pprint.pprint(data)
+    #
+    #             Database.find_one_and_update(
+    #                 {
+    #                     'station': data['station'],
+    #                     'date': data['date']
+    #                 },
+    #                 {
+    #                     '$set':  data
+    #                 }, upsert=True
+    #             )
+    #
+    #             time.sleep(random.randrange(60, 120))
     # timeStr = weatherHistory.str_time()
     # weatherHistory.get_daily_weather(466910, timeStr)
 
