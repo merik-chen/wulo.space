@@ -106,6 +106,7 @@
                         </div>
                         {% endfor %}
 
+                        {#
                         <div class="card">
                             <div class="fb-ad" data-placementid="1551853838477846_1562308260765737" data-format="native" data-nativeadid="ad_root" data-testmode="false"></div>
                             <div id="ad_root">
@@ -126,6 +127,7 @@
                                 </a>
                             </div>
                         </div>
+                        #}
                     </div>
                 </div>
 
@@ -193,6 +195,7 @@
 <script>
     "use strict";
 
+    //{#
     window.fbInited = function () {
         FB.Event.subscribe(
             'ad.loaded',
@@ -209,6 +212,7 @@
         );
     };
 
+
     (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
@@ -216,6 +220,8 @@
         js.src = "//connect.facebook.net/en_US/sdk/xfbml.ad.js#xfbml=1&version=v2.5&appId=1551853838477846";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
+    //#}
+
 
     $(function () {
         var board = '{{board}}',
