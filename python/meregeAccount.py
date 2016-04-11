@@ -14,7 +14,7 @@ AccountDB = Database.Mongo['account']['id_table']
 DcardDB = Database.Mongo['Dcard']['raw_posts']
 PttDB = Database.Mongo['wulo']['data']
 
-for post in Database.Mongo['wulo']['raw']:
+for post in Database.Mongo['wulo']['raw'].find():
     selector = Selector(text=post['html'])
     for user in selector.css('.push-userid::text').extract():
         print (user)
