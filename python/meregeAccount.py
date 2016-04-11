@@ -20,8 +20,6 @@ for post in Database.Mongo['wulo']['raw'].find():
 
         find = AccountDB.find_one({'id': user}, {'_id': 1})
 
-        print (user, str(find['_id']))
-
         if find is None:
             AccountDB.find_one_and_update(
                 {'id': user},
@@ -32,6 +30,8 @@ for post in Database.Mongo['wulo']['raw'].find():
                     }
                 }, upsert=True
             )
+        else:
+            print (user, str(find['_id']))
 
 # for post in PttDB.find():
 #     if 'author' in post:
