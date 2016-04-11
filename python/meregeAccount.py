@@ -14,12 +14,14 @@ DcardDB = Database.Mongo['Dcard']['raw_posts']
 PttDB = Database.Mongo['wulo']['data']
 
 for post in PttDB.find():
-    AccountDB.find_one_and_update(
-        {'id': post['author']},
-        {
-            '$set': {
-                'id': post['author'],
-                'associate.ptt': post['nick']
-            }
-        }, upsert=True
-    )
+    if 'author' in post:
+        nick = 'nick' in post and post['nick'] or post['author']
+        AccountDB.find_one_and_update(
+            {'id': post['author']},
+            {
+                '$set': {
+                    'id': post['author'],
+                    'associate.ptt': post['nick']
+                }
+            }, upsert=True
+        )
