@@ -16,7 +16,7 @@ PttDB = Database.Mongo['wulo']['data']
 
 for post in Database.Mongo['wulo']['raw']:
     selector = Selector(text=post['html'])
-    for user in selector.css('.push-userid::text'):
+    for user in selector.css('.push-userid::text').extract():
         print (user)
     exit()
 
