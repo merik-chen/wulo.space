@@ -19,7 +19,7 @@ for post in PttDB.find():
         {
             '$set': {
                 'id': post['author'],
-                'associate.ptt': True
+                'associate.ptt': post['nick']
             }
         }, upsert=True
     )
