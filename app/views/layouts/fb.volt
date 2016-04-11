@@ -1,10 +1,12 @@
 <script>
+    window.fbInited = window.fbInited || function () {};
     window.fbAsyncInit = function() {
         FB.init({
             appId      : '1551853838477846',
             xfbml      : true,
             version    : 'v2.5'
         });
+        window.fbInited()
     };
 
     (function(d, s, id){
