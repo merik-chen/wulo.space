@@ -17,8 +17,21 @@ PttDB = Database.Mongo['wulo']['data']
 for post in Database.Mongo['wulo']['raw'].find():
     selector = Selector(text=post['html'])
     for user in selector.css('.push-userid::text').extract():
-        print (user)
-    exit()
+
+        find = AccountDB.find_one({'id': user}, {'_id': 1})
+
+        print (user, str(find['_id']))
+
+        if find is None:
+            AccountDB.find_one_and_update(
+                {'id': user},
+                {
+                    '$set': {
+                        'id': user,
+                        'associate.ptt': user
+                    }
+                }, upsert=True
+            )
 
 # for post in PttDB.find():
 #     if 'author' in post:
