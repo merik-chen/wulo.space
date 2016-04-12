@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import selenium.webdriver.chrome.service as service
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium import webdriver
 from xvfbwrapper import Xvfb
 # from gridfs import GridFS
@@ -47,12 +48,15 @@ class ScreenShooter:
         profile = webdriver.FirefoxProfile()
         # profile.set_preference("general.useragent.override", '')
 
-        self.browser = webdriver.Firefox(profile)
+        # self.browser = webdriver.Firefox(profile)
         # _service = service.Service('/root/chromedriver')
         # _service.start()
         # / usr / bin / google - chrome
         # capabilities = {'chrome.binary': '/usr/bin/google-chrome'}
-        # self.browser = webdriver.Remote("http://127.0.0.1:9515", capabilities)
+        self.browser = webdriver.Remote(
+            "http://192.168.10.35:4444/wd/hub",
+            desired_capabilities=DesiredCapabilities.FIREFOX
+        )
         # self.browser = webdriver.Chrome('/root/chromedriver')
         self.browser.add_cookie({'name': 'over18', 'value': '1'})
         self.browser.set_window_size(int(self.display_width), int(self.display_height))
