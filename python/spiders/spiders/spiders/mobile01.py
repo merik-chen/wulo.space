@@ -15,18 +15,19 @@ import json
 import re
 
 
-class PttSpider(CrawlSpider):
-    name = "ptt"
-    allowed_domains = ["ptt.cc"]
+class Mobile01Spider(CrawlSpider):
+    name = "mobile01"
+    allowed_domains = ["mobile01.com"]
     start_urls = (
-        'https://www.ptt.cc/bbs/index.html',
+        'http://www.mobile01.com/forum.php',
     )
 
-    links_db = Database.Collection['ptt_links']
-    index_db = Database.Collection['ptt_index']
+    collection = Database.Mongo[name]
+    links_db = collection['links']
+    index_db = collection['index']
 
     rules = (
-        # Rule(LinkExtractor(allow=('\/bbs\/[0-9a-zA-Z\.-_]+\.html', )), callback='show_1', follow=True),
+        Rule(LinkExtractor(allow=('category', )), callback='show_1', follow=True),
         Rule(LinkExtractor(allow=('\/bbs\/[0-9a-zA-Z\.-_]+\/index[0-9]{0,4}\.html', )), callback='show_1', follow=True),
         Rule(LinkExtractor(allow=('\/bbs\/[0-9a-zA-Z\.-_]+\/M\..+\.html$', )), callback='parse_article', follow=True),
     )
