@@ -91,7 +91,7 @@ class ScreenShooter:
         os.remove(_file)
         os.remove(_t_file)
 
-        # self.browser.quit()
+        self.browser.close()
         # self.display.stop()
 
         return Mongo['screenshot']['store'].update_one(
