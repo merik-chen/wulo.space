@@ -9,6 +9,33 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
+import os
+
+app_env = 'APP_ENV' in os.environ and str(os.environ['APP_ENV']).lower() or ''
+
+if app_env == 'spider':
+    app_cfg = {
+        'mongo': {'address': '192.168.122.1', 'port': 27017},
+        'redis': {'address': '192.168.122.1', 'port': 6379},
+        'gearman': {'address': '192.168.122.1', 'port': 4730},
+        'memcached': {'address': '192.168.122.1', 'port': 11211},
+    }
+elif app_env == 'master':
+    app_cfg = {
+        'mongo': {'address': '192.168.10.254', 'port': 27017},
+        'redis': {'address': '192.168.10.254', 'port': 6379},
+        'gearman': {'address': '192.168.10.254', 'port': 4730},
+        'memcached': {'address': '192.168.10.254', 'port': 11211},
+    }
+else:
+    app_cfg = {
+        'mongo': {'address': '192.168.10.254', 'port': 27017},
+        'redis': {'address': '192.168.10.254', 'port': 6379},
+        'gearman': {'address': '192.168.10.254', 'port': 4730},
+        'memcached': {'address': '192.168.10.254', 'port': 11211},
+    }
+
+
 BOT_NAME = 'spiders'
 
 SPIDER_MODULES = ['spiders.spiders']
@@ -92,3 +119,13 @@ DEFAULT_REQUEST_HEADERS = {
 #HTTPCACHE_DIR='httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES=[]
 #HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+# Enables scheduling storing requests queue in redis.
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+
+# Don't cleanup redis queues, allows to pause/resume crawls.
+SCHEDULER_PERSIST = True
+SCHEDULER_IDLE_BEFORE_CLOSE = 10
+
+REDIS_HOST = app_cfg['redis']['address']
+REDIS_PORT = app_cfg['redis']['port']

@@ -31,6 +31,10 @@ class PttSpider(CrawlSpider):
         Rule(LinkExtractor(allow=('\/bbs\/[0-9a-zA-Z\.-_]+\/M\..+\.html$', )), callback='parse_article', follow=True),
     )
 
+    custom_settings = {
+        'LOG_LEVEL': 'DEBUG'
+    }
+
     def show_1(self, response):
         self.index_db.update_one(
             {'link': response.url},
