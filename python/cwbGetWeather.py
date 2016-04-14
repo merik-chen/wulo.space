@@ -21,21 +21,31 @@ def cwb_get_weather(gearman_worker, gearman_job):
     data = json.loads(gearman_job.data)
     try:
         print ('Processing: %s, %s\t' % (data['date'], data['station'])),
-        result = cwb_history.get_daily_weather(data['station'], data['date'])
 
-        Database.Database.find_one_and_update(
-            {
-                'station': data['station'],
-                'date': data['date']
-            },
-            {
-                '$set':  result
-            }, upsert=True
-        )
+        exists = Database.Database.find_one({
+            'station': data['station'],
+            'date': data['date']
+        })
 
-        print ('...done')
+        if exists is None:
+            result = cwb_history.get_daily_weather(data['station'], data['date'])
 
-        time.sleep(random.randrange(60, 120))
+            Database.Database.find_one_and_update(
+                {
+                    'station': data['station'],
+                    'date': data['date']
+                },
+                {
+                    '$set':  result
+                }, upsert=True
+            )
+
+            print ('...done')
+
+            time.sleep(random.randrange(60, 120))
+        else:
+            print ('...skipped')
+
         return 'ok'
     except KeyboardInterrupt:
         print ('Bye~\n')
