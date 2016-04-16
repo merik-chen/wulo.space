@@ -88,7 +88,7 @@ $di->setShared('session', function () {
 $di->setShared('router', function () {
     $router = new \Phalcon\Mvc\Router();
 
-    $router->addGet("/search", [
+    $router->addGet("/search(/)?", [
         'controller'    => 'index',
         'action'        => 'search'
     ]);
