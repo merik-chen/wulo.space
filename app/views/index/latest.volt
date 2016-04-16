@@ -6,6 +6,9 @@
 <link rel="stylesheet" href="/scss/navbar.css">
 <link rel="stylesheet" href="/scss/list.css">
 <style>
+    .list-article {
+        margin-top: 5vh;
+    }
 </style>
 {% endblock %}
 
@@ -19,7 +22,7 @@
         <div class="row list-warp">
             <div class="col-xs-12">
                 <h1 class="text-xs-center text-lg-left">
-                    [{{ board }}]
+                    [最新收錄]
                 </h1>
 
                 <div class="lists-breadcrumb text-xs-center text-lg-left" itemscope itemtype="https://schema.org/BreadcrumbList">
