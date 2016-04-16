@@ -20,7 +20,7 @@
                 <input class="form-control index-target" id="target" type="url" placeholder="貼上PTT網址，趕快知道5樓是誰！">
             </div>
             <div class="col-xs-12 text-xs-center">
-                <button id="go" data-ab="{{ ab['index']['cta'] is empty ? 'btn-info' : 'btn-info-outline' }}" class="btn btn-info{{ ab['index']['cta'] }} index-target-btn"> 5樓？ </button>
+                <button id="go" data-ab="{{ ab['index']['cta'] is empty ? 'btn-info' : 'btn-info-outline' }}" class="btn btn-info{{ ab['index']['cta'] }} index-target-btn"> 查詢５樓 </button>
                 <a href="/bbs/latest" class="btn btn-info-outline index-target-btn"> 最新收錄 </a>
             </div>
         </div>
