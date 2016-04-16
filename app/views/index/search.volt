@@ -61,6 +61,30 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-xs-12">
+                <div class="detail-list-article">
+                    <div class="card-columns">
+                        {% for post in most_like %}
+                        <div class="card{{ loop.index > 10 ? ' hidden-xs-up' : '' }}">
+                            <div class="card-block">
+                                <h4 class="card-title">
+                                    <a itemprop="relatedLink" href="/bbs/{{ post['board'] }}//{{ post['article'] }}.html" title="{{ post['title'] }} - {{ post['board'] }}">
+                                        {{ post['title'] }} - {{ post['board'] }}
+                                    </a>
+                                </h4>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        推: {{ article['like']| default('0') }}
+                                    </small>
+                                </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
             <div class="col-xs-12 col-md-6">
                 <div class="card">
                     <div class="card-block">
