@@ -88,6 +88,11 @@ $di->setShared('session', function () {
 $di->setShared('router', function () {
     $router = new \Phalcon\Mvc\Router();
 
+    $router->addGet("/search/?", [
+        'controller'    => 'index',
+        'action'        => 'search'
+    ]);
+
     $router->addGet("/screenshot/(\\w+)/([\\w\\.]+).png?", [
         'controller'    => 'index',
         'action'        => 'getScreenshot',
@@ -113,11 +118,6 @@ $di->setShared('router', function () {
         'controller'    => 'index',
         'action'        => 'list',
         'board'         => 1
-    ]);
-
-    $router->addGet("/search/?", [
-        'controller'    => 'index',
-        'action'        => 'search'
     ]);
 
     $api = new \Phalcon\Mvc\Router\Group();
