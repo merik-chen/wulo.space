@@ -115,6 +115,11 @@ $di->setShared('router', function () {
         'board'         => 1
     ]);
 
+    $router->addGet("/search/?", [
+        'controller'    => 'index',
+        'action'        => 'search'
+    ]);
+
     $api = new \Phalcon\Mvc\Router\Group();
     $api->setPrefix('/api');
 
