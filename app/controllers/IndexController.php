@@ -23,6 +23,11 @@ class IndexController extends ControllerBase
         $this->view->boards = $all_board;
     }
 
+    public function latestAction()
+    {
+        $this->view->posts = $this->article->getLatestArticleSinglePage();
+    }
+
     public function searchAction()
     {
         $this->view->most_like  = $this->lists->getMostLikePosts();

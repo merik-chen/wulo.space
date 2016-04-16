@@ -93,6 +93,11 @@ $di->setShared('router', function () {
         'action'        => 'search'
     ]);
 
+    $router->addGet("/bbs/latest(/)?", [
+        'controller'    => 'index',
+        'action'        => 'latest'
+    ]);
+
     $router->addGet("/screenshot/(\\w+)/([\\w\\.]+).png?", [
         'controller'    => 'index',
         'action'        => 'getScreenshot',

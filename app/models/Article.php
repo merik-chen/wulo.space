@@ -52,6 +52,39 @@ class Article extends Base
         return $find;
     }
 
+    public function getLatestArticleSinglePage($count = 50, $cached = true) {
+        $memKey = "article:getLatestArticleSinglePage:$count";
+
+        if ($this->cache->exists($memKey) && $cached) {
+            $find = $this->cache->get($memKey);
+        } else {
+            $re = "/bbs\\/(?P<board>.+)\\/(?P<article>M\\..+).html?/";
+            $find = $this->collection->find([], [
+                'url' => 1,
+                'body' => 1,
+                'date' => 1,
+                'like' => 1,
+                'title' => 1,
+                'dislike' => 1,
+            ])->limit($count)->sort(['$natural' => -1]);
+
+            $find = iterator_to_array($find);
+
+            foreach($find as $id => &$data) {
+                if(preg_match($this->link_parse, $data['url'], $matches)) {
+                    $data['board'] = $matches['board'];
+                    $data['article'] = $matches['article'];
+                }
+                $data['abstract'] = mb_strimwidth(strip_tags($data['body']), 0, 50, '...', 'utf-8');
+                unset($data['body']);
+            }
+
+            $this->cache->save($memKey, $find, 60 * 60 * 2);
+        }
+
+        return $find;
+    }
+
     public function getArticle(array $payload = [], $internal = false) {
         if (empty($payload)) return ['status' => false];
 
