@@ -1,6 +1,6 @@
 {% extends "templates.volt" %}
 
-{% block title %}{{ post['title'] }}，{% endblock %}
+{% block title %}站內搜尋，{% endblock %}
 
 {% block extCss %}
 <link rel="stylesheet" href="/scss/navbar.css">
