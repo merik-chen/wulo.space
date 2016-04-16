@@ -168,8 +168,8 @@
         });
         $('.read-more').readmore({
             collapsedHeight: 20,
-            moreLink: '<btn class="btn detail-read-more-btn text-xs-center">Read more</btn>',
-            lessLink: '<btn class="btn detail-read-more-btn text-xs-center">Close</btn>'
+            moreLink: '<btn class="btn btn-info-outline detail-read-more-btn text-xs-center">觀看全部</btn>',
+            lessLink: '<btn class="btn btn-info-outline detail-read-more-btn text-xs-center">收合內容</btn>'
         });
         $('span[data-open-url]').click(function () {
             var link = $(this).data('open-url');
