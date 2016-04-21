@@ -164,6 +164,12 @@
             display: none;
         }
 
+        .h2-title a,
+        .h2-title a:hover,
+        .h2-title a:visited {
+            text-decoration: none;
+        }
+
         .navbar-breadcrumb-items::after {
             content: " / ";
             color: lightgray;
