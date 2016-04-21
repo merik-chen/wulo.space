@@ -237,12 +237,14 @@
                     </span>
                 </div>
 
-                <amp-img class="header_img" width=1280 height=60 layout="responsive" src="https://unsplash.it/1280/120" />
             </div>
             <div class="unit">
                 <div class="whole" itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemPage">
 
+                    <amp-img class="header_img" width=1280 height=60 layout="responsive" src="https://unsplash.it/1280/120" />
+
                     <h1 itemprop="headline">{{ post['title'] }}</h1>
+                    
                     <h6>作者：
                         <span itemprop="author">{{ post['author'] }} ({{ post['nick']}})</span>
                     </h6>
