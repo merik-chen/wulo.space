@@ -159,42 +159,49 @@
         body {
             font-family: 'cwTeXFangSong', serif;
         }
+
+        .hide-all {
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <div class="grid">
-        <div itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemPage">
+    <div class="wider">
+        <div class="grid">
+            <div class="whole" itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemPage">
 
-            <div class="detail-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-                <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
-                      itemtype="https://schema.org/ListItem">
-                    <a href="/" title="五樓，你怎麼說？" itemprop="item">
-                        <span class="hidden-xs-up" itemprop="name">五樓，你怎麼說？</span>
-                        <span>首頁</span>
-                    </a>
-                </span>
-                <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
-                      itemtype="https://schema.org/ListItem">
-                    <a href="/bbs/{{board}}/index.html" title="{{ board }} - 五樓，你怎麼說？" itemprop="item">
-                        <span itemprop="name">{{ board }}</span>
-                    </a>
-                </span>
-                <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
-                      itemtype="https://schema.org/ListItem">
-                    <a href="/bbs/{{board}}/{{article}}.html" title="{{ post['title'] }} - 五樓，你怎麼說？" itemprop="item">
-                        <span itemprop="name">{{ post['title'] }}</span>
-                    </a>
-                </span>
-            </div>
+                <h2 class="align-center">五樓，你怎麼說？</h2>
 
-            <h1 itemprop="headline">{{ post['title'] }}</h1>
-            <h6>作者：
-                <span itemprop="author">{{ post['author'] }} ({{ post['nick']}})</span>
-            </h6>
-            <h6>發文時間：
-                <span itemprop="datePublished">{{ date('Y-m-d H:i:s', post['date']) }}</span>
-            </h6>
-            <h6>原文網址：
+                <div class="align-center" itemscope itemtype="https://schema.org/BreadcrumbList">
+                    <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
+                          itemtype="https://schema.org/ListItem">
+                        <a href="/" title="五樓，你怎麼說？" itemprop="item">
+                            <span class="hide-all" itemprop="name">五樓，你怎麼說？</span>
+                            <span>首頁</span>
+                        </a>
+                    </span>
+                    <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
+                          itemtype="https://schema.org/ListItem">
+                        <a href="/bbs/{{board}}/index.html" title="{{ board }} - 五樓，你怎麼說？" itemprop="item">
+                            <span itemprop="name">{{ board }}</span>
+                        </a>
+                    </span>
+                    <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
+                          itemtype="https://schema.org/ListItem">
+                        <a href="/bbs/{{board}}/{{article}}.html" title="{{ post['title'] }} - 五樓，你怎麼說？" itemprop="item">
+                            <span itemprop="name">{{ post['title'] }}</span>
+                        </a>
+                    </span>
+                </div>
+
+                <h1 itemprop="headline">{{ post['title'] }}</h1>
+                <h6>作者：
+                    <span itemprop="author">{{ post['author'] }} ({{ post['nick']}})</span>
+                </h6>
+                <h6>發文時間：
+                    <span itemprop="datePublished">{{ date('Y-m-d H:i:s', post['date']) }}</span>
+                </h6>
+                <h6>原文網址：
                             <span data-open-url="https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html">
                                 <span class="hidden-md-up">
                                     連結
@@ -203,11 +210,11 @@
                                     https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html
                                 </span>
                             </span>
-            </h6>
+                </h6>
 
-            <div class="detail-title-info-spacer"></div>
+                <div class="detail-title-info-spacer"></div>
 
-            <div class="detail-5f-warp text-xs-center">
+                <div class="detail-5f-warp text-xs-center">
                 <span>
                 {% if not(post['wulo'] is empty) %}
                     五樓說：<span itemprop="comment" class="wulo-comment">{{ post['wulo']['content'] }}</span> by {{ post['wulo']['user'] }}
@@ -215,12 +222,13 @@
                     它的五樓，還未出現...（ＯＡＯ“）
                 {% endif %}
                 </span>
-            </div>
+                </div>
 
-            <div class="detail-title-info-spacer"></div>
+                <div class="detail-title-info-spacer"></div>
 
-            <div>
-                <span itemprop="text">{{ post['body'] | trim | nl2br }}</span>
+                <div>
+                    <span itemprop="text">{{ post['body'] | trim | nl2br }}</span>
+                </div>
             </div>
         </div>
     </div>
