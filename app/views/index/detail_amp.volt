@@ -23,7 +23,7 @@
         }
 
         body {
-            font-family: 'cwTeXFangSong', serif !important;
+            font-family: 'cwTeXFangSong', serif;
         }
     </style>
 </head>
