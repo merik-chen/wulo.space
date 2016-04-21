@@ -168,7 +168,7 @@
             content: " / ";
         }
 
-        .navbar-breadcrumb-items::after:last-child {
+        .navbar-breadcrumb-items:last-child::after {
             content: "";
         }
 
