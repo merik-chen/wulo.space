@@ -168,6 +168,7 @@
         .h2-title a:hover,
         .h2-title a:visited {
             text-decoration: none;
+            color: black;
         }
 
         .navbar-breadcrumb-items::after {
