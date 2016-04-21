@@ -191,18 +191,34 @@
         .navbar-breadcrumb-items a:hover {
             color: #29b6f6;
         }
+
+        .header_img {
+            width: 100%;
+            height: 150vh;
+            overflow: hidden;
+        }
+
+        @media screen and (max-width: 568px) {
+            .header_img {
+                height: 80vh;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="wider">
         <div class="grid">
-            <div class="whole" itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemPage">
+            <div class="unit">
+                <amp-img class="header_img" src="http://loremflickr.com/1280/768" />
+            </div>
+            <div class="unit">
+                <div class="whole" itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemPage">
 
-                <h2 class="align-center h2-title">
-                    <a href="/" title="五樓，你怎麼說？">五樓，你怎麼說？</a>
-                </h2>
+                    <h2 class="align-center h2-title">
+                        <a href="/" title="五樓，你怎麼說？">五樓，你怎麼說？</a>
+                    </h2>
 
-                <div class="align-center" itemscope itemtype="https://schema.org/BreadcrumbList">
+                    <div class="align-center" itemscope itemtype="https://schema.org/BreadcrumbList">
                     <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
                           itemtype="https://schema.org/ListItem">
                         <a href="/" title="五樓，你怎麼說？" itemprop="item">
@@ -222,16 +238,16 @@
                             <span itemprop="name">{{ post['title'] }}</span>
                         </a>
                     </span>
-                </div>
+                    </div>
 
-                <h1 itemprop="headline">{{ post['title'] }}</h1>
-                <h6>作者：
-                    <span itemprop="author">{{ post['author'] }} ({{ post['nick']}})</span>
-                </h6>
-                <h6>發文時間：
-                    <span itemprop="datePublished">{{ date('Y-m-d H:i:s', post['date']) }}</span>
-                </h6>
-                <h6>原文網址：
+                    <h1 itemprop="headline">{{ post['title'] }}</h1>
+                    <h6>作者：
+                        <span itemprop="author">{{ post['author'] }} ({{ post['nick']}})</span>
+                    </h6>
+                    <h6>發文時間：
+                        <span itemprop="datePublished">{{ date('Y-m-d H:i:s', post['date']) }}</span>
+                    </h6>
+                    <h6>原文網址：
                             <span data-open-url="https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html">
                                 <span class="hidden-md-up">
                                     連結
@@ -240,11 +256,11 @@
                                     https://www.ptt.cc/bbs/{{ board }}/{{ article }}.html
                                 </span>
                             </span>
-                </h6>
+                    </h6>
 
-                <div class="detail-title-info-spacer"></div>
+                    <div class="detail-title-info-spacer"></div>
 
-                <div class="detail-5f-warp text-xs-center">
+                    <div class="detail-5f-warp text-xs-center">
                 <span>
                 {% if not(post['wulo'] is empty) %}
                     五樓說：<span itemprop="comment" class="wulo-comment">{{ post['wulo']['content'] }}</span> by {{ post['wulo']['user'] }}
@@ -252,12 +268,13 @@
                     它的五樓，還未出現...（ＯＡＯ“）
                 {% endif %}
                 </span>
-                </div>
+                    </div>
 
-                <div class="detail-title-info-spacer"></div>
+                    <div class="detail-title-info-spacer"></div>
 
-                <div>
-                    <span itemprop="text">{{ post['body'] | trim | nl2br }}</span>
+                    <div>
+                        <span itemprop="text">{{ post['body'] | trim | nl2br }}</span>
+                    </div>
                 </div>
             </div>
         </div>
