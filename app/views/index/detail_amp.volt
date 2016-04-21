@@ -162,7 +162,7 @@
     </style>
 </head>
 <body>
-    <div class="col-xs-12">
+    <div class="grid">
         <div itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemPage">
 
             <div class="detail-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
