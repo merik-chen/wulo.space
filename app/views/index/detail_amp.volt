@@ -199,6 +199,13 @@
             overflow: hidden;
         }
 
+        amp-ad {
+            margin-top: 3vh;
+            width:100%;
+            height:90px;
+            margin-bottom: 3vh;
+        }
+
         @media screen and (max-width: 568px) {
             amp-img {
                 height: 15vh;
@@ -265,14 +272,20 @@
                     <div class="detail-title-info-spacer"></div>
 
                     <div class="detail-5f-warp text-xs-center">
-                <span>
-                {% if not(post['wulo'] is empty) %}
-                    五樓說：<span itemprop="comment" class="wulo-comment">{{ post['wulo']['content'] }}</span> by {{ post['wulo']['user'] }}
-                {% else %}
-                    它的五樓，還未出現...（ＯＡＯ“）
-                {% endif %}
-                </span>
+                        <span>
+                        {% if not(post['wulo'] is empty) %}
+                            五樓說：<span itemprop="comment" class="wulo-comment">{{ post['wulo']['content'] }}</span> by {{ post['wulo']['user'] }}
+                        {% else %}
+                            它的五樓，還未出現...（ＯＡＯ“）
+                        {% endif %}
+                        </span>
                     </div>
+
+                    <amp-ad width=100% height=90
+                            type="adsense"
+                            data-ad-client="ca-pub-3001056417467618"
+                            data-ad-slot="3125354204">
+                    </amp-ad>
 
                     <div class="detail-title-info-spacer"></div>
 
