@@ -192,25 +192,16 @@
             color: #29b6f6;
         }
 
-        .header_img {
-            width: 100%;
-            height: 150vh;
-            overflow: hidden;
-        }
-
         amp-img {
             background-color: grey;
             width: 100%;
-            height: 150vh;
+            height: 30vh;
             overflow: hidden;
         }
 
         @media screen and (max-width: 568px) {
             amp-img {
-                height: 80vh;
-            }
-            .header_img {
-                height: 80vh;
+                height: 15vh;
             }
         }
 
@@ -220,7 +211,7 @@
     <div class="wider">
         <div class="grid">
             <div class="unit">
-                <amp-img class="header_img" width=1280 height=200 layout="responsive" src="http://loremflickr.com/1280/768" />
+                <amp-img class="header_img" width=1280 height=60 layout="responsive" src="http://loremflickr.com/1280/60" />
             </div>
             <div class="unit">
                 <div class="whole" itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemPage">
