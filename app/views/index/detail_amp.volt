@@ -20,10 +20,10 @@
                  url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.woff2) format('woff2'),
                  url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.woff) format('woff'),
                  url(//fonts.gstatic.com/ea/cwtexhei/v3/cwTeXHei-zhonly.ttf) format('truetype');
+        }
 
-            body {
-                font-family: 'cwTeXFangSong', serif !important;
-            }
+        body {
+            font-family: 'cwTeXFangSong', serif !important;
         }
     </style>
 </head>
