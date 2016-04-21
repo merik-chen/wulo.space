@@ -197,7 +197,7 @@
         <div class="grid">
             <div class="whole" itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemPage">
 
-                <h2 class="align-center">
+                <h2 class="align-center h2-title">
                     <a href="/" title="五樓，你怎麼說？">五樓，你怎麼說？</a>
                 </h2>
 
