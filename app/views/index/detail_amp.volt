@@ -281,6 +281,10 @@
                     </div>
                 </div>
             </div>
+            <div class="unit">
+                <hr>
+                <h6>WULO.SPACE 2016, Made with Data.</h6>
+            </div>
         </div>
     </div>
 </body>
