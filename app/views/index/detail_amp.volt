@@ -168,6 +168,10 @@
             content: " / ";
         }
 
+        .navbar-breadcrumb-items::after:last-child {
+            content: "";
+        }
+
         .navbar-breadcrumb-items a,
         .navbar-breadcrumb-items a:hover,
         .navbar-breadcrumb-items a:visited
