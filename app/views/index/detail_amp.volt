@@ -167,6 +167,14 @@
         .navbar-breadcrumb-items::after {
             content: " / ";
         }
+
+        .navbar-breadcrumb-items a,
+        .navbar-breadcrumb-items a:hover,
+        .navbar-breadcrumb-items a:visited,
+        {
+            text-decoration: none;
+            color: lightgray;
+        }
     </style>
 </head>
 <body>
