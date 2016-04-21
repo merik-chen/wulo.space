@@ -286,7 +286,7 @@
                         </span>
                     </div>
 
-                    <amp-ad width=500 height=90
+                    <amp-ad width=300 height=90
                             type="adsense"
                             data-ad-client="ca-pub-3001056417467618"
                             data-ad-slot="3125354204">
