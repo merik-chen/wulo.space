@@ -241,7 +241,7 @@
             <div class="unit">
                 <div class="whole" itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemPage">
 
-                    <amp-img class="header_img" width=1280 height=60 layout="responsive" src="https://unsplash.it/1280/120" /></amp-img>
+                    <amp-img class="" width=1280 height=60 layout="responsive" src="https://unsplash.it/1280/120" /></amp-img>
 
                     <h1 itemprop="headline">{{ post['title'] }}</h1>
 
