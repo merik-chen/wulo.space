@@ -192,6 +192,11 @@
             color: #29b6f6;
         }
 
+        .detail-5f-warp {
+            border: dashed lightgray 2px;
+            padding: 3vh;
+        }
+
         amp-img {
             background-color: grey;
             width: 100%;
