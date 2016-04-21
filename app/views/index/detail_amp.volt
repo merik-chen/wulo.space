@@ -211,16 +211,11 @@
     <div class="wider">
         <div class="grid">
             <div class="unit">
-                <amp-img class="header_img" width=1280 height=60 layout="responsive" src="https://unsplash.it/1280/120" />
-            </div>
-            <div class="unit">
-                <div class="whole" itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemPage">
+                <h2 class="align-center h2-title">
+                    <a href="/" title="五樓，你怎麼說？">五樓，你怎麼說？</a>
+                </h2>
 
-                    <h2 class="align-center h2-title">
-                        <a href="/" title="五樓，你怎麼說？">五樓，你怎麼說？</a>
-                    </h2>
-
-                    <div class="align-center" itemscope itemtype="https://schema.org/BreadcrumbList">
+                <div class="align-center" itemscope itemtype="https://schema.org/BreadcrumbList">
                     <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
                           itemtype="https://schema.org/ListItem">
                         <a href="/" title="五樓，你怎麼說？" itemprop="item">
@@ -240,7 +235,12 @@
                             <span itemprop="name">{{ post['title'] }}</span>
                         </a>
                     </span>
-                    </div>
+                </div>
+
+                <amp-img class="header_img" width=1280 height=60 layout="responsive" src="https://unsplash.it/1280/120" />
+            </div>
+            <div class="unit">
+                <div class="whole" itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemPage">
 
                     <h1 itemprop="headline">{{ post['title'] }}</h1>
                     <h6>作者：
