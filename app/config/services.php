@@ -109,7 +109,16 @@ $di->setShared('router', function () {
         'controller'    => 'index',
         'action'        => 'detail',
         'board'         => 1,
-        'post'          => 2
+        'post'          => 2,
+        'amp'           => false
+    ]);
+
+    $router->addGet("/bbs/(\\w+)/([\\w\\.]+).amp?", [
+        'controller'    => 'index',
+        'action'        => 'detail',
+        'board'         => 1,
+        'post'          => 2,
+        'amp'           => true
     ]);
 
     $router->addGet("/bbs/(\\w+)/index(\\d+)?.html?", [
