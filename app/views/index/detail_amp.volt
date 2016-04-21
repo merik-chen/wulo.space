@@ -23,10 +23,10 @@
         }
 
         /*
- * Gridism
- * A simple, responsive, and handy CSS grid by @cobyism
- * https://github.com/cobyism/gridism
- */
+         * Gridism
+         * A simple, responsive, and handy CSS grid by @cobyism
+         * https://github.com/cobyism/gridism
+         */
 
         /* Preserve some sanity */
         .grid,
@@ -89,9 +89,10 @@
         .grid .golden-large,   .grid .w-g-l { width: 61.7283%; } /* Golden section: larger piece */
 
         /* Clearfix after every .grid */
-        .grid {
-            *zoom: 1;
-        }
+        /*.grid {*/
+            /**zoom: 1;*/
+        /*}*/
+
         .grid:before, .grid:after {
             display: table;
             content: "";
