@@ -44,7 +44,7 @@ class IndexController extends ControllerBase
     {
         $board = $this->dispatcher->getParam('board', 'string', false);
         $post = $this->dispatcher->getParam('post', 'string', false);
-        $amp = $this->dispatcher->getParam('amp', null, false);
+        $amp = $this->dispatcher->getParam('amp', 'string', 'off');
 
         if( $board == false || $post == false ) $this->response->redirect('/');
 
@@ -75,7 +75,7 @@ class IndexController extends ControllerBase
         $this->view->same_board     = $same_board;
         $this->view->boards         = $all_board;
         
-        if ($amp)
+        if ($amp == 'on')
         {
             $this->view->pick('index/detail_apm.volt');
         }else{

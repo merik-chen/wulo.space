@@ -110,7 +110,7 @@ $di->setShared('router', function () {
         'action'        => 'detail',
         'board'         => 1,
         'post'          => 2,
-        'amp'           => false
+        'amp'           => 'off'
     ]);
 
     $router->addGet("/bbs/(\\w+)/([\\w\\.]+).amp?", [
@@ -118,7 +118,7 @@ $di->setShared('router', function () {
         'action'        => 'detail',
         'board'         => 1,
         'post'          => 2,
-        'amp'           => true
+        'amp'           => 'on'
     ]);
 
     $router->addGet("/bbs/(\\w+)/index(\\d+)?.html?", [
