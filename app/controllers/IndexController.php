@@ -77,9 +77,9 @@ class IndexController extends ControllerBase
         
         if ($amp == 'on')
         {
-            $this->view->pick('detail_apm.volt');
+            $this->view->pick('detail_apm');
         }else{
-            $this->view->pick('detail.volt');
+            $this->view->pick('index/detail');
         }
 
     }
