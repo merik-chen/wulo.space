@@ -163,6 +163,10 @@
         .hide-all {
             display: none;
         }
+
+        .navbar-breadcrumb-items::after {
+            content: " / ";
+        }
     </style>
 </head>
 <body>
