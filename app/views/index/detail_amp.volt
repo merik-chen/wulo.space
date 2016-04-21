@@ -118,7 +118,7 @@
 
         /* Hide elements using this class by default */
         .only-on-mobiles {
-            display: none !important;
+            display: none;
         }
 
         /* Responsive Stuff */
@@ -126,7 +126,7 @@
             /* Stack anything that isn’t full-width on smaller screens
                and doesn't provide the no-stacking-on-mobiles class */
             .grid:not(.no-stacking-on-mobiles) > .unit {
-                width: 100% !important;
+                width: 100%;
                 padding-left: 20px;
                 padding-right: 20px;
             }
