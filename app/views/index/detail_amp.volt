@@ -198,11 +198,22 @@
             overflow: hidden;
         }
 
+        amp-img {
+            background-color: grey;
+            width: 100%;
+            height: 150vh;
+            overflow: hidden;
+        }
+
         @media screen and (max-width: 568px) {
+            amp-img {
+                height: 80vh;
+            }
             .header_img {
                 height: 80vh;
             }
         }
+
     </style>
 </head>
 <body>
