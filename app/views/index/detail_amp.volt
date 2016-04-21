@@ -168,9 +168,9 @@
             content: " / ";
         }
 
-        .navbar-breadcrumb-items > a,
-        .navbar-breadcrumb-items > a:hover,
-        .navbar-breadcrumb-items > a:visited,
+        .navbar-breadcrumb-items a,
+        .navbar-breadcrumb-items a:hover,
+        .navbar-breadcrumb-items a:visited
         {
             text-decoration: none;
             color: lightgray;
