@@ -209,7 +209,7 @@
     <div class="wider">
         <div class="grid">
             <div class="unit">
-                <amp-img class="header_img" src="http://loremflickr.com/1280/768" />
+                <amp-img class="header_img" width=1280 height=200 layout="responsive" src="http://loremflickr.com/1280/768" />
             </div>
             <div class="unit">
                 <div class="whole" itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemPage">
