@@ -170,7 +170,9 @@
         <div class="grid">
             <div class="whole" itemprop="mainEntity" itemscope itemtype="http://schema.org/ItemPage">
 
-                <h2 class="align-center">五樓，你怎麼說？</h2>
+                <h2 class="align-center">
+                    <a href="/" title="五樓，你怎麼說？">五樓，你怎麼說？</a>
+                </h2>
 
                 <div class="align-center" itemscope itemtype="https://schema.org/BreadcrumbList">
                     <span class="navbar-breadcrumb-items" itemprop="itemListElement" itemscope
