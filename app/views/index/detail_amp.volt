@@ -166,10 +166,15 @@
 
         .navbar-breadcrumb-items::after {
             content: " / ";
+            color: lightgray;
         }
 
         .navbar-breadcrumb-items:last-child::after {
             content: "";
+        }
+
+        .navbar-breadcrumb-items a:hover {
+            color: #29b6f6;
         }
 
         .navbar-breadcrumb-items a,
