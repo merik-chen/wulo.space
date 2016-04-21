@@ -173,16 +173,16 @@
             content: "";
         }
 
-        .navbar-breadcrumb-items a:hover {
-            color: #29b6f6;
-        }
-
         .navbar-breadcrumb-items a,
         .navbar-breadcrumb-items a:hover,
         .navbar-breadcrumb-items a:visited
         {
             text-decoration: none;
             color: lightgray;
+        }
+
+        .navbar-breadcrumb-items a:hover {
+            color: #29b6f6;
         }
     </style>
 </head>
