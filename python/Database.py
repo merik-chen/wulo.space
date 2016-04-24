@@ -11,6 +11,7 @@ JobWorker = gearman.GearmanWorker([app_cfg['gearman']['address'] + ':' + str(app
 Mongo = pymongo.MongoClient(
     host=app_cfg['mongo']['address'],
     port=app_cfg['mongo']['port'],
+    replicaset='dbrepl',
     socketTimeoutMS=None,
     socketKeepAlive=True
 )
