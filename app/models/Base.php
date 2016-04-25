@@ -47,14 +47,14 @@ class Base extends Phalcon\Mvc\Model
 
     protected function initMongo()
     {
-        $mongo = new \MongoClient("mongodb://192.168.122.1:27017");
+        $mongo = new \MongoClient("mongodb://192.168.122.253:27017");
         return $mongo;
     }
 
     protected function initRedis()
     {
         $redis = new \Redis();
-        $redis->pconnect('192.168.122.1');
+        $redis->pconnect('192.168.122.253');
         return $redis;
     }
 
