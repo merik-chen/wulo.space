@@ -47,7 +47,7 @@ class BaseTask extends Cli\Task
     protected function initRedis()
     {
         $redis = new \Redis();
-        $redis->pconnect('192.168.122.1');
+        $redis->pconnect('192.168.122.253');
         return $redis;
     }
 
