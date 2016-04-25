@@ -40,7 +40,7 @@ class BaseTask extends Cli\Task
 
     protected function initMongo()
     {
-        $mongo = new \MongoClient("mongodb://192.168.122.1:27017");
+        $mongo = new \MongoClient("mongodb://192.168.122.253:27017");
         return $mongo;
     }
 
