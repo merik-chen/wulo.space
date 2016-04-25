@@ -3,7 +3,7 @@
 {% block title %}{{ post['title'] }}，{% endblock %}
 
 {% block extCss %}
-<link rel="amphtml" href="https://wulo.space/bbs/{{board}}/{{article}}.amp">
+<!--<link rel="amphtml" href="https://wulo.space/bbs/{{board}}/{{article}}.amp">-->
 <link rel="stylesheet" href="/scss/navbar.css">
 <link rel="stylesheet" href="/scss/detail.css">
 {% endblock %}
