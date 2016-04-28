@@ -71,7 +71,17 @@
                         </span>
                     </div>
 
-                    <div class="detail-title-info-spacer"></div>
+                    <div class="detail-title-info-spacer">
+                        <span class="read-more" itemprop="text">{{ post['body'] | trim | nl2br }}</span>
+                        <!-- wulo-detail-水平-1 -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:100%;height:90px"
+                             data-ad-client="ca-pub-3001056417467618"
+                             data-ad-slot="3125354204"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
 
                     <div>
                         <span class="read-more" itemprop="text">{{ post['body'] | trim | nl2br }}</span>
@@ -93,6 +103,9 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         {% for post in most_like %}
+                        {% if loop.index > 10 %}
+                        {% break %}
+                        {% endif %}
                         <li class="list-group-item{{ loop.index > 10 ? ' hidden-xs-up' : '' }}">
                             <a itemprop="relatedLink" href="/bbs/{{ post['board'] }}//{{ post['article'] }}.html" title="{{ post['title'] }} - {{ post['board'] }}">
                                 {{ post['title'] }} - {{ post['board'] }}
@@ -109,6 +122,9 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         {% for post in latest_posts %}
+                        {% if loop.index > 20 %}
+                        {% break %}
+                        {% endif %}
                         <li class="list-group-item{{ loop.index > 10 ? ' hidden-xs-up' : '' }}">
                             <a itemprop="relatedLink" href="/bbs/{{ post['board'] }}//{{ post['article'] }}.html" title="{{ post['title'] }} - {{ post['board'] }}">
                                 {{ post['title'] }} - {{ post['board'] }}
@@ -125,6 +141,9 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         {% for post in same_board %}
+                        {% if loop.index > 20 %}
+                        {% break %}
+                        {% endif %}
                         <li class="list-group-item{{ loop.index > 10 ? ' hidden-xs-up' : '' }}">
                             <a itemprop="relatedLink" href="/bbs/{{ post['board'] }}//{{ post['article'] }}.html" title="{{ post['title'] }} - {{ post['board'] }}">
                                 {{ post['title'] }} - {{ post['board'] }}
@@ -141,6 +160,9 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         {% for post in boards %}
+                        {% if loop.index > 20 %}
+                        {% break %}
+                        {% endif %}
                         <li class="list-group-item{{ loop.index > 10 ? ' hidden-xs-up' : '' }}">
                             <a itemprop="relatedLink" href="/bbs/{{ post }}//index.html" title="{{ post }}">
                                 {{ post }}

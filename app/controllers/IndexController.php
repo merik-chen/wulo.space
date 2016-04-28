@@ -64,7 +64,7 @@ class IndexController extends ControllerBase
         $this->view->post       = $post;
         $this->view->most_like  = $this->lists->getMostLikePosts();
 
-        $latest_posts   = $this->article->getLatestArticle(50);
+        $latest_posts   = $this->article->getLatestArticle(10);
         $same_board     = $this->lists->getBoardList($post['board'], 1);
         $same_board     = $same_board['list'];
         $all_board      = $this->lists->getAllBoards();

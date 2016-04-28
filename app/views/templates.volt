@@ -51,7 +51,7 @@
         </script>
         {% block extJs %}{% endblock %}
         {% include "layouts/ga.volt" %}
-        {% include "layouts/fb.volt" %}
+        {# include "layouts/fb.volt" #}
         <script type="text/javascript">
             (function(e,t){var n=e.amplitude||{};var r=t.createElement("script");r.type="text/javascript";
                 r.async=true;r.src="https://d24n15hnbwhuhn.cloudfront.net/libs/amplitude-2.9.0-min.gz.js";
