@@ -72,7 +72,6 @@
                     </div>
 
                     <div class="detail-title-info-spacer">
-                        <span class="read-more" itemprop="text">{{ post['body'] | trim | nl2br }}</span>
                         <!-- wulo-detail-水平-1 -->
                         <ins class="adsbygoogle"
                              style="display:inline-block;width:100%;height:90px"
