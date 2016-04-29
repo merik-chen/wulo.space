@@ -24,6 +24,12 @@
         {% block extCss %}{% endblock %}
         {% block extModels %}{% endblock %}
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-3001056417467618",
+                enable_page_level_ads: true
+            });
+        </script>
     </head>
     <body>
         <div id="loading" style="background: white; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index:99;">
