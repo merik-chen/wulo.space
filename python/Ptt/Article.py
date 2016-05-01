@@ -32,7 +32,8 @@ class Article:
             selector = Selector(text=resp)
             body = selector.css('#main-content').extract()
             body = re.sub(ur'<div.+>.+</div>\n', '', body[0])
-            body = re.sub(re.compile(ur'--.+', re.DOTALL), '', body)
+            # body = re.sub(re.compile(ur'--.+', re.DOTALL), '', body)
+            body = re.sub(re.compile(ur'(?:--)\n<span.+', re.DOTALL), '', body)
 
             article['body'] = body
 
