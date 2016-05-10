@@ -24,6 +24,12 @@
         {% block extCss %}{% endblock %}
         {% block extModels %}{% endblock %}
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-3001056417467618",
+                enable_page_level_ads: true
+            });
+        </script>
     </head>
     <body>
         <div id="loading" style="background: white; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index:99;">
@@ -51,7 +57,7 @@
         </script>
         {% block extJs %}{% endblock %}
         {% include "layouts/ga.volt" %}
-        {% include "layouts/fb.volt" %}
+        {# include "layouts/fb.volt" #}
         <script type="text/javascript">
             (function(e,t){var n=e.amplitude||{};var r=t.createElement("script");r.type="text/javascript";
                 r.async=true;r.src="https://d24n15hnbwhuhn.cloudfront.net/libs/amplitude-2.9.0-min.gz.js";
