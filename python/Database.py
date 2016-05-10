@@ -8,9 +8,16 @@ import redis
 
 JobClient = gearman.GearmanClient([app_cfg['gearman']['address'] + ':' + str(app_cfg['gearman']['port'])])
 JobWorker = gearman.GearmanWorker([app_cfg['gearman']['address'] + ':' + str(app_cfg['gearman']['port'])])
+# Mongo = pymongo.MongoClient(
+#     host=app_cfg['mongo']['address'],
+#     port=app_cfg['mongo']['port'],
+#     replicaset='dbrepl',
+#     socketTimeoutMS=None,
+#     socketKeepAlive=True
+# )
+
 Mongo = pymongo.MongoClient(
-    host=app_cfg['mongo']['address'],
-    port=app_cfg['mongo']['port'],
+    app_cfg['mongo_replica'],
     replicaset='dbrepl',
     socketTimeoutMS=None,
     socketKeepAlive=True

@@ -13,6 +13,7 @@ if app_env == 'spider':
         'redis': {'address': '192.168.10.251', 'port': 6379},
         'gearman': {'address': '192.168.122.1', 'port': 4730},
         'memcached': {'address': '192.168.122.1', 'port': 11211},
+        'mongo_replica': ['192.168.10.251:27017', '192.168.10.252:27018']
     }
 elif app_env == 'master':
     app_cfg = {
@@ -20,6 +21,7 @@ elif app_env == 'master':
         'redis': {'address': '192.168.10.251', 'port': 6379},
         'gearman': {'address': '192.168.10.254', 'port': 4730},
         'memcached': {'address': '192.168.10.254', 'port': 11211},
+        'mongo_replica': ['192.168.10.251:27017', '192.168.10.252:27018']
     }
 else:
     app_cfg = {
@@ -27,6 +29,7 @@ else:
         'redis': {'address': '192.168.10.251', 'port': 6379},
         'gearman': {'address': '192.168.10.254', 'port': 4730},
         'memcached': {'address': '192.168.10.254', 'port': 11211},
+        'mongo_replica': ['192.168.10.251:27017', '192.168.10.252:27018']
     }
 
 
