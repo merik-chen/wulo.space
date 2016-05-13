@@ -14,10 +14,15 @@ all = Database.Database.find({"title": {"$exists": True}}, {
     'title': 1,
     'wulo': 1,
     'url': 1,
-})
+}, no_cursor_timeout=True)
+
+counter = 0
 
 for post in all:
-    print post['title']
+    # print post['title'].encode('utf-8')
+
+    if (counter % 1000) == 0:
+        print ('Now %s processed.' % counter)
 
     if ('board' not in post) or ('article' not in post):
         find = re.search(filter_regex, post['url'])
@@ -74,3 +79,4 @@ for post in all:
             post['board'].encode('utf-8'),
         )
 
+    counter += 1
