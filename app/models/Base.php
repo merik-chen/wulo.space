@@ -54,7 +54,7 @@ class Base extends Phalcon\Mvc\Model
     protected function initRedis()
     {
         $redis = new \Redis();
-        $redis->pconnect('192.168.122.253');
+        $redis->pconnect('192.168.122.254');
         return $redis;
     }
 
