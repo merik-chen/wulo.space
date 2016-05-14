@@ -47,7 +47,7 @@ class Base extends Phalcon\Mvc\Model
 
     protected function initMongo()
     {
-        $mongo = new \MongoClient("mongodb://192.168.122.253:27017");
+        $mongo = new \MongoClient("mongodb://mongo-251:27017,mongo-252:27018/?replicaSet=dbrepl");
         return $mongo;
     }
 
