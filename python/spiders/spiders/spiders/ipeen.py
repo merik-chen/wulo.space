@@ -78,6 +78,11 @@ class IpeenSpider(CrawlSpider):
             store['postalCode'] = article.css('meta[itemprop="postalcode"]::attr("content")').extract_first()
             store['streetAddress'] = article.css('meta[itemprop="streetAddress"]::attr("content")').extract_first()
 
+            store['address'] = response.css('meta[itemprop="ipeen_app:address"]::attr("content")').extract_first()
+
+            store['latitude'] = response.css('meta[itemprop="place:location:latitude"]::attr("content")').extract_first()
+            store['longitude'] = response.css('meta[itemprop="place:location:longitude"]::attr("content")').extract_first()
+
             store['image'] = article.css('img[itemprop="image"]::attr("src")').extract_first()
             if store['image']:
                 img_res = urllib.urlopen(store['image']).read()
