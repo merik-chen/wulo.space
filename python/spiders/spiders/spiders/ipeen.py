@@ -40,7 +40,8 @@ class IpeenSpider(CrawlSpider):
     )
 
     custom_settings = {
-        'LOG_LEVEL': 'DEBUG'
+        'LOG_LEVEL': 'DEBUG',
+        'DOWNLOAD_DELAY': 5
     }
 
     def show_1(self, response):
