@@ -106,5 +106,7 @@ class IpeenSpider(CrawlSpider):
             )
 
             print('saved', store['name'])
+        else:
+            print('skipped', response.url)
 
         time.sleep(random.randrange(3, 5))
