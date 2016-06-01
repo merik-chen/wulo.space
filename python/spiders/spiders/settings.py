@@ -120,12 +120,13 @@ DEFAULT_REQUEST_HEADERS = {
 #HTTPCACHE_IGNORE_HTTP_CODES=[]
 #HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-# Enables scheduling storing requests queue in redis.
-SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+if app_env == 'spider':
+    # Enables scheduling storing requests queue in redis.
+    SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 
-# Don't cleanup redis queues, allows to pause/resume crawls.
-SCHEDULER_PERSIST = True
-SCHEDULER_IDLE_BEFORE_CLOSE = 10
+    # Don't cleanup redis queues, allows to pause/resume crawls.
+    SCHEDULER_PERSIST = True
+    SCHEDULER_IDLE_BEFORE_CLOSE = 10
 
-REDIS_HOST = app_cfg['redis']['address']
-REDIS_PORT = app_cfg['redis']['port']
+    REDIS_HOST = app_cfg['redis']['address']
+    REDIS_PORT = app_cfg['redis']['port']
