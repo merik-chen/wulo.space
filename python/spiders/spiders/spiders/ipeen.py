@@ -44,6 +44,17 @@ class IpeenSpider(CrawlSpider):
         'DOWNLOAD_DELAY': 5
     }
 
+    @classmethod
+    def from_crawler(cls, crawler, *args, **kwargs):
+        spider = super(CrawlSpider, cls).from_crawler(crawler, *args, **kwargs)
+        spider._follow_links = crawler.settings.getbool(
+            'CRAWLSPIDER_FOLLOW_LINKS', True)
+        spider.update_settings({
+            'LOG_LEVEL': 'DEBUG',
+            'DOWNLOAD_DELAY': 5
+        })
+        return spider
+
     def show_1(self, response):
         self.index_db.update_one(
             {'link': response.url},
@@ -109,4 +120,4 @@ class IpeenSpider(CrawlSpider):
         else:
             print('skipped', response.url)
 
-        time.sleep(random.randrange(3, 5))
+        # time.sleep(random.randrange(3, 5))
