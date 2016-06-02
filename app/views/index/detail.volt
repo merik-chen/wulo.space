@@ -72,6 +72,7 @@
                     </div>
 
                     <div class="detail-title-info-spacer">
+                        {% if showAD %}
                         <!-- wulo-detail-水平-1 -->
                         <ins class="adsbygoogle"
                              style="display:inline-block;width:100%;height:90px"
@@ -80,10 +81,12 @@
                         <script>
                             (adsbygoogle = window.adsbygoogle || []).push({});
                         </script>
+                        {% endif %}
                     </div>
 
                     <div>
                         <span class="read-more" itemprop="text">{{ post['body'] | trim | nl2br }}</span>
+                        {% if showAD %}
                         <!-- wulo-detail-水平-1 -->
                         <ins class="adsbygoogle"
                              style="display:inline-block;width:100%;height:90px"
@@ -92,6 +95,7 @@
                         <script>
                             (adsbygoogle = window.adsbygoogle || []).push({});
                         </script>
+                        {% endif %}
                     </div>
                 </div>
             </div>

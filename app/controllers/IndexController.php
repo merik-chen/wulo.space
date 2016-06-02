@@ -21,15 +21,19 @@ class IndexController extends ControllerBase
         $this->view->ab = $this->ab;
         $this->view->posts  = $posts;
         $this->view->boards = $all_board;
+
+        $this->view->showAD = true;
     }
 
     public function latestAction()
     {
         $this->view->posts = $this->article->getLatestArticleSinglePage();
+        $this->view->showAD = true;
     }
 
     public function searchAction()
     {
+        $this->view->showAD = true;
         $this->view->most_like  = $this->lists->getMostLikePosts();
 
         $latest_posts   = $this->article->getLatestArticle(50);
@@ -47,6 +51,11 @@ class IndexController extends ControllerBase
         $amp = $this->dispatcher->getParam('amp', 'string', 'off');
 
         if( $board == false || $post == false ) $this->response->redirect('/');
+
+        $this->view->showAD =
+            (strtolower($board) !== 'lgbt_sex') &&
+            (strtolower($board) !== 'gay') &&
+            (strtolower($board) !== 'sex');
 
         $find = $this->article->getArticle([
             'board' => $board,
@@ -97,6 +106,7 @@ class IndexController extends ControllerBase
         $this->view->board  = $board;
         $this->view->page   = $page;
         $this->view->data   = $this->lists->getBoardList($board, $page);
+        $this->view->showAD = true;
     }
 
     public function postGet5FAction()
