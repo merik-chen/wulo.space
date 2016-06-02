@@ -53,6 +53,7 @@ class IpeenSpider(CrawlSpider):
             'LOG_LEVEL': 'DEBUG',
             'DOWNLOAD_DELAY': 5
         })
+        print('I\'m a new spider!')
         return spider
 
     def show_1(self, response):
