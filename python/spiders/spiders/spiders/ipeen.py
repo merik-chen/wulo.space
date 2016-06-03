@@ -6,6 +6,7 @@ sys.path.append(path.dirname(path.dirname(path.dirname(path.dirname(path.abspath
 # print sys.path
 
 import scrapy
+from scrapy.settings import Settings
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 from bson.binary import Binary
@@ -44,14 +45,9 @@ class IpeenSpider(CrawlSpider):
         'DOWNLOAD_DELAY': 5
     }
 
-    @classmethod
-    def from_crawler(cls, crawler, *args, **kwargs):
-        spider = super(CrawlSpider, cls).from_crawler(crawler, *args, **kwargs)
-        spider._follow_links = crawler.settings.getbool(
-            'CRAWLSPIDER_FOLLOW_LINKS', True)
-        spider.update_settings(crawler.settings)
-        print('I\'m a new spider!')
-        return spider
+    settings = Settings()
+
+    settings.setdict(custom_settings)
 
     def show_1(self, response):
         self.index_db.update_one(
