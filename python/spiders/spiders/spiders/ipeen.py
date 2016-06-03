@@ -47,7 +47,7 @@ class IpeenSpider(CrawlSpider):
 
     settings = Settings()
 
-    settings.setdict(custom_settings)
+    settings.setdict(custom_settings, 'cmdline')
 
     def show_1(self, response):
         self.index_db.update_one(
