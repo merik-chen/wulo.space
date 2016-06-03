@@ -24,7 +24,7 @@ import re
 
 class IpeenSpider(CrawlSpider):
 
-    settings.set('LOG_LEVEL', 'DEBUG')  # WARNING
+    # settings.set('LOG_LEVEL', 'DEBUG')  # WARNING
     settings.set('DOWNLOAD_DELAY', 5)
 
     name = "ipeen"
