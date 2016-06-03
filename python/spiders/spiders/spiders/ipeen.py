@@ -25,7 +25,7 @@ import re
 class IpeenSpider(CrawlSpider):
 
     # settings.set('LOG_LEVEL', 'DEBUG')  # WARNING
-    settings.set('DOWNLOAD_DELAY', 5)
+    settings.set('DOWNLOAD_DELAY', 3)
 
     name = "ipeen"
     allowed_domains = ["www.ipeen.com.tw"]
