@@ -49,10 +49,7 @@ class IpeenSpider(CrawlSpider):
         spider = super(CrawlSpider, cls).from_crawler(crawler, *args, **kwargs)
         spider._follow_links = crawler.settings.getbool(
             'CRAWLSPIDER_FOLLOW_LINKS', True)
-        spider.update_settings({
-            'LOG_LEVEL': 'DEBUG',
-            'DOWNLOAD_DELAY': 5
-        })
+        spider.update_settings(crawler.settings)
         print('I\'m a new spider!')
         return spider
 
