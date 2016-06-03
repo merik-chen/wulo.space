@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 from Loader import *
+from pprint import pprint
 import SimpleGearManAdmin
 import traceback
 import requests
@@ -9,30 +11,33 @@ import random
 import Cookie
 import time
 import json
+import re
 
 INITIAL_ENDPOINT = 'https://www.dcard.tw/f'
-INITIAL_BOARD_LIST_ENDPOINT = 'https://www.dcard.tw/api/forum'
+INITIAL_BOARD_LIST_ENDPOINT = 'https://www.dcard.tw/_api/forums'
 USER_AGENT = random_ua()
 COOKIE = Cookie.SimpleCookie()
 COOKIE_XSRF = ''
 BOARDS = {}
 NOW_BOARD = ''
 
-LIST_ENDPOINT_PREFIX = 'https://www.dcard.tw/api/forum/%s/%s/'
-LIST_POPULAR_ENDPOINT_PREFIX = 'https://www.dcard.tw/api/forum/%s/%s/popular'
+LIST_ENDPOINT_PREFIX = 'https://www.dcard.tw/_api/forums/%s/posts%s'
+LIST_POPULAR_ENDPOINT_PREFIX = 'https://www.dcard.tw/_api/forums/%s/posts?popular=true&before=%s'
 LIST_ENDPOINT_HEADER = {
     'referer': 'https://www.dcard.tw/f',
-    'x-xsrf-token': COOKIE_XSRF
+    'X-Csrf-Token': COOKIE_XSRF
 }
 
-INITIAL_PAGE = 1
+INITIAL_PAGE = ''
 
 
-def parse_xsrf_token(raw_cookie):
+def parse_xsrf_token(raw_headers):
     global COOKIE, COOKIE_XSRF
-    COOKIE.load(raw_cookie.encode('utf-8'))
-    COOKIE_XSRF = COOKIE['XSRF-TOKEN'].value
-    return COOKIE_XSRF
+    if 'X-Csrf-Token' in raw_headers:
+        COOKIE_XSRF = raw_headers['X-Csrf-Token']
+        return COOKIE_XSRF
+    else:
+        return None
 
 
 def initial_connect():
@@ -45,9 +50,13 @@ def initial_connect():
     )
 
     if r.status_code == 200:
-        parse_xsrf_token(r.headers['set-cookie'])
+        csrf_token_regex = re.compile('"csrfToken":"([\w\-_]+)"')
+        find = re.findall(csrf_token_regex, r.content)
+        if find:
+            COOKIE_XSRF = find[0]
+            return COOKIE_XSRF
     else:
-        print 'Initial connection failed.'
+        print('Initial connection failed.')
         exit()
 
 
@@ -59,35 +68,34 @@ def get_board_list():
     )
 
     if r.status_code == 200:
-        parse_xsrf_token(r.headers['set-cookie'])
-        boards = r.json()['forum']
-        school = r.json()['school']
+        parse_xsrf_token(r.headers)
+        boards = r.json()
         for board in boards:
-            JobClient.submit_job(
-                'dcard-scarp-board',
-                board['alias'].encode('utf-8'),
-                background=True
+            BoardsDatabase.update_one(
+                {'alias': board['alias']},
+                {'$set': board},
+                upsert=True
             )
-        for _school in school:
             JobClient.submit_job(
-                'dcard-scarp-board',
-                _school['alias'].encode('utf-8'),
-                background=True
+                'dcard-v2-scarp-board',
+                board['alias'].encode('utf-8'),
+                background=True,
+                unique=board['alias'].encode('utf-8')
             )
     else:
-        print 'Initial connection failed.'
+        print('Initial connection failed.')
         exit()
 
 
 def scrap_list(page):
     global COOKIE, USER_AGENT, COOKIE_XSRF, LIST_ENDPOINT_HEADER, LIST_ENDPOINT_PREFIX, NOW_BOARD
     r = requests.get(
-        LIST_ENDPOINT_PREFIX % (NOW_BOARD.encode('utf-8'), page.encode('utf-8')),
+        LIST_ENDPOINT_PREFIX % (NOW_BOARD.encode('utf-8'), len(page) > 0 and '?before=%s' % page or ''),
         headers=LIST_ENDPOINT_HEADER
     )
 
     if r.status_code == 200:
-        parse_xsrf_token(r.headers['set-cookie'])
+        parse_xsrf_token(r.headers)
         return r.json()
 
 
@@ -96,7 +104,7 @@ def dcard_scarp_board(gearman_worker, gearman_job):
     NOW_BOARD = gearman_job.data
     initial_connect()
     is_continue = True
-    INITIAL_PAGE = 1
+    INITIAL_PAGE = ''
     while is_continue:
         try:
             is_continue = False
@@ -105,61 +113,62 @@ def dcard_scarp_board(gearman_worker, gearman_job):
             for index, data in enumerate(scrap_list(str(INITIAL_PAGE))):
                 if RawDatabase.find_one({'id': data['id']}) is None:
                     is_continue = True or is_continue
+                    INITIAL_PAGE = data['id']
                     RawDatabase.save(data)
-            print 'Dcard: Scraped %s page %s.\tSleep %s sec(s).' % (
+            print('Dcard: Scraped %s page %s.\tSleep %s sec(s).' % (
                 NOW_BOARD.encode('utf-8'),
                 INITIAL_PAGE,
                 random_sleep
-            )
+            ))
             time.sleep(random_sleep)
 
             if is_continue:
-                INITIAL_PAGE += 1
+                pass
             else:
-                print "This Board: %s scraped. Do next.\n" % NOW_BOARD.encode('utf-8')
-                print "Checking board remains in pool...\t"
+                print("This Board: %s scraped. Do next.\n" % NOW_BOARD.encode('utf-8'))
+                print("Checking board remains in pool...\t")
                 _board_remain = SimpleGearManAdmin.SimpleGearManAdmin(
                     app_cfg['gearman']['address'],
                     app_cfg['gearman']['port']
-                ).get_status('dcard-scarp-board')
+                ).get_status('dcard-v2-scarp-board')
                 if (_board_remain is None) or (int(_board_remain['queued']) <= (int(_board_remain['workers']) + 1)):
                     get_board_list()
-                    print "Re-Filling.\n"
+                    print("Re-Filling.\n")
                 else:
-                    print "Enough.\n"
+                    print("Enough.\n")
 
         except 'Exception' as e:
             traceback.print_exc()
             sys.exit()
 
-    print 'Sleep for 5 minutes.\n'
+    print('Sleep for 5 minutes.\n')
     time.sleep(5 * 60)
 
     return 'ok'
 
 if '__main__' == __name__:
-    print app_env
+    print(app_env)
 
     try:
         board_remain = SimpleGearManAdmin.SimpleGearManAdmin(
             app_cfg['gearman']['address'],
             app_cfg['gearman']['port']
-        ).get_status('dcard-scarp-board')
+        ).get_status('dcard-v2-scarp-board')
 
-        print board_remain
+        print(board_remain)
         if (board_remain is None) or (int(board_remain['queued']) == 0):
-            print 'Re-Fill boards...\t'
+            print('Re-Fill boards...\t')
             initial_connect()
             get_board_list()
-            print 'done.\n'
+            print('done.\n')
 
-        print 'Start Worker...\t'
-        JobWorker.register_task('dcard-scarp-board', dcard_scarp_board)
+        print('Start Worker...\t')
+        JobWorker.register_task('dcard-v2-scarp-board', dcard_scarp_board)
         JobWorker.work()
-        print 'done.\n'
+        print('done.\n')
 
     except KeyboardInterrupt:
-        print "\nBye"
+        print("\nBye")
         sys.exit()
     except 'Exception' as e:
         traceback.print_exc()

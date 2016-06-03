@@ -30,9 +30,11 @@ Mongo = pymongo.MongoClient(
     socketKeepAlive=True
 )
 
-Collection = Mongo['Dcard']
+Collection = Mongo['DcardV2']
 Database = Collection['posts']
 RawDatabase = Collection['raw_posts']
+BoardsDatabase = Collection['boards']
+CommentsDatabase = Collection['comments']
 
 
 _hash = hashlib.sha1()

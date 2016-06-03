@@ -3,7 +3,7 @@
 
 from __future__ import print_function
 
-from DcardV2 import Article
+from DcardV2 import Comment
 from Exceptions.InputError import InputError
 import traceback
 import Database
@@ -12,61 +12,34 @@ import random
 import json
 import time
 
-article = Article.Article()
+comment = Comment.Comment()
 
 
 def get_dcard_post(gearman_worker, gearman_job):
-    global article
+    global comment
     article_id = gearman_job.data
     try:
-        post = article.get_article(article_id)
+        posts = comment.get_comments(article_id)
 
-        if '_id' in post:
-            post['article_id'] = post['_id']
-            del post['_id']
-
-        if 'you' in post:
-            del post['you']
-
-        post['fetched'] = True
-
-        Article.RawDatabase.find_one_and_update(
-            {'id': post['id']},
-            {
-                '$set': post
-            }
-        )
-
-        Database.JobClient.submit_job(
-            'dcard-v2-scrap-comments',
-            str(post['id']),
-            background=True,
-            unique=str(post['id'])
-        )
-
-        random_sleep = random.randrange(5, 10)
-        print('[%s] Scraped %s, sleep %s sec(s).' % (post['id'], post['title'].encode('utf-8'), random_sleep))
-        time.sleep(random_sleep)
+        for post in posts:
+            Comment.CommentsDatabase.update_one(
+                {'id': post['id']},
+                {
+                    '$set': post
+                },
+                upsert=True
+            )
+            random_sleep = random.randrange(5, 10)
+            print('[%s] Scraped %s, sleep %s sec(s).' % (post['id'], post['postId'], random_sleep))
+            time.sleep(random_sleep)
 
     except KeyboardInterrupt:
         print('Bye~\n')
         exit()
-    except InputError as e:
-        print(e.message)
-        Article.RawDatabase.find_one_and_update(
-            {'id': article_id},
-            {
-                '$set': {
-                    'fetched': True,
-                    'error': True
-                }
-            }
-        )
-        time.sleep(5)
     except requests.ConnectionError as e:
         print(e.message)
         Database.JobClient.submit_job(
-            'dcard-v2-scrap-post',
+            'dcard-v2-scrap-comments',
             gearman_job.data,
             background=True,
             priority=Database.gearman.PRIORITY_LOW
@@ -76,7 +49,7 @@ def get_dcard_post(gearman_worker, gearman_job):
     except Exception as e:
         print(e.message)
         Database.JobClient.submit_job(
-            'dcard-v2-scrap-post',
+            'dcard-v2-scrap-comments',
             gearman_job.data,
             background=True,
             priority=Database.gearman.PRIORITY_LOW
@@ -89,7 +62,7 @@ def get_dcard_post(gearman_worker, gearman_job):
 
 
 def start_work():
-    Database.JobWorker.register_task('dcard-v2-scrap-post', get_dcard_post)
+    Database.JobWorker.register_task('dcard-v2-scrap-comments', get_dcard_post)
     Database.JobWorker.work()
 
 if '__main__' == __name__:
