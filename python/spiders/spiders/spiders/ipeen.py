@@ -6,7 +6,7 @@ sys.path.append(path.dirname(path.dirname(path.dirname(path.dirname(path.abspath
 # print sys.path
 
 import scrapy
-from scrapy.settings import Settings
+from scrapy.conf import settings
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 from bson.binary import Binary
@@ -23,6 +23,10 @@ import re
 
 
 class IpeenSpider(CrawlSpider):
+
+    settings.set('LOG_LEVEL', 'DEBUG')  # WARNING
+    settings.set('DOWNLOAD_DELAY', 5)
+
     name = "ipeen"
     allowed_domains = ["www.ipeen.com.tw"]
     start_urls = (
@@ -41,13 +45,9 @@ class IpeenSpider(CrawlSpider):
     )
 
     custom_settings = {
-        'LOG_LEVEL': 'DEBUG',
-        'DOWNLOAD_DELAY': 5
+        # 'LOG_LEVEL': 'DEBUG',
+        # 'DOWNLOAD_DELAY': 5
     }
-
-    settings = Settings()
-
-    settings.setdict(custom_settings, 'cmdline')
 
     def show_1(self, response):
         self.index_db.update_one(
