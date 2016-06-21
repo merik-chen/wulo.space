@@ -43,7 +43,7 @@ class Article:
             self.COOKIE_XSRF = self.utility.parse_xsrf_token(r.headers)
             return r.json()
         else:
-            print(r.status_code, r.content)
+            print(article_id, r.status_code, r.content)
             raise InputError('Can not get the article.', None)
 
 
