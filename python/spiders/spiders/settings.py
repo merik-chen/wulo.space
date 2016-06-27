@@ -118,6 +118,7 @@ DEFAULT_REQUEST_HEADERS = {
 #HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 if app_env == 'spider':
+    DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
     # Enables scheduling storing requests queue in redis.
     SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 
